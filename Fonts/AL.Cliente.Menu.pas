@@ -9,7 +9,7 @@ uses
   System.Actions, FMX.ActnList;
 
 type
-  TForm2 = class(TForm)
+  TFrmALClienteMenu = class(TForm)
     mtvMenu: TMultiView;
     ToolBar1: TToolBar;
     StyleBook1: TStyleBook;
@@ -22,6 +22,8 @@ type
     btnSair: TButton;
     actConfigurar: TAction;
     procedure actMenuExecute(Sender: TObject);
+    procedure actSairExecute(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
   public
@@ -29,15 +31,27 @@ type
   end;
 
 var
-  Form2: TForm2;
+  FrmALClienteMenu: TFrmALClienteMenu;
 
 implementation
 
 {$R *.fmx}
 
-procedure TForm2.actMenuExecute(Sender: TObject);
+uses AL.Cliente.DmDados;
+
+procedure TFrmALClienteMenu.actMenuExecute(Sender: TObject);
 begin
   //
+end;
+
+procedure TFrmALClienteMenu.actSairExecute(Sender: TObject);
+begin
+  Application.Terminate;
+end;
+
+procedure TFrmALClienteMenu.FormCreate(Sender: TObject);
+begin
+  FrmALClienteDmDados := TFrmALClienteDmDados.Create(Self);
 end;
 
 end.
