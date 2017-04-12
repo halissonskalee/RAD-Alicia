@@ -11,7 +11,7 @@ uses
   FireDAC.FMXUI.Wait, FireDAC.Comp.UI, Data.DB, FireDAC.Comp.Client,
   FireDAC.Phys.SQLite, FireDAC.Phys.SQLiteDef, FireDAC.Stan.ExprFuncs,
   FireDAC.Stan.Param, FireDAC.DatS, FireDAC.DApt.Intf, FireDAC.DApt,
-  FireDAC.Comp.DataSet, FireDAC.Phys.SQLiteVDataSet, FireDAC.Phys.MongoDBDataSet;
+  FireDAC.Comp.DataSet, FireDAC.Phys.SQLiteVDataSet, FireDAC.Phys.MongoDBDataSet, FMX.Dialogs;
 
 type
   TFrmALClienteDmDados = class(TDataModule)
@@ -36,12 +36,31 @@ implementation
 
 {%CLASSGROUP 'FMX.Controls.TControl'}
 
+uses AL.Cliente.Registro, AL.Cliente.Menu;
+
 {$R *.dfm}
 
 
 procedure TFrmALClienteDmDados.DataModuleCreate(Sender: TObject);
+var
+  vRegistro : TRegistro;
 begin
-  FDConnection1.Connected := true;
+  vRegistro := funRegistro;
+
+
+  if vRegistro.Host.IsEmpty then
+    Exception.Create('MongoDB não configurado, verifique o arquivo de configuração');
+
+
+  try
+    FDConnection1.Params.Values['Server']  := vRegistro.Host;
+    FDConnection1.Params.Values['DriverID']:= 'Mongo';
+    FDConnection1.Connected := true;    
+  except on E: Exception do
+    ShowMessage('MongoDB, não foi possivel contar no host' + vRegistro.Host + ' na porta ' + vRegistro.Porta.ToString+ sLineBreak +
+                'Verifique as configurações do arquivo .ini ou do servidor');    
+  end;
+    
   FConMongo := TMongoConnection(FDConnection1.CliObj);
   //dmDados.FConMongo.Env.Monitor.Tracing := false;
 end;

@@ -5,7 +5,7 @@
         <FrameworkType>FMX</FrameworkType>
         <MainSource>Alicia.dpr</MainSource>
         <Base>True</Base>
-        <Config Condition="'$(Config)'==''">Debug</Config>
+        <Config Condition="'$(Config)'==''">Release</Config>
         <Platform Condition="'$(Platform)'==''">Win32</Platform>
         <TargetedPlatforms>1119</TargetedPlatforms>
         <AppType>Application</AppType>
@@ -98,7 +98,6 @@
         <AUP_CALL_PHONE>true</AUP_CALL_PHONE>
         <AUP_ACCESS_FINE_LOCATION>true</AUP_ACCESS_FINE_LOCATION>
         <DCC_DcuOutput>.\$(Platform)\$(Config)</DCC_DcuOutput>
-        <DCC_ExeOutput>.\$(Platform)\$(Config)</DCC_ExeOutput>
         <DCC_E>false</DCC_E>
         <DCC_N>false</DCC_N>
         <DCC_S>false</DCC_S>
@@ -252,6 +251,7 @@
         <VerInfo_Keys>CFBundleName=$(MSBuildProjectName);CFBundleDisplayName=$(MSBuildProjectName);CFBundleIdentifier=$(MSBuildProjectName);CFBundleVersion=1.0.0;CFBundlePackageType=APPL;CFBundleSignature=????;CFBundleAllowMixedLocalizations=YES;CFBundleExecutable=$(MSBuildProjectName);NSHighResolutionCapable=true;LSApplicationCategoryType=public.app-category.utilities;NSLocationAlwaysUsageDescription=The reason for accessing the location information of the user;NSLocationWhenInUseUsageDescription=The reason for accessing the location information of the user</VerInfo_Keys>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win32)'!=''">
+        <DCC_ExeOutput>C:\RAD-Alicia\App</DCC_ExeOutput>
         <Manifest_File>$(BDS)\bin\default_app.manifest</Manifest_File>
         <DCC_Namespace>Winapi;System.Win;Data.Win;Datasnap.Win;Web.Win;Soap.Win;Xml.Win;Bde;$(DCC_Namespace)</DCC_Namespace>
         <DCC_UsePackage>DBXSqliteDriver;ibo5art_d10;DBXDb2Driver;dxCoreRS23;vclactnband;dxPSdxLCLnkRS23;vclFireDAC;dxPSLnksRS23;tethering;cxDataRS23;dxPSdxOCLnkRS23;dxTabbedMDIRS23;FireDACADSDriver;ibo5ftsrt_d10;TLMCalendario;dxDBXServerModeRS23;dxHttpIndyRequestRS23;dxPScxGridLnkRS23;cxSchedulerRS23;FireDACMSSQLDriver;ibo5wxrt_d10;vcltouch;ACBr_NFe;dclRBDBE1723;vcldb;Intraweb;svn;dxWizardControlRS23;dxPScxCommonRS23;rbDB1723;LMCheckBoxEmpresa;ACBr_NFeDanfeESCPOS;rbIBE1723;TLmEditLookupDBX;dxBarRS23;TLMCalendar;cxSchedulerRibbonStyleEventEditorRS23;ibo5frt_d10;uniGUI23Chart;dxPSTeeChartRS23;TLMDBEdit;cxLibraryRS23;vclib;cxPivotGridChartRS23;TLMDBEditLookupDbx;rbDBE1723;dxPSdxDBOCLnkRS23;dxGDIPlusRS23;FireDACDBXDriver;uSynEdit_R2019;TLMPH;TLMCxGrid;vclx;TLMPageControl;rbCIDE1723;dxdborRS23;RESTBackendComponents;dxLayoutControlRS23;dxPSPrVwRibbonRS23;VCLRESTComponents;uniGUI23m;vclie;bindengine;CloudService;rbRAP1723;ACBr_PAF;FireDACMySQLDriver;TLMdbGrid;ACBr_SATECFVirtual;DataSnapClient;dxPScxPCProdRS23;TLMServerLookup;TLMListBoxLookup;bindcompdbx;uniGUI23VCL;ACBr_TCP;DBXSybaseASEDriver;IndyIPServer;ACBr_CTe;IndySystem;dsnapcon;cxTreeListdxBarPopupMenuRS23;ACBr_synapse;TLMCxGridDBX;dclRBIBE1723;FireDACMSAccDriver;fmxFireDAC;FireDACInfxDriver;vclimg;ACBr_SPEDImportar;ACBr_SPED;ACBr_MDFe;rbADO1723;dxBarDBNavRS23;dxFlowChartRS23;ACBr_LFD;rbUSER1723;DBXOdbcDriver;FireDACTDataDriver;FMXTee;soaprtl;DbxCommonDriver;dxSpreadSheetRS23;dxPSdxSpreadSheetLnkRS23;xmlrtl;soapmidas;DataSnapNativeClient;fmxobj;TLMMemo;rtl;DbxClientDriver;DBXSybaseASADriver;dxNavBarRS23;TLMEditLookup;dxRichEditControlRS23;rbUSERDesign1723;SampleListViewMultiDetailAppearancePackage;ACBr_Convenio115;TLMEmail;appanalytics;cxPivotGridRS23;TLMArredondador;dxPScxVGridLnkRS23;IndyIPClient;dxRibbonRS23;ibo5rplrt_d10;bindcompvcl;dxPScxTLLnkRS23;rbDIDE1723;TLMDBCrtlGrid;ibo5vrt_d10;dxMapControlRS23;TeeUI;MongoCore;TLMGroupBox;VclSmp;dxPScxSchedulerLnkRS23;cxTreeListRS23;FireDACODBCDriver;ibo5admrt_d10;DataSnapIndy10ServerTransport;dxRibbonCustomizationFormRS23;dxPSRichEditControlLnkRS23;ACBr_Boleto;dxBarExtDBItemsRS23;DataSnapProviderClient;ACBr_SEF2;FireDACMongoDBDriver;TLMCheckGroup;dxSpellCheckerRS23;ACBr_NFSe;DataSnapServerMidas;RESTComponents;DBXInterBaseDriver;ACBr_TEFD;rbRTL1723;dxADOServerModeRS23;TLMParcelamento;emsclientfiredac;DataSnapFireDAC;svnui;dxmdsRS23;dxPSDBTeeChartRS23;dxdbtrRS23;TLMSQL;dxPSCoreRS23;DBXMSSQLDriver;rbDAD1723;DatasnapConnectorsFreePascal;TLMInputBox;TLMRadioGroup;bindcompfmx;DBXOracleDriver;TLMBoaVista;inetdb;ACBr_Diversos;rbTC1723;TLMComboBox;ACBr_TXTComum;FmxTeeUI;dxBarExtItemsRS23;TLMSpeedButton;FireDACIBDriver;fmx;fmxdae;dxServerModeRS23;dxPsPrVwAdvRS23;cxPageControlRS23;ACBr_Ponto;cxSchedulerGridRS23;dbexpress;IndyCore;TLMPercentual;dsnap;DataSnapCommon;emsclient;FireDACCommon;ibo5crt_d10;ACBr_PCNComum;DataSnapConnectors;cxVerticalGridRS23;ACBR_DeSTDA;soapserver;ACBr_SAT;dxTileControlRS23;TLMBalsamiqMockups;cxGridRS23;FireDACOracleDriver;DBXMySQLDriver;rbFireDAC1723;DBXFirebirdDriver;ACBr_Sintegra;FireDACCommonDriver;ACBr_GNRE;rbTCUI1723;inet;IndyIPCommon;dxDockingRS23;vcl;dxPScxExtCommonRS23;ACBr_SATExtratoESCPOS;TLMDominio;FireDACDb2Driver;dxThemeRS23;LMReportBuilder;rbRest1723;madExcept_;TLMDBEditLookup;dxPSdxFCLnkRS23;ibo5xrt_d10;dxtrmdRS23;TeeDB;FireDAC;madBasic_;LMXML;cxSchedulerTreeBrowserRS23;dxFireDACServerModeRS23;ACBr_Comum;TLMDados;FireDACSqliteDriver;FireDACPgDriver;ibmonitor;FireDACASADriver;cxEditorsRS23;TLMEDIT;TLMGauge;TLMSQLDataSet;TLMDbMemo;rbIDE1723;dxGaugeControlRS23;ibxpress;Tee;cxPivotGridOLAPRS23;DataSnapServer;ibxbindings;vclwinx;FireDACDSDriver;ACBr_OpenSSL;ibo5wrt_d10;madDisAsm_;TLMExcel;ACBr_DFeComum;CustomIPTransport;vcldsnap;TLMFDQuery;TLMConsultaCDL;rbBDE1723;bindcomp;ibo5trt_d10;ACBr_Serial;DBXInformixDriver;dxPSdxGaugeControlLnkRS23;fgx;dxPScxPivotGridLnkRS23;dxorgcRS23;ACBr_BlocoX;dxPSdxDBTVLnkRS23;dclRBADO1723;vclribbon;dbxcds;ACBr_NFCeECFVirtual;adortl;dclRBFireDAC1723;dclRBE1723;dxComnRS23;dsnapxml;dbrtl;inetdbxpress;IndyProtocols;cxExportRS23;TLMBtn;rbRCL1723;ACBr_MTER;rbRIDE1723;fmxase;$(DCC_UsePackage)</DCC_UsePackage>
@@ -293,6 +293,9 @@
         <DCC_DebugInformation>0</DCC_DebugInformation>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2_Win32)'!=''">
+        <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
+        <VerInfo_Locale>1033</VerInfo_Locale>
+        <VerInfo_Keys>CompanyName=Alicia PS Sistemas;FileDescription=;FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
         <AppEnableRuntimeThemes>true</AppEnableRuntimeThemes>
         <AppEnableHighDPI>true</AppEnableHighDPI>
     </PropertyGroup>
@@ -313,6 +316,7 @@
             <FormType>dfm</FormType>
             <DesignClass>TDataModule</DesignClass>
         </DCCReference>
+        <DCCReference Include="AL.Cliente.Registro.pas"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>
@@ -360,12 +364,27 @@
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployClass Name="ProjectiOSDeviceResourceRules">
+                <DeployClass Name="DependencyModule">
+                    <Platform Name="Win32">
+                        <Operation>0</Operation>
+                        <Extensions>.dll;.bpl</Extensions>
+                    </Platform>
                     <Platform Name="iOSDevice64">
                         <Operation>1</Operation>
+                        <Extensions>.dylib</Extensions>
+                    </Platform>
+                    <Platform Name="OSX32">
+                        <RemoteDir>Contents\MacOS</RemoteDir>
+                        <Operation>1</Operation>
+                        <Extensions>.dylib</Extensions>
                     </Platform>
                     <Platform Name="iOSDevice32">
                         <Operation>1</Operation>
+                        <Extensions>.dylib</Extensions>
+                    </Platform>
+                    <Platform Name="iOSSimulator">
+                        <Operation>1</Operation>
+                        <Extensions>.dylib</Extensions>
                     </Platform>
                 </DeployClass>
                 <DeployClass Name="ProjectOSXResource">
@@ -719,27 +738,12 @@
                         <Operation>1</Operation>
                     </Platform>
                 </DeployClass>
-                <DeployClass Name="DependencyModule">
-                    <Platform Name="Win32">
-                        <Operation>0</Operation>
-                        <Extensions>.dll;.bpl</Extensions>
-                    </Platform>
+                <DeployClass Name="ProjectiOSDeviceResourceRules">
                     <Platform Name="iOSDevice64">
                         <Operation>1</Operation>
-                        <Extensions>.dylib</Extensions>
-                    </Platform>
-                    <Platform Name="OSX32">
-                        <RemoteDir>Contents\MacOS</RemoteDir>
-                        <Operation>1</Operation>
-                        <Extensions>.dylib</Extensions>
                     </Platform>
                     <Platform Name="iOSDevice32">
                         <Operation>1</Operation>
-                        <Extensions>.dylib</Extensions>
-                    </Platform>
-                    <Platform Name="iOSSimulator">
-                        <Operation>1</Operation>
-                        <Extensions>.dylib</Extensions>
                     </Platform>
                 </DeployClass>
                 <ProjectRoot Platform="iOSDevice64" Name="$(PROJECTNAME).app"/>
