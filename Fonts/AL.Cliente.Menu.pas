@@ -6,7 +6,8 @@ uses
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.StdCtrls,
   FMX.Controls.Presentation, FMX.MultiView, System.ImageList, FMX.ImgList,
-  System.Actions, FMX.ActnList;
+  System.Actions, FMX.ActnList, FMX.ListBox, FMX.Layouts, FMX.Edit,
+  FMX.SearchBox;
 
 type
   TFrmALClienteMenu = class(TForm)
@@ -21,6 +22,8 @@ type
     actSair: TAction;
     btnSair: TButton;
     actConfigurar: TAction;
+    ListBox1: TListBox;
+    SearchBox1: TSearchBox;
     procedure actMenuExecute(Sender: TObject);
     procedure actSairExecute(Sender: TObject);
     procedure FormCreate(Sender: TObject);
