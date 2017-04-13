@@ -2,32 +2,7 @@ unit AL.Cliente.Registro;
 
 interface
 
-uses System.IniFiles, System.SysUtils;
-
-type
-  TRegistro = class
-  private
-    FDataBase: String;
-    FPassWord: String;
-    FHost: String;
-    FPorta: integer;
-    FUserName: String;
-    procedure SetDataBase(const Value: String);
-    procedure SetHost(const Value: String);
-    procedure SetPassWord(const Value: String);
-    procedure SetPorta(const Value: integer);
-    procedure SetUserName(const Value: String);
-    { private declarations }
-  protected
-    { protected declarations }
-  public
-    { public declarations }
-    property Host    : String read FHost write SetHost;
-    property Porta   : integer read FPorta write SetPorta;
-    property DataBase: String read FDataBase write SetDataBase;
-    property UserName: String read FUserName write SetUserName;
-    property PassWord: String read FPassWord write SetPassWord;
-end;
+Uses AL.Classe.Registro,System.IniFiles, System.SysUtils;
 
 function funRegistro: TRegistro;
 
@@ -47,6 +22,10 @@ begin
     iniConfig.WriteString('MONGODB', 'DATABASE', '');
     iniConfig.WriteString('MONGODB', 'USERNAME', '');
     iniConfig.WriteString('MONGODB', 'PASSWORD', '');
+
+    iniConfig.WriteString('SISTEMA', 'BANCO', '');
+
+
     iniConfig.UpdateFile;
   end;
 
@@ -58,34 +37,9 @@ begin
   Result.UserName := iniConfig.ReadString('MONGODB','USERNAME' ,'');
   Result.PassWord := iniConfig.ReadString('MONGODB','PASSWORD' ,'');
 
+  Result.Banco    := iniConfig.ReadString('SISTEMA','BANCO' ,'');
+
   FreeAndNil(iniConfig);
-end;
-
-{ TRegistro }
-
-procedure TRegistro.SetDataBase(const Value: String);
-begin
-  FDataBase := Value;
-end;
-
-procedure TRegistro.SetHost(const Value: String);
-begin
-  FHost := Value;
-end;
-
-procedure TRegistro.SetPassWord(const Value: String);
-begin
-  FPassWord := Value;
-end;
-
-procedure TRegistro.SetPorta(const Value: integer);
-begin
-  FPorta := Value;
-end;
-
-procedure TRegistro.SetUserName(const Value: String);
-begin
-  FUserName := Value;
 end;
 
 end.

@@ -11,7 +11,8 @@ uses
   FireDAC.FMXUI.Wait, FireDAC.Comp.UI, Data.DB, FireDAC.Comp.Client,
   FireDAC.Phys.SQLite, FireDAC.Phys.SQLiteDef, FireDAC.Stan.ExprFuncs,
   FireDAC.Stan.Param, FireDAC.DatS, FireDAC.DApt.Intf, FireDAC.DApt,
-  FireDAC.Comp.DataSet, FireDAC.Phys.SQLiteVDataSet, FireDAC.Phys.MongoDBDataSet, FMX.Dialogs;
+  FireDAC.Comp.DataSet, FireDAC.Phys.SQLiteVDataSet, FireDAC.Phys.MongoDBDataSet,
+  FMX.Dialogs, AL.Persistencia, AL.Classe.Registro;
 
 type
   TFrmALClienteDmDados = class(TDataModule)
@@ -22,11 +23,15 @@ type
     procedure DataModuleCreate(Sender: TObject);
     procedure DataModuleDestroy(Sender: TObject);
   private
+    procedure Teste;
     { Private declarations }
   public
     { Public declarations }
     FConMongo : TMongoConnection;
+    FEnv      : TMongoEnv;
+    vRegistro : TRegistro;
     procedure executaSQL(Banco, Collection, SQL: String);
+    function CriarPersistencia : TALPersistencia;
   end;
 
 var
@@ -36,34 +41,60 @@ implementation
 
 {%CLASSGROUP 'FMX.Controls.TControl'}
 
-uses AL.Cliente.Registro, AL.Cliente.Menu;
+uses AL.Cliente.Registro, AL.Cliente.Menu ;
 
 {$R *.dfm}
 
 
+function TFrmALClienteDmDados.CriarPersistencia: TALPersistencia;
+begin
+  Result := TALPersistencia.Create;
+  Result.ConMongo := FConMongo;
+  Result.Env      := FEnv;
+  Result.Banco    := vRegistro.Banco;
+  Result.Tabela   := '';
+end;
+
 procedure TFrmALClienteDmDados.DataModuleCreate(Sender: TObject);
-var
-  vRegistro : TRegistro;
 begin
   vRegistro := funRegistro;
 
-
   if vRegistro.Host.IsEmpty then
-    Exception.Create('MongoDB não configurado, verifique o arquivo de configuração');
+    raise Exception.Create('MongoDB não configurado, verifique o arquivo de configuração');
 
+  if vRegistro.Banco.IsEmpty then
+    raise Exception.Create('MongoDB não configurado, verifique o arquivo de configuração, O Banco não foi informado');
 
   try
     FDConnection1.Params.Values['Server']  := vRegistro.Host;
     FDConnection1.Params.Values['DriverID']:= 'Mongo';
-    FDConnection1.Connected := true;    
+    FDConnection1.Connected := true;
   except on E: Exception do
     ShowMessage('MongoDB, não foi possivel contar no host' + vRegistro.Host + ' na porta ' + vRegistro.Porta.ToString+ sLineBreak +
                 'Verifique as configurações do arquivo .ini ou do servidor');    
   end;
     
   FConMongo := TMongoConnection(FDConnection1.CliObj);
+  FEnv      := FConMongo.Env;
+
   //dmDados.FConMongo.Env.Monitor.Tracing := false;
+  Teste;
 end;
+
+procedure TFrmALClienteDmDados.Teste;
+var
+  vRegistro     : TRegistro;
+  vPersistencia : TALPersistencia;
+begin
+  vRegistro := funRegistro;
+
+  vPersistencia        := CriarPersistencia;
+  vPersistencia.Tabela := 'REGISTRO';
+  vPersistencia.JSON   := vRegistro.AsJSON;
+  vPersistencia.Insert;
+
+end;
+
 
 procedure TFrmALClienteDmDados.DataModuleDestroy(Sender: TObject);
 begin
@@ -80,5 +111,7 @@ begin
   FDMongoQuery1.Open;
 
 end;
+
+
 
 end.

@@ -7,7 +7,7 @@ uses
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.StdCtrls,
   FMX.Controls.Presentation, FMX.MultiView, System.ImageList, FMX.ImgList,
   System.Actions, FMX.ActnList, FMX.ListBox, FMX.Layouts, FMX.Edit,
-  FMX.SearchBox;
+  FMX.SearchBox ;
 
 type
   TFrmALClienteMenu = class(TForm)
