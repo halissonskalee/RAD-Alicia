@@ -24,9 +24,12 @@ type
     actConfigurar: TAction;
     ListBox1: TListBox;
     SearchBox1: TSearchBox;
+    ListBoxItem1: TListBoxItem;
+    lyCliente: TLayout;
     procedure actMenuExecute(Sender: TObject);
     procedure actSairExecute(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure ListBoxItem1Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -40,7 +43,7 @@ implementation
 
 {$R *.fmx}
 
-uses AL.Cliente.DmDados;
+uses AL.Cliente.DmDados, AL.Cliente.Padrao;
 
 procedure TFrmALClienteMenu.actMenuExecute(Sender: TObject);
 begin
@@ -55,6 +58,13 @@ end;
 procedure TFrmALClienteMenu.FormCreate(Sender: TObject);
 begin
   FrmALClienteDmDados := TFrmALClienteDmDados.Create(Self);
+end;
+
+procedure TFrmALClienteMenu.ListBoxItem1Click(Sender: TObject);
+begin
+  FrmALClientePadrao := TFrmALClientePadrao.Create(Self);
+  FrmALClientePadrao.Show;
+  lyCliente.AddObject(FrmALClientePadrao);
 end;
 
 end.

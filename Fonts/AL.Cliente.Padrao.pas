@@ -10,14 +10,13 @@ uses
   FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Param,
   FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf,
   Data.DB, FireDAC.Comp.DataSet, FireDAC.Comp.Client,
-  FireDAC.Phys.MongoDBDataSet, FireDAC.Stan.Async, FireDAC.DApt,
-  mongo.FMX.Edit;
+  FireDAC.Phys.MongoDBDataSet, FireDAC.Stan.Async, FireDAC.DApt, AL.Cliente.Modelo;
 
 type
 		TAcao = (tpInsert, tpUpdate, tpLista);
 
 type
-  TFrmALClientePadrao = class(TForm)
+  TFrmALClientePadrao = class(TFrmALClienteModelo)
     Panel2: TPanel;
     btnNovo: TButton;
     ActionList1: TActionList;
@@ -46,7 +45,6 @@ type
     procedure acNovoExecute(Sender: TObject);
     procedure acEditarExecute(Sender: TObject);
     procedure acSalvarExecute(Sender: TObject);
-    procedure FormCreate(Sender: TObject);
     procedure ListBox1ItemClick(const Sender: TCustomListBox;
       const Item: TListBoxItem);
     procedure FormDestroy(Sender: TObject);
@@ -85,7 +83,7 @@ implementation
 
 {$R *.fmx}
 
-uses  mongo.Types, AL.Cliente.DmDados, AL.Cliente.Menu;
+uses  AL.Cliente.DmDados, AL.Cliente.Menu;
 
 procedure TFrmALClientePadrao.acEditarExecute(Sender: TObject);
 begin
@@ -186,7 +184,7 @@ var
   Local_i: Integer;
 begin
   //Pesquisar por Campo Chave e Colocar como Somente Leitura
-  for Local_i := Self.ComponentCount - 1 downto 0 do
+ { for Local_i := Self.ComponentCount - 1 downto 0 do
   begin
     if (Self.Components[Local_i] is TMongoEdit) then
     begin
@@ -198,7 +196,7 @@ begin
           TMongoEdit(Self.Components[Local_i]).ReadOnly := true;
       end;
     end;
-  end;
+  end;}
 end;
 
 procedure TFrmALClientePadrao.fnc_PreencherRegistros;
@@ -206,13 +204,13 @@ var
   i: Integer;
 begin
   //Buscar os Demais Campos e Preencher o Seu Valor
-  for i := Self.ComponentCount - 1 downto 0 do
+{  for i := Self.ComponentCount - 1 downto 0 do
   begin
     if (Self.Components[i] is TMongoEdit) then
     begin
       TMongoEdit(Self.Components[i]).Text := dsMongo.FieldByName(TMongoEdit(Self.Components[i]).MongoCampo).AsString;
     end;
-  end;
+  end;}
 end;
 
 procedure TFrmALClientePadrao.fnc_excluirRegistro;
@@ -220,7 +218,7 @@ var
   i: Integer;
 begin
   //Pesquisar por Campo Chave e Colocar como Somente Leitura
-  for i := Self.ComponentCount - 1 downto 0 do
+{  for i := Self.ComponentCount - 1 downto 0 do
   begin
     if (Self.Components[i] is TMongoEdit) then
     begin
@@ -229,7 +227,7 @@ begin
 //        dmDados.FConMongo[FBanco][FCollection].Remove.Match.Add(TMongoEdit(Self.Components[i]).MongoCampo, TMongoEdit(Self.Components[i]).toNumerico).&End.Exec;
       end;
     end;
-  end;
+  end;}
 end;
 
 {procedure TfrmCadastroPadrao.fnc_ExibirMensagem(Tit, Msg : String; tpMsg : TTipoMensagem);
@@ -280,20 +278,20 @@ procedure TFrmALClientePadrao.fnc_limparCampos;
 var
   i: Integer;
 begin
-  for i := Self.ComponentCount - 1 downto 0 do
+{  for i := Self.ComponentCount - 1 downto 0 do
     begin
     if (Self.Components[i] is TMongoEdit) then
     begin
         TMongoEdit(Self.Components[i]).Text := '';
     end;
-  end;
+  end;}
 end;
 
 procedure TFrmALClientePadrao.fnc_PreencheMongoDoc(var MongoDoc: TMongoDocument);
 var
   i: Integer;
 begin
-  for i := Self.ComponentCount - 1 downto 0 do
+{  for i := Self.ComponentCount - 1 downto 0 do
   begin
   if (Self.Components[i] is TMongoEdit) then
   begin
@@ -316,14 +314,14 @@ begin
       end;
     end;
   end;
-  end;
+  end; }
 end;
 
 procedure TFrmALClientePadrao.fnc_PreencherMongoUpd(var MongoUpd : TMongoUpdate);
 var
   i: Integer;
 begin
-  for i := Self.ComponentCount - 1 downto 0 do
+{  for i := Self.ComponentCount - 1 downto 0 do
   begin
     if (Self.Components[i] is TMongoEdit) then
     begin
@@ -352,21 +350,10 @@ begin
         end;
       end;
     end;
-  end;
+  end;}
 end;
 
-procedure TFrmALClientePadrao.FormCreate(Sender: TObject);
-begin
 
-  //Funcao para Destruir Forms Anteriores
-  fnc_gerenciarForms;
-
-  TabControl1.TabIndex := 0;
-  TabControl1.TabPosition := TabControl1.TabPosition.tpNone;
-
-  fnc_atualizaLista;
-  fnc_exibirBotoes;
-end;
 
 procedure TFrmALClientePadrao.FormDestroy(Sender: TObject);
 begin
