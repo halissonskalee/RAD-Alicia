@@ -58,6 +58,7 @@ end;
 procedure TFrmALClienteMenu.FormCreate(Sender: TObject);
 begin
   FrmALClienteDmDados := TFrmALClienteDmDados.Create(Self);
+  mtvMenu.Mode        := TMultiViewMode.Drawer;
 end;
 
 procedure TFrmALClienteMenu.ListBoxItem1Click(Sender: TObject);

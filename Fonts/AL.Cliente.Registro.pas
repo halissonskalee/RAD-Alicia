@@ -31,13 +31,13 @@ begin
 
   Result := TRegistro.Create;
 
-  Result.Host     := iniConfig.ReadString('MONGODB','HOST'     ,'');
-  Result.Porta    := StrToIntDef(iniConfig.ReadString('MONGODB','PORTA'    ,''),0);
-  Result.DataBase := iniConfig.ReadString('MONGODB','DATABASE' ,'');
-  Result.UserName := iniConfig.ReadString('MONGODB','USERNAME' ,'');
-  Result.PassWord := iniConfig.ReadString('MONGODB','PASSWORD' ,'');
-
-  Result.Banco    := iniConfig.ReadString('SISTEMA','BANCO' ,'');
+  Result.host_reg      := iniConfig.ReadString('MONGODB','HOST'     ,'');
+  Result.porta_reg     := StrToIntDef(iniConfig.ReadString('MONGODB','PORTA'    ,''),0);
+  Result.data_base_reg := iniConfig.ReadString('MONGODB','DATABASE' ,'');
+  Result.user_name_reg := iniConfig.ReadString('MONGODB','USERNAME' ,'');
+  Result.pass_word_reg := iniConfig.ReadString('MONGODB','PASSWORD' ,'');
+  //SISTEMA
+  Result.banco_reg     := iniConfig.ReadString('SISTEMA','BANCO' ,'');
 
   FreeAndNil(iniConfig);
 end;

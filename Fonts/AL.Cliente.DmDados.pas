@@ -23,7 +23,6 @@ type
     procedure DataModuleCreate(Sender: TObject);
     procedure DataModuleDestroy(Sender: TObject);
   private
-    procedure Teste;
     { Private declarations }
   public
     { Public declarations }
@@ -51,7 +50,7 @@ begin
   Result := TALPersistencia.Create;
   Result.ConMongo := FConMongo;
   Result.Env      := FEnv;
-  Result.Banco    := vRegistro.Banco;
+  Result.Banco    := vRegistro.banco_reg;
   Result.Tabela   := '';
 end;
 
@@ -59,18 +58,18 @@ procedure TFrmALClienteDmDados.DataModuleCreate(Sender: TObject);
 begin
   vRegistro := funRegistro;
 
-  if vRegistro.Host.IsEmpty then
+  if vRegistro.host_reg.IsEmpty then
     raise Exception.Create('MongoDB não configurado, verifique o arquivo de configuração');
 
-  if vRegistro.Banco.IsEmpty then
+  if vRegistro.banco_reg.IsEmpty then
     raise Exception.Create('MongoDB não configurado, verifique o arquivo de configuração, O Banco não foi informado');
 
   try
-    FDConnection1.Params.Values['Server']  := vRegistro.Host;
+    FDConnection1.Params.Values['Server']  := vRegistro.host_reg;
     FDConnection1.Params.Values['DriverID']:= 'Mongo';
     FDConnection1.Connected := true;
   except on E: Exception do
-    ShowMessage('MongoDB, não foi possivel contar no host' + vRegistro.Host + ' na porta ' + vRegistro.Porta.ToString+ sLineBreak +
+    ShowMessage('MongoDB, não foi possivel contar no host' + vRegistro.host_reg + ' na porta ' + vRegistro.porta_reg.ToString+ sLineBreak +
                 'Verifique as configurações do arquivo .ini ou do servidor');    
   end;
     
@@ -78,23 +77,8 @@ begin
   FEnv      := FConMongo.Env;
 
   //dmDados.FConMongo.Env.Monitor.Tracing := false;
-  Teste;
-end;
-
-procedure TFrmALClienteDmDados.Teste;
-var
-  vRegistro     : TRegistro;
-  vPersistencia : TALPersistencia;
-begin
-  vRegistro := funRegistro;
-
-  vPersistencia        := CriarPersistencia;
-  vPersistencia.Tabela := 'REGISTRO';
-  vPersistencia.JSON   := vRegistro.AsJSON;
-  vPersistencia.Insert;
 
 end;
-
 
 procedure TFrmALClienteDmDados.DataModuleDestroy(Sender: TObject);
 begin
