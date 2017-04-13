@@ -27,10 +27,8 @@ type
     acEditar: TAction;
     btnSalvar: TButton;
     btnExcluir: TButton;
-    Layout1: TLayout;
-    ToolBar1: TToolBar;
-    Label1: TLabel;
-    TabControl1: TTabControl;
+    lyCliente: TLayout;
+    TabControl: TTabControl;
     tabLista: TTabItem;
     tabCadastro: TTabItem;
     ListBox1: TListBox;
@@ -42,15 +40,18 @@ type
     dsMongo: TFDMongoDataSet;
     acVoltar: TAction;
     btnVoltar: TButton;
+    pTitulo: TPanel;
+    lblTitulo: TLabel;
     procedure acNovoExecute(Sender: TObject);
     procedure acEditarExecute(Sender: TObject);
     procedure acSalvarExecute(Sender: TObject);
-    procedure ListBox1ItemClick(const Sender: TCustomListBox;
-      const Item: TListBoxItem);
-    procedure FormDestroy(Sender: TObject);
+    procedure ListBox1ItemClick(const Sender: TCustomListBox;const Item: TListBoxItem);
+
     procedure acExcluirExecute(Sender: TObject);
     procedure Button2Click(Sender: TObject);
     procedure acVoltarExecute(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+
   private
     FBanco: String;
     FAcao: TAcao;
@@ -65,7 +66,8 @@ type
     procedure fnc_PreencherRegistros;
     procedure fnc_excluirRegistro;
 //    procedure fnc_ExibirMensagem(Tit, Msg : String; tpMsg : TTipoMensagem);
-    procedure fnc_exibirBotoes;
+
+    procedure ExibirBotoes;
     { Private declarations }
   public
     { Public declarations }
@@ -88,7 +90,7 @@ uses  AL.Cliente.DmDados, AL.Cliente.Menu;
 procedure TFrmALClientePadrao.acEditarExecute(Sender: TObject);
 begin
   changeTabCadastro.ExecuteTarget(Self);
-  fnc_exibirBotoes;
+  ExibirBotoes;
 end;
 
 procedure TFrmALClientePadrao.acExcluirExecute(Sender: TObject);
@@ -105,7 +107,7 @@ begin
   Self.FAcao := tpInsert;
   fnc_limparCampos;
   changeTabCadastro.ExecuteTarget(Self);
-  fnc_exibirBotoes;
+  ExibirBotoes;
 end;
 
 procedure TFrmALClientePadrao.acSalvarExecute(Sender: TObject);
@@ -150,7 +152,7 @@ begin
   finally
     fnc_atualizaLista;
     changeTabLista.ExecuteTarget(Self);
-    fnc_exibirBotoes;
+    ExibirBotoes;
   end;
 end;
 
@@ -158,7 +160,7 @@ procedure TFrmALClientePadrao.acVoltarExecute(Sender: TObject);
 begin
   FAcao := tpLista;
   changeTabLista.ExecuteTarget(Self);
-  fnc_exibirBotoes;
+  ExibirBotoes;
 end;
 
 procedure TFrmALClientePadrao.Button2Click(Sender: TObject);
@@ -213,6 +215,15 @@ begin
   end;}
 end;
 
+procedure TFrmALClientePadrao.FormCreate(Sender: TObject);
+begin
+  inherited;
+  lblTitulo.Text         := Self.Caption;
+  TabControl.TabPosition := TTabPosition.None;
+  TabControl.ActiveTab   := tabLista;
+  ExibirBotoes;
+end;
+
 procedure TFrmALClientePadrao.fnc_excluirRegistro;
 var
   i: Integer;
@@ -230,7 +241,12 @@ begin
   end;}
 end;
 
-{procedure TfrmCadastroPadrao.fnc_ExibirMensagem(Tit, Msg : String; tpMsg : TTipoMensagem);
+{procedure TFrmALClientePadrao.fnc_exibirBotoes;
+begin
+
+end;
+
+procedure TfrmCadastroPadrao.fnc_ExibirMensagem(Tit, Msg : String; tpMsg : TTipoMensagem);
 var
   FormMensagem : TfrmMensagemPadrao;
 begin
@@ -239,10 +255,10 @@ begin
   frmPrincipal.exibirMensagem(FormMensagem.layoutMensagem);
 end;}
 
-procedure TFrmALClientePadrao.fnc_exibirBotoes;
+procedure TFrmALClientePadrao.ExibirBotoes;
 begin
   btnSalvar.Align := TAlignLayout(2);
-  case TabControl1.TabIndex of
+  case TabControl.TabIndex of
     0 :
       begin
           btnSalvar.Visible := false;
@@ -355,11 +371,6 @@ end;
 
 
 
-procedure TFrmALClientePadrao.FormDestroy(Sender: TObject);
-begin
-  dsMongo.Close;
-end;
-
 procedure TFrmALClientePadrao.ListBox1ItemClick(const Sender: TCustomListBox;
   const Item: TListBoxItem);
 var
@@ -369,7 +380,7 @@ begin
   fnc_buscarCampoChave(i, Item);
   fnc_PreencherRegistros;
   changeTabCadastro.ExecuteTarget(Self);
-  fnc_exibirBotoes;
+  ExibirBotoes;
 end;
 
 end.

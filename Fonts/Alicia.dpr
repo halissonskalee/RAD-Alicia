@@ -9,7 +9,9 @@ uses
   AL.Cliente.Padrao in 'AL.Cliente.Padrao.pas' {FrmALClientePadrao},
   AL.Cliente.Modelo in 'AL.Cliente.Modelo.pas' {FrmALClienteModelo},
   AL.Classe.Registro in 'AL.Classe.Registro.pas',
-  AL.Persistencia in 'AL.Persistencia.pas';
+  AL.Persistencia in 'AL.Persistencia.pas',
+  AL.Classe.Pessoa in 'AL.Classe.Pessoa.pas',
+  AL.Cliente.Pessoa in 'AL.Cliente.Pessoa.pas' {FrmALClientePessoa};
 
 {$R *.res}
 

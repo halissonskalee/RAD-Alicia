@@ -26,10 +26,12 @@ type
     SearchBox1: TSearchBox;
     ListBoxItem1: TListBoxItem;
     lyCliente: TLayout;
+    ListBoxItem2: TListBoxItem;
     procedure actMenuExecute(Sender: TObject);
     procedure actSairExecute(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure ListBoxItem1Click(Sender: TObject);
+    procedure ListBoxItem2Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -43,7 +45,7 @@ implementation
 
 {$R *.fmx}
 
-uses AL.Cliente.DmDados, AL.Cliente.Padrao;
+uses AL.Cliente.DmDados, AL.Cliente.Padrao, AL.Cliente.Pessoa;
 
 procedure TFrmALClienteMenu.actMenuExecute(Sender: TObject);
 begin
@@ -64,8 +66,14 @@ end;
 procedure TFrmALClienteMenu.ListBoxItem1Click(Sender: TObject);
 begin
   FrmALClientePadrao := TFrmALClientePadrao.Create(Self);
-  FrmALClientePadrao.Show;
-  lyCliente.AddObject(FrmALClientePadrao);
+  lyCliente.AddObject(FrmALClientePadrao.lyCliente);
+end;
+
+procedure TFrmALClienteMenu.ListBoxItem2Click(Sender: TObject);
+begin
+  FrmALClientePessoa := TFrmALClientePessoa.Create(Self);
+
+  lyCliente.AddObject(FrmALClientePessoa.lyCliente);
 end;
 
 end.
