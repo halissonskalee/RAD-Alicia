@@ -13,7 +13,6 @@ type
   TFrmALClienteMenu = class(TForm)
     mtvMenu: TMultiView;
     ToolBar1: TToolBar;
-    StyleBook1: TStyleBook;
     btnMenu: TButton;
     ActionList1: TActionList;
     actMenu: TAction;
@@ -27,6 +26,7 @@ type
     ListBoxItem1: TListBoxItem;
     lyCliente: TLayout;
     ListBoxItem2: TListBoxItem;
+    StyleBook1: TStyleBook;
     procedure actMenuExecute(Sender: TObject);
     procedure actSairExecute(Sender: TObject);
     procedure FormCreate(Sender: TObject);

@@ -42,6 +42,7 @@ type
     btnVoltar: TButton;
     pTitulo: TPanel;
     lblTitulo: TLabel;
+    Edit1: TEdit;
     procedure acNovoExecute(Sender: TObject);
     procedure acEditarExecute(Sender: TObject);
     procedure acSalvarExecute(Sender: TObject);

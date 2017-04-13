@@ -31,9 +31,8 @@ object FrmALClientePadrao: TFrmALClientePadrao
         Images = FrmALClienteMenu.ImageList1
         ImageIndex = 3
         Position.X = 540.000000000000000000
-        Position.Y = 1.000000000000000000
         Size.Width = 46.000000000000000000
-        Size.Height = 46.000000000000000000
+        Size.Height = 48.000000000000000000
         Size.PlatformDefault = False
         StyleLookup = 'composetoolbutton'
         TabOrder = 1
@@ -46,9 +45,8 @@ object FrmALClientePadrao: TFrmALClientePadrao
         Images = FrmALClienteMenu.ImageList1
         ImageIndex = 4
         Position.X = 586.000000000000000000
-        Position.Y = 1.000000000000000000
         Size.Width = 46.000000000000000000
-        Size.Height = 46.000000000000000000
+        Size.Height = 48.000000000000000000
         Size.PlatformDefault = False
         StyleLookup = 'composetoolbutton'
         TabOrder = 4
@@ -61,9 +59,8 @@ object FrmALClientePadrao: TFrmALClientePadrao
         Images = FrmALClienteMenu.ImageList1
         ImageIndex = 5
         Position.X = 632.000000000000000000
-        Position.Y = 1.000000000000000000
         Size.Width = 46.000000000000000000
-        Size.Height = 46.000000000000000000
+        Size.Height = 48.000000000000000000
         Size.PlatformDefault = False
         StyleLookup = 'composetoolbutton'
         TabOrder = 5
@@ -75,9 +72,8 @@ object FrmALClientePadrao: TFrmALClientePadrao
         Enabled = True
         Images = FrmALClienteMenu.ImageList1
         ImageIndex = -1
-        Position.Y = 1.000000000000000000
         Size.Width = 46.000000000000000000
-        Size.Height = 46.000000000000000000
+        Size.Height = 48.000000000000000000
         Size.PlatformDefault = False
         StyleLookup = 'priortoolbutton'
         TabOrder = 7
@@ -89,16 +85,16 @@ object FrmALClientePadrao: TFrmALClientePadrao
       Size.Width = 678.000000000000000000
       Size.Height = 379.000000000000000000
       Size.PlatformDefault = False
-      TabIndex = 0
+      TabIndex = 1
       TabOrder = 1
       TabPosition = Bottom
       object tabLista: TTabItem
         CustomIcon = <
           item
           end>
-        IsSelected = True
-        Size.Width = 52.000000000000000000
-        Size.Height = 30.000000000000000000
+        IsSelected = False
+        Size.Width = 43.000000000000000000
+        Size.Height = 23.000000000000000000
         Size.PlatformDefault = False
         StyleLookup = ''
         TabOrder = 0
@@ -108,7 +104,7 @@ object FrmALClientePadrao: TFrmALClientePadrao
         object ListBox1: TListBox
           Align = Client
           Size.Width = 678.000000000000000000
-          Size.Height = 349.000000000000000000
+          Size.Height = 356.000000000000000000
           Size.PlatformDefault = False
           StyleLookup = 'ListBox1Style1'
           TabOrder = 0
@@ -119,7 +115,7 @@ object FrmALClientePadrao: TFrmALClientePadrao
           DefaultItemStyles.GroupFooterStyle = ''
           OnItemClick = ListBox1ItemClick
           Viewport.Width = 674.000000000000000000
-          Viewport.Height = 299.000000000000000000
+          Viewport.Height = 319.000000000000000000
           object ListBoxItem1: TListBoxItem
             Size.Width = 674.000000000000000000
             Size.Height = 40.000000000000000000
@@ -131,9 +127,10 @@ object FrmALClientePadrao: TFrmALClientePadrao
           object SearchBox1: TSearchBox
             Touch.InteractiveGestures = [LongTap, DoubleTap]
             Align = Top
+            StyleLookup = 'searchboxstyle'
             TabOrder = 0
-            Size.Width = 674.000000000000000000
-            Size.Height = 46.000000000000000000
+            Size.Width = 676.000000000000000000
+            Size.Height = 33.000000000000000000
             Size.PlatformDefault = False
           end
         end
@@ -142,9 +139,9 @@ object FrmALClientePadrao: TFrmALClientePadrao
         CustomIcon = <
           item
           end>
-        IsSelected = False
-        Size.Width = 84.000000000000000000
-        Size.Height = 30.000000000000000000
+        IsSelected = True
+        Size.Width = 67.000000000000000000
+        Size.Height = 23.000000000000000000
         Size.PlatformDefault = False
         StyleLookup = ''
         TabOrder = 0
@@ -154,7 +151,7 @@ object FrmALClientePadrao: TFrmALClientePadrao
         object ListBox2: TListBox
           Align = Client
           Size.Width = 678.000000000000000000
-          Size.Height = 349.000000000000000000
+          Size.Height = 356.000000000000000000
           Size.PlatformDefault = False
           TabOrder = 0
           DisableFocusEffect = True
@@ -163,7 +160,13 @@ object FrmALClientePadrao: TFrmALClientePadrao
           DefaultItemStyles.GroupHeaderStyle = ''
           DefaultItemStyles.GroupFooterStyle = ''
           Viewport.Width = 674.000000000000000000
-          Viewport.Height = 345.000000000000000000
+          Viewport.Height = 352.000000000000000000
+          object Edit1: TEdit
+            Touch.InteractiveGestures = [LongTap, DoubleTap]
+            TabOrder = 0
+            Position.X = 208.000000000000000000
+            Position.Y = 40.000000000000000000
+          end
         end
       end
     end
