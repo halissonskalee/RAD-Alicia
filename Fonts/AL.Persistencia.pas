@@ -46,9 +46,9 @@ uses
 function TALPersistencia.Insert: Boolean;
 begin
   try
-      Doc         := FEnv.NewDoc;
-      Doc.AsJSON  := JSON;
-      ConMongo[Banco][Tabela].Insert(Doc);
+    Doc         := FEnv.NewDoc;
+    Doc.AsJSON  := JSON;
+    ConMongo[Banco][Tabela].Insert(Doc);
 
   except on E: Exception do
 

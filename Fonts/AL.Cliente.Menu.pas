@@ -7,7 +7,7 @@ uses
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.StdCtrls,
   FMX.Controls.Presentation, FMX.MultiView, System.ImageList, FMX.ImgList,
   System.Actions, FMX.ActnList, FMX.ListBox, FMX.Layouts, FMX.Edit,
-  FMX.SearchBox ;
+  FMX.SearchBox, FMX.DateTimeCtrls ;
 
 type
   TFrmALClienteMenu = class(TForm)
@@ -16,7 +16,6 @@ type
     btnMenu: TButton;
     ActionList1: TActionList;
     actMenu: TAction;
-    ImageList1: TImageList;
     btnConfigurar: TButton;
     actSair: TAction;
     btnSair: TButton;
@@ -27,6 +26,7 @@ type
     lyCliente: TLayout;
     ListBoxItem2: TListBoxItem;
     StyleBook1: TStyleBook;
+    ImageList1: TImageList;
     procedure actMenuExecute(Sender: TObject);
     procedure actSairExecute(Sender: TObject);
     procedure FormCreate(Sender: TObject);

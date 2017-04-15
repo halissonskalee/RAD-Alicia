@@ -26,11 +26,11 @@ object FrmALClientePadrao: TFrmALClientePadrao
       TabOrder = 0
       object btnNovo: TButton
         Action = acNovo
-        Align = Right
+        Align = Left
         Enabled = True
         Images = FrmALClienteMenu.ImageList1
         ImageIndex = 3
-        Position.X = 540.000000000000000000
+        Position.X = 46.000000000000000000
         Size.Width = 46.000000000000000000
         Size.Height = 48.000000000000000000
         Size.PlatformDefault = False
@@ -40,11 +40,11 @@ object FrmALClientePadrao: TFrmALClientePadrao
       end
       object btnSalvar: TButton
         Action = acSalvar
-        Align = Right
+        Align = Left
         Enabled = True
         Images = FrmALClienteMenu.ImageList1
         ImageIndex = 4
-        Position.X = 586.000000000000000000
+        Position.X = 92.000000000000000000
         Size.Width = 46.000000000000000000
         Size.Height = 48.000000000000000000
         Size.PlatformDefault = False
@@ -54,11 +54,11 @@ object FrmALClientePadrao: TFrmALClientePadrao
       end
       object btnExcluir: TButton
         Action = acExcluir
-        Align = Right
+        Align = Left
         Enabled = True
         Images = FrmALClienteMenu.ImageList1
         ImageIndex = 5
-        Position.X = 632.000000000000000000
+        Position.X = 138.000000000000000000
         Size.Width = 46.000000000000000000
         Size.Height = 48.000000000000000000
         Size.PlatformDefault = False
@@ -71,7 +71,7 @@ object FrmALClientePadrao: TFrmALClientePadrao
         Align = Left
         Enabled = True
         Images = FrmALClienteMenu.ImageList1
-        ImageIndex = -1
+        ImageIndex = 6
         Size.Width = 46.000000000000000000
         Size.Height = 48.000000000000000000
         Size.PlatformDefault = False
@@ -103,8 +103,8 @@ object FrmALClientePadrao: TFrmALClientePadrao
         ExplicitSize.cy = 23.000000000000000000
         object ListBox1: TListBox
           Align = Client
-          Size.Width = 678.000000000000000000
-          Size.Height = 356.000000000000000000
+          Size.Width = 50.000000000000000000
+          Size.Height = 50.000000000000000000
           Size.PlatformDefault = False
           StyleLookup = 'ListBox1Style1'
           TabOrder = 0
@@ -114,10 +114,10 @@ object FrmALClientePadrao: TFrmALClientePadrao
           DefaultItemStyles.GroupHeaderStyle = ''
           DefaultItemStyles.GroupFooterStyle = ''
           OnItemClick = ListBox1ItemClick
-          Viewport.Width = 674.000000000000000000
-          Viewport.Height = 319.000000000000000000
+          Viewport.Width = 32.000000000000000000
+          Viewport.Height = 26.000000000000000000
           object ListBoxItem1: TListBoxItem
-            Size.Width = 674.000000000000000000
+            Size.Width = 32.000000000000000000
             Size.Height = 40.000000000000000000
             Size.PlatformDefault = False
             StyleLookup = 'ListBoxItem1Style1'
@@ -129,8 +129,11 @@ object FrmALClientePadrao: TFrmALClientePadrao
             Align = Top
             StyleLookup = 'searchboxstyle'
             TabOrder = 0
-            Size.Width = 676.000000000000000000
-            Size.Height = 33.000000000000000000
+            Position.X = 10.000000000000000000
+            Margins.Left = 10.000000000000000000
+            Margins.Right = 10.000000000000000000
+            Size.Width = 28.000000000000000000
+            Size.Height = 22.000000000000000000
             Size.PlatformDefault = False
           end
         end
@@ -148,26 +151,6 @@ object FrmALClientePadrao: TFrmALClientePadrao
         Text = 'Cadastro'
         ExplicitSize.cx = 85.000000000000000000
         ExplicitSize.cy = 23.000000000000000000
-        object ListBox2: TListBox
-          Align = Client
-          Size.Width = 678.000000000000000000
-          Size.Height = 356.000000000000000000
-          Size.PlatformDefault = False
-          TabOrder = 0
-          DisableFocusEffect = True
-          ItemHeight = 50.000000000000000000
-          DefaultItemStyles.ItemStyle = ''
-          DefaultItemStyles.GroupHeaderStyle = ''
-          DefaultItemStyles.GroupFooterStyle = ''
-          Viewport.Width = 674.000000000000000000
-          Viewport.Height = 352.000000000000000000
-          object Edit1: TEdit
-            Touch.InteractiveGestures = [LongTap, DoubleTap]
-            TabOrder = 0
-            Position.X = 208.000000000000000000
-            Position.Y = 40.000000000000000000
-          end
-        end
       end
     end
   end
@@ -191,8 +174,8 @@ object FrmALClientePadrao: TFrmALClientePadrao
   end
   object ActionList1: TActionList
     Images = FrmALClienteMenu.ImageList1
-    Left = 616
-    Top = 296
+    Left = 368
+    Top = 208
     object acSalvar: TAction
       Category = 'TooBar'
       Text = 'Salvar'
@@ -234,8 +217,11 @@ object FrmALClientePadrao: TFrmALClientePadrao
       Tab = tabCadastro
     end
     object acVoltar: TAction
+      Category = 'TooBar'
       Text = 'acVoltar'
+      ImageIndex = 6
       OnExecute = acVoltarExecute
+      ImageIndex = 6
     end
   end
   object dsMongo: TFDMongoDataSet
@@ -251,7 +237,7 @@ object FrmALClientePadrao: TFrmALClientePadrao
     UpdateOptions.CheckUpdatable = False
     DatabaseName = 'SALAO'
     CollectionName = 'SERVICOS'
-    Left = 616
-    Top = 233
+    Left = 368
+    Top = 153
   end
 end
