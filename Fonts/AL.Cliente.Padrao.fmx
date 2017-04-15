@@ -85,14 +85,14 @@ object FrmALClientePadrao: TFrmALClientePadrao
       Size.Width = 678.000000000000000000
       Size.Height = 379.000000000000000000
       Size.PlatformDefault = False
-      TabIndex = 1
+      TabIndex = 0
       TabOrder = 1
       TabPosition = Bottom
       object tabLista: TTabItem
         CustomIcon = <
           item
           end>
-        IsSelected = False
+        IsSelected = True
         Size.Width = 43.000000000000000000
         Size.Height = 23.000000000000000000
         Size.PlatformDefault = False
@@ -103,8 +103,8 @@ object FrmALClientePadrao: TFrmALClientePadrao
         ExplicitSize.cy = 23.000000000000000000
         object ListBox1: TListBox
           Align = Client
-          Size.Width = 50.000000000000000000
-          Size.Height = 50.000000000000000000
+          Size.Width = 678.000000000000000000
+          Size.Height = 356.000000000000000000
           Size.PlatformDefault = False
           StyleLookup = 'ListBox1Style1'
           TabOrder = 0
@@ -114,10 +114,10 @@ object FrmALClientePadrao: TFrmALClientePadrao
           DefaultItemStyles.GroupHeaderStyle = ''
           DefaultItemStyles.GroupFooterStyle = ''
           OnItemClick = ListBox1ItemClick
-          Viewport.Width = 32.000000000000000000
-          Viewport.Height = 26.000000000000000000
+          Viewport.Width = 676.000000000000000000
+          Viewport.Height = 332.000000000000000000
           object ListBoxItem1: TListBoxItem
-            Size.Width = 32.000000000000000000
+            Size.Width = 676.000000000000000000
             Size.Height = 40.000000000000000000
             Size.PlatformDefault = False
             StyleLookup = 'ListBoxItem1Style1'
@@ -132,9 +132,10 @@ object FrmALClientePadrao: TFrmALClientePadrao
             Position.X = 10.000000000000000000
             Margins.Left = 10.000000000000000000
             Margins.Right = 10.000000000000000000
-            Size.Width = 28.000000000000000000
+            Size.Width = 656.000000000000000000
             Size.Height = 22.000000000000000000
             Size.PlatformDefault = False
+            OnEnter = SearchBox1Enter
           end
         end
       end
@@ -142,7 +143,7 @@ object FrmALClientePadrao: TFrmALClientePadrao
         CustomIcon = <
           item
           end>
-        IsSelected = True
+        IsSelected = False
         Size.Width = 67.000000000000000000
         Size.Height = 23.000000000000000000
         Size.PlatformDefault = False
@@ -174,8 +175,8 @@ object FrmALClientePadrao: TFrmALClientePadrao
   end
   object ActionList1: TActionList
     Images = FrmALClienteMenu.ImageList1
-    Left = 368
-    Top = 208
+    Left = 560
+    Top = 160
     object acSalvar: TAction
       Category = 'TooBar'
       Text = 'Salvar'
@@ -187,7 +188,6 @@ object FrmALClientePadrao: TFrmALClientePadrao
       Category = 'TooBar'
       Text = 'Excluir'
       ImageIndex = 5
-      OnExecute = acExcluirExecute
       ImageIndex = 5
     end
     object acSair: TAction
@@ -225,8 +225,10 @@ object FrmALClientePadrao: TFrmALClientePadrao
     end
   end
   object dsMongo: TFDMongoDataSet
-    FormatOptions.AssignedValues = [fvStrsTrim2Len]
+    FormatOptions.AssignedValues = [fvMaxBcdPrecision, fvMaxBcdScale, fvStrsTrim2Len]
     FormatOptions.StrsTrim2Len = True
+    FormatOptions.MaxBcdPrecision = 2147483647
+    FormatOptions.MaxBcdScale = 2147483647
     UpdateOptions.AssignedValues = [uvUpdateChngFields, uvUpdateMode, uvLockMode, uvLockPoint, uvLockWait, uvRefreshMode, uvFetchGeneratorsPoint, uvCheckRequired, uvCheckReadOnly, uvCheckUpdatable]
     UpdateOptions.UpdateChangedFields = False
     UpdateOptions.LockWait = True
@@ -235,9 +237,10 @@ object FrmALClientePadrao: TFrmALClientePadrao
     UpdateOptions.CheckRequired = False
     UpdateOptions.CheckReadOnly = False
     UpdateOptions.CheckUpdatable = False
-    DatabaseName = 'SALAO'
-    CollectionName = 'SERVICOS'
-    Left = 368
-    Top = 153
+    Connection = FrmALClienteDmDados.FDConnection1
+    DatabaseName = 'ALICIA'
+    CollectionName = 'PESSOA'
+    Left = 560
+    Top = 233
   end
 end

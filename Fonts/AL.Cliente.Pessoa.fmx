@@ -25,10 +25,9 @@ inherited FrmALClientePessoa: TFrmALClientePessoa
         ExplicitSize.cx = 62.000000000000000000
         ExplicitSize.cy = 23.000000000000000000
         inherited ListBox1: TListBox
-          Viewport.Width = 32.000000000000000000
-          Viewport.Height = 23.000000000000000000
+          Viewport.Width = 676.000000000000000000
+          Viewport.Height = 329.000000000000000000
           inherited SearchBox1: TSearchBox
-            Size.Width = 30.000000000000000000
             Size.Height = 25.000000000000000000
           end
         end
@@ -146,6 +145,28 @@ inherited FrmALClientePessoa: TFrmALClientePessoa
     end
     inherited acVoltar: TAction
       ImageIndex = 6
+    end
+  end
+  object BindSourceDB1: TBindSourceDB
+    ScopeMappings = <>
+    Left = 328
+    Top = 216
+  end
+  object BindingsList1: TBindingsList
+    Methods = <>
+    OutputConverters = <>
+    Left = 20
+    Top = 5
+    object LinkFillControlToField: TLinkFillControlToField
+      Category = 'Quick Bindings'
+      Control = ListBox1
+      Track = False
+      FillDataSource = BindSourceDB1
+      FillDisplayFieldName = 'razao_social_pes'
+      AutoFill = True
+      FillExpressions = <>
+      FillHeaderExpressions = <>
+      FillBreakGroups = <>
     end
   end
 end

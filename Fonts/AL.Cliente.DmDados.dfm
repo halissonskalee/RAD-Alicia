@@ -6,7 +6,8 @@ object FrmALClienteDmDados: TFrmALClienteDmDados
   Width = 608
   object FDConnection1: TFDConnection
     Params.Strings = (
-      'Server=104.198.162.97'
+      'Server='
+      'Database=ALICIA'
       'DriverID=Mongo')
     LoginPrompt = False
     Left = 64
