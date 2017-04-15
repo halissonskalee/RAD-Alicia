@@ -913,8 +913,8 @@ object TStyleContainer
   end
   object TLayout
     StyleName = 'labelstyle'
-    Position.X = 396.000000000000000000
-    Position.Y = 491.000000000000000000
+    Position.X = 458.000000000000000000
+    Position.Y = 362.000000000000000000
     Size.Width = 49.000000000000000000
     Size.Height = 20.000000000000000000
     Size.PlatformDefault = False
@@ -930,6 +930,7 @@ object TStyleContainer
       Size.PlatformDefault = False
       Text = 'label'
       TextSettings.FontColor = xFFFDFDFD
+      TextSettings.HorzAlign = Trailing
     end
   end
   object TLayout
@@ -1599,7 +1600,7 @@ object TStyleContainer
   object TLayout
     StyleName = 'combopopupstyle'
     ClipChildren = True
-    Opacity = 0.949999988079071000
+    Opacity = 0.949999988079071100
     Position.X = 375.000000000000000000
     Position.Y = 472.000000000000000000
     Size.Width = 92.000000000000000000
@@ -1934,7 +1935,7 @@ object TStyleContainer
       Position.X = 4.000000000000000000
       Position.Y = 4.000000000000000000
       Size.Width = 122.000000000000000000
-      Size.Height = 6.000000953674316000
+      Size.Height = 6.000000953674317000
       Size.PlatformDefault = False
       Stroke.Color = xFF1C1C1C
       object TGlowEffect
@@ -1958,7 +1959,7 @@ object TStyleContainer
       Position.X = 62.000000000000000000
       Position.Y = 4.000000000000000000
       Size.Width = 6.000000000000000000
-      Size.Height = 6.000000953674316000
+      Size.Height = 6.000000953674317000
       Size.PlatformDefault = False
       Stroke.Color = xFF1C1C1C
       object TGlowEffect
@@ -2088,8 +2089,8 @@ object TStyleContainer
   end
   object TLayout
     StyleName = 'editstyle'
-    Position.X = 376.000000000000000000
-    Position.Y = 489.000000000000000000
+    Position.X = 437.000000000000000000
+    Position.Y = 278.000000000000000000
     Size.Width = 91.000000000000000000
     Size.Height = 24.000000000000000000
     Size.PlatformDefault = False
@@ -2098,7 +2099,7 @@ object TStyleContainer
     object TRectangle
       StyleName = 'background'
       Align = Contents
-      Fill.Color = xFF191919
+      Fill.Color = claWhite
       Locked = True
       HitTest = False
       Size.Width = 91.000000000000000000
@@ -2159,7 +2160,7 @@ object TStyleContainer
     end
     object TBrushObject
       StyleName = 'foreground'
-      Brush.Color = xFFEAEAEA
+      Brush.Color = claBlack
     end
     object TBrushObject
       StyleName = 'selection'
@@ -3222,8 +3223,8 @@ object TStyleContainer
         Margins.Top = 1.000000000000000000
         Margins.Right = 1.000000000000000000
         Margins.Bottom = 1.000000000000000000
-        Size.Width = 9.999999046325684000
-        Size.Height = 9.999999046325684000
+        Size.Width = 9.999999046325683000
+        Size.Height = 9.999999046325683000
         Size.PlatformDefault = False
         Stroke.Color = xFF595959
       end
@@ -3620,7 +3621,7 @@ object TStyleContainer
         Margins.Top = 1.000000000000000000
         Margins.Right = 1.000000000000000000
         Margins.Bottom = 1.000000000000000000
-        Size.Width = 9.999999046325684000
+        Size.Width = 9.999999046325683000
         Size.Height = 47.000000000000000000
         Size.PlatformDefault = False
         Stroke.Color = xFF595959
@@ -4606,7 +4607,7 @@ object TStyleContainer
       end
     end
     object TFloatKeyAnimation
-      Duration = 0.599999964237213100
+      Duration = 0.599999964237213200
       Keys = <
         item
         end
@@ -4822,7 +4823,7 @@ object TStyleContainer
       Size.PlatformDefault = False
       Stroke.Color = xFF1C1C1C
       object TInnerGlowEffect
-        Softness = 0.400000005960464500
+        Softness = 0.400000005960464400
         GlowColor = xFF4F4848
         Opacity = 0.899999976158142100
         Trigger = 'IsPressed=true'
@@ -5738,6 +5739,8 @@ object TStyleContainer
   end
   object TLayout
     StyleName = 'dateeditstyle'
+    Position.X = 458.000000000000000000
+    Position.Y = 266.000000000000000000
     Size.Width = 50.000000000000000000
     Size.Height = 50.000000000000000000
     Size.PlatformDefault = False
@@ -5753,13 +5756,13 @@ object TStyleContainer
     object TRectangle
       StyleName = 'background'
       Align = Contents
-      Fill.Color = xFF191919
+      Fill.Color = claWhite
       Locked = True
       HitTest = False
       Size.Width = 50.000000000000000000
       Size.Height = 50.000000000000000000
       Size.PlatformDefault = False
-      Stroke.Color = xFF393939
+      Stroke.Color = xFFFEFEFE
       object TColorAnimation
         Duration = 0.200000002980232200
         PropertyName = 'Fill.Color'
@@ -5784,7 +5787,7 @@ object TStyleContainer
         Size.Width = 48.000000000000000000
         Size.Height = 48.000000000000000000
         Size.PlatformDefault = False
-        Stroke.Color = xFF181818
+        Stroke.Kind = None
       end
     end
     object TButton
@@ -5812,7 +5815,6 @@ object TStyleContainer
       Margins.Bottom = 2.000000000000000000
       Size.Height = 46.000000000000000000
       Size.PlatformDefault = False
-      TextSettings.FontColor = xFFEAEAEA
       ShadowVisible = False
     end
     object TBrushObject
@@ -5831,6 +5833,10 @@ object TStyleContainer
           Color = x802B6472
           Offset = 1.000000000000000000
         end>
+      Brush.Gradient.StartPosition.X = 0.500000000000000000
+      Brush.Gradient.StartPosition.Y = 1.000000000000000000
+      Brush.Gradient.StopPosition.X = 0.499999970197677600
+      Brush.Gradient.StopPosition.Y = 0.000000000000000000
     end
     object TCheckBox
       StyleName = 'check'
@@ -5877,7 +5883,6 @@ object TStyleContainer
         Size.Width = 12.000000000000000000
         Size.Height = 12.000000000000000000
         Size.PlatformDefault = False
-        Stroke.Kind = None
       end
     end
   end
