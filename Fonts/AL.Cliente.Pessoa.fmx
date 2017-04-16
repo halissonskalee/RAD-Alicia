@@ -9,53 +9,51 @@ inherited FrmALClientePessoa: TFrmALClientePessoa
         Size.Width = 48.000000000000000000
       end
       inherited btnSalvar: TButton
-        Position.X = 96.000000000000000000
+        Position.X = 142.000000000000000000
         Size.Width = 48.000000000000000000
       end
       inherited btnExcluir: TButton
-        Position.X = 144.000000000000000000
+        Position.X = 190.000000000000000000
         Size.Width = 48.000000000000000000
       end
       inherited btnVoltar: TButton
         Size.Width = 48.000000000000000000
       end
+      inherited btnEditar: TButton
+        Position.X = 96.000000000000000000
+      end
     end
     inherited TabControl: TTabControl
+      TabIndex = 1
       inherited tabLista: TTabItem
+        IsSelected = False
         ExplicitSize.cx = 62.000000000000000000
         ExplicitSize.cy = 23.000000000000000000
         inherited ListBox1: TListBox
-          Viewport.Width = 676.000000000000000000
-          Viewport.Height = 329.000000000000000000
-          inherited SearchBox1: TSearchBox
-            Size.Height = 25.000000000000000000
+          Viewport.Width = 670.000000000000000000
+          Viewport.Height = 303.000000000000000000
+        end
+        inherited Panel1: TPanel
+          inherited ListBox2: TListBox
+            Viewport.Width = 118.000000000000000000
+            Viewport.Height = 37.000000000000000000
           end
         end
       end
       inherited tabCadastro: TTabItem
+        IsSelected = True
         ExplicitSize.cx = 85.000000000000000000
         ExplicitSize.cy = 23.000000000000000000
-        object Label1: TLabel
-          AutoSize = True
-          Position.X = 73.000000000000000000
-          Position.Y = 6.000000000000000000
-          Size.Width = 42.000000000000000000
-          Size.Height = 16.000000000000000000
-          Size.PlatformDefault = False
-          TextSettings.HorzAlign = Trailing
-          TextSettings.WordWrap = False
-          Text = 'Codigo'
-        end
         object edt_id: TEdit
           Touch.InteractiveGestures = [LongTap, DoubleTap]
-          TabOrder = 2
+          TabOrder = 0
           Position.X = 119.000000000000000000
           Position.Y = 3.000000000000000000
         end
         object Label2: TLabel
           AutoSize = True
-          Position.X = 78.000000000000000000
-          Position.Y = 28.000000000000000000
+          Position.X = 76.000000000000000000
+          Position.Y = 27.000000000000000000
           Size.Width = 37.000000000000000000
           Size.Height = 16.000000000000000000
           Size.PlatformDefault = False
@@ -67,7 +65,7 @@ inherited FrmALClientePessoa: TFrmALClientePessoa
           Touch.InteractiveGestures = [LongTap, DoubleTap]
           TabOrder = 1
           Position.X = 119.000000000000000000
-          Position.Y = 27.000000000000000000
+          Position.Y = 26.000000000000000000
           Size.Width = 328.000000000000000000
           Size.Height = 22.000000000000000000
           Size.PlatformDefault = False
@@ -75,16 +73,16 @@ inherited FrmALClientePessoa: TFrmALClientePessoa
         object edtdt_cadastro_pes: TDateEdit
           Date = 42840.000000000000000000
           Position.X = 119.000000000000000000
-          Position.Y = 50.000000000000000000
+          Position.Y = 49.000000000000000000
           Size.Width = 130.000000000000000000
           Size.Height = 22.000000000000000000
           Size.PlatformDefault = False
-          TabOrder = 4
+          TabOrder = 2
         end
         object Cadastro: TLabel
           AutoSize = True
-          Position.X = 64.000000000000000000
-          Position.Y = 50.000000000000000000
+          Position.X = 62.000000000000000000
+          Position.Y = 49.000000000000000000
           Size.Width = 51.000000000000000000
           Size.Height = 16.000000000000000000
           Size.PlatformDefault = False
@@ -95,11 +93,11 @@ inherited FrmALClientePessoa: TFrmALClientePessoa
         object cmbvtipo_pes: TComboBox
           ItemIndex = 0
           Position.X = 119.000000000000000000
-          Position.Y = 73.000000000000000000
+          Position.Y = 72.000000000000000000
           Size.Width = 129.000000000000000000
           Size.Height = 22.000000000000000000
           Size.PlatformDefault = False
-          TabOrder = 6
+          TabOrder = 3
           object ListBoxItem2: TListBoxItem
             IsSelected = True
             Size.Width = 19.000000000000000000
@@ -115,14 +113,25 @@ inherited FrmALClientePessoa: TFrmALClientePessoa
         end
         object Label3: TLabel
           AutoSize = True
-          Position.X = 31.000000000000000000
-          Position.Y = 74.000000000000000000
+          Position.X = 29.000000000000000000
+          Position.Y = 73.000000000000000000
           Size.Width = 84.000000000000000000
           Size.Height = 16.000000000000000000
           Size.PlatformDefault = False
           TextSettings.HorzAlign = Trailing
           TextSettings.WordWrap = False
           Text = 'Tipo de pessoa'
+        end
+        object Label4: TLabel
+          AutoSize = True
+          Position.X = 71.000000000000000000
+          Position.Y = 3.000000000000000000
+          Size.Width = 42.000000000000000000
+          Size.Height = 16.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.HorzAlign = Trailing
+          TextSettings.WordWrap = False
+          Text = 'C'#243'digo'
         end
       end
     end
@@ -143,30 +152,11 @@ inherited FrmALClientePessoa: TFrmALClientePessoa
     inherited acNovo: TAction
       ImageIndex = 3
     end
+    inherited acEditar: TAction
+      ImageIndex = 7
+    end
     inherited acVoltar: TAction
       ImageIndex = 6
-    end
-  end
-  object BindSourceDB1: TBindSourceDB
-    ScopeMappings = <>
-    Left = 328
-    Top = 216
-  end
-  object BindingsList1: TBindingsList
-    Methods = <>
-    OutputConverters = <>
-    Left = 20
-    Top = 5
-    object LinkFillControlToField: TLinkFillControlToField
-      Category = 'Quick Bindings'
-      Control = ListBox1
-      Track = False
-      FillDataSource = BindSourceDB1
-      FillDisplayFieldName = 'razao_social_pes'
-      AutoFill = True
-      FillExpressions = <>
-      FillHeaderExpressions = <>
-      FillBreakGroups = <>
     end
   end
 end

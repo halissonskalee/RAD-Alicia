@@ -7,7 +7,8 @@ uses
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.StdCtrls,
   FMX.Controls.Presentation, FMX.MultiView, System.ImageList, FMX.ImgList,
   System.Actions, FMX.ActnList, FMX.ListBox, FMX.Layouts, FMX.Edit,
-  FMX.SearchBox, FMX.DateTimeCtrls ;
+  FMX.SearchBox, FMX.DateTimeCtrls, System.Generics.Collections,
+  AL.Cliente.Padrao;
 
 type
   TFrmALClienteMenu = class(TForm)
@@ -36,6 +37,13 @@ type
     { Private declarations }
   public
     { Public declarations }
+//    Lista : TObjectDictionary<frm:TForm>
+    function RemoverFormulario    :Boolean;
+
+
+
+
+
   end;
 
 var
@@ -45,7 +53,7 @@ implementation
 
 {$R *.fmx}
 
-uses AL.Cliente.DmDados, AL.Cliente.Padrao, AL.Cliente.Pessoa;
+uses AL.Cliente.DmDados, AL.Cliente.Pessoa;
 
 procedure TFrmALClienteMenu.actMenuExecute(Sender: TObject);
 begin
@@ -71,9 +79,16 @@ end;
 
 procedure TFrmALClienteMenu.ListBoxItem2Click(Sender: TObject);
 begin
+  mtvMenu.HideMaster;
   FrmALClientePessoa := TFrmALClientePessoa.Create(Self);
-
   lyCliente.AddObject(FrmALClientePessoa.lyCliente);
+//  FrmALClientePessoa.edtBusca.SetFocus;
+end;
+
+
+function TFrmALClienteMenu.RemoverFormulario: Boolean;
+begin
+  lyCliente.RemoveObject(0);
 end;
 
 end.

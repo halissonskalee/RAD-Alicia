@@ -35,9 +35,6 @@ type
     TabControl: TTabControl;
     tabLista: TTabItem;
     tabCadastro: TTabItem;
-    ListBox1: TListBox;
-    SearchBox1: TSearchBox;
-    ListBoxItem1: TListBoxItem;
     changeTabLista: TChangeTabAction;
     changeTabCadastro: TChangeTabAction;
     dsMongo: TFDMongoDataSet;
@@ -45,6 +42,14 @@ type
     btnVoltar: TButton;
     pTitulo: TPanel;
     lblTitulo: TLabel;
+    ListBox1: TListBox;
+    ListBox2: TListBox;
+    ListBoxItem1: TListBoxItem;
+    edtBusca: TEdit;
+    Label1: TLabel;
+    ListBoxItem4: TListBoxItem;
+    Panel1: TPanel;
+    btnEditar: TButton;
     procedure acNovoExecute(Sender: TObject);
     procedure acEditarExecute(Sender: TObject);
     procedure acSalvarExecute(Sender: TObject);
@@ -53,7 +58,8 @@ type
     procedure Button2Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure acVoltarExecute(Sender: TObject);
-    procedure SearchBox1Enter(Sender: TObject);
+    procedure acSairExecute(Sender: TObject);
+    procedure ListBox1DblClick(Sender: TObject);
 
   private
 
@@ -80,10 +86,13 @@ type
     function Criar       : Boolean; virtual;
     function CriarAfter  : Boolean; virtual;
 
+    function Editar : Boolean; virtual;
+
     function GetCon : TMongoCollection;
     function ListaAoCriar: Boolean;
 
-
+    function Fechar: Boolean; virtual;
+    function FocoInicial : Boolean ; virtual;
 
     function SalvarBefore: Boolean; virtual;
     function Salvar: Boolean; virtual;
@@ -110,6 +119,7 @@ uses AL.Cliente.DmDados, AL.Cliente.Menu, System.Threading;
 
 procedure TFrmALClientePadrao.acEditarExecute(Sender: TObject);
 begin
+  Editar;
   changeTabCadastro.ExecuteTarget(Self);
   ExibirBotoes;
 end;
@@ -122,6 +132,13 @@ begin
   ExibirBotoes;
 end;
 
+procedure TFrmALClientePadrao.acSairExecute(Sender: TObject);
+begin
+  inherited;
+  if Fechar then
+    FrmALClienteMenu.RemoverFormulario;
+end;
+
 procedure TFrmALClientePadrao.acSalvarExecute(Sender: TObject);
 begin
   if SalvarBefore then
@@ -132,9 +149,11 @@ end;
 procedure TFrmALClientePadrao.acVoltarExecute(Sender: TObject);
 begin
   inherited;
-
   if TabControl.ActiveTab = tabLista then
-    acSair.Execute
+  begin
+    acSair.Execute;
+    Exit
+  end
   else
   begin
     FAcao := tpLista;
@@ -211,7 +230,15 @@ begin
     end; }
 end;
 
+function TFrmALClientePadrao.FocoInicial: Boolean;
+begin
+//  edtBusca.SetFocus;
+end;
+
 procedure TFrmALClientePadrao.FormCreate(Sender: TObject);
+var
+  Task : ITask;
+
 begin
   inherited;
   CriarBefore;
@@ -226,6 +253,13 @@ begin
   CriarAfter;
   ListaAoCriar;
 
+  Task := TTask.Create(
+  procedure
+  begin
+    Sleep(600);
+    FocoInicial;
+  end);
+  Task.Start;
 end;
 
 function TFrmALClientePadrao.GetCon: TMongoCollection;
@@ -233,23 +267,33 @@ begin
   Result := FrmALClienteDmDados.FConMongo[Persistencia.Banco][Persistencia.Tabela];
 end;
 
+function TFrmALClientePadrao.Editar: Boolean;
+begin
+
+end;
+
 procedure TFrmALClientePadrao.ExibirBotoes;
 begin
-  btnSalvar.Align := TAlignLayout(2);
-  case TabControl.TabIndex of
-    0:
-      begin
-        btnSalvar.Visible := false;
-        btnExcluir.Visible := false;
-        btnNovo.Visible := true;
-      end;
-    1:
-      begin
-        btnSalvar.Visible := true;
-        btnExcluir.Visible := true;
-        btnNovo.Visible := false;
-      end;
+  if TabControl.ActiveTab  = tabLista then
+  begin
+    btnSalvar.Visible  := false;
+    btnExcluir.Visible := false;
+    btnNovo.Visible    := true;
+    btnEditar.Visible  := True;
+  end
+  else
+  if TabControl.ActiveTab = tabCadastro then
+  begin
+    btnEditar.Visible  := false;
+    btnSalvar.Visible  := true;
+    btnExcluir.Visible := true;
+    btnNovo.Visible    := false;
   end;
+end;
+
+function TFrmALClientePadrao.Fechar: Boolean;
+begin
+
 end;
 
 function TFrmALClientePadrao.Filtrar(Value: String): Boolean;
@@ -285,6 +329,12 @@ begin
 
 end;
 
+procedure TFrmALClientePadrao.ListBox1DblClick(Sender: TObject);
+begin
+  inherited;
+  acEditar.Execute;
+end;
+
 procedure TFrmALClientePadrao.ListBox1ItemClick(const Sender: TCustomListBox;
   const Item: TListBoxItem);
 var
@@ -310,12 +360,6 @@ end;
 function TFrmALClientePadrao.SalvarBefore: Boolean;
 begin
 
-end;
-
-procedure TFrmALClientePadrao.SearchBox1Enter(Sender: TObject);
-begin
-  inherited;
-  Filtrar(SearchBox1.Text);
 end;
 
 function TFrmALClientePadrao.Lista(oCrs :IMongoCursor): Boolean;

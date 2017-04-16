@@ -16,7 +16,6 @@ uses
 
 type
   TFrmALClientePessoa = class(TFrmALClientePadrao)
-    Label1: TLabel;
     edt_id: TEdit;
     Label2: TLabel;
     edtrazao_social_pes: TEdit;
@@ -26,9 +25,7 @@ type
     ListBoxItem2: TListBoxItem;
     ListBoxItem3: TListBoxItem;
     Label3: TLabel;
-    BindSourceDB1: TBindSourceDB;
-    BindingsList1: TBindingsList;
-    LinkFillControlToField: TLinkFillControlToField;
+    Label4: TLabel;
   private
     { Private declarations }
     Pessoa : TPessoa;
@@ -37,6 +34,10 @@ type
     function Salvar: Boolean; override;
     function Filtrar(Value: string): Boolean; override;
     function Criar: Boolean; override;
+    function Fechar: Boolean; override;
+    function FocoInicial: Boolean; override;
+
+
 
 
 
@@ -51,7 +52,7 @@ implementation
 
 {$R *.fmx}
 
-uses AL.Cliente.DmDados, FireDAC.Phys.MongoDBWrapper;
+uses AL.Cliente.DmDados, FireDAC.Phys.MongoDBWrapper, AL.Cliente.Menu;
 
 
 function TFrmALClientePessoa.Criar: Boolean;
@@ -62,6 +63,12 @@ begin
   FieldText := 'razao_social_pes';
   FieldID   := '_id';
 
+end;
+
+function TFrmALClientePessoa.Fechar: Boolean;
+begin
+  FrmALClientePessoa := nil;
+  Result := FrmALClientePessoa= nil;
 end;
 
 function TFrmALClientePessoa.Filtrar(Value: string): Boolean;
@@ -85,6 +92,11 @@ begin
     end;
   end;
 
+end;
+
+function TFrmALClientePessoa.FocoInicial: Boolean;
+begin
+  edtBusca.SetFocus
 end;
 
 function TFrmALClientePessoa.Salvar: Boolean;
