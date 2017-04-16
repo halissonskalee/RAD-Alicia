@@ -29,7 +29,6 @@ type
     BindSourceDB1: TBindSourceDB;
     BindingsList1: TBindingsList;
     LinkFillControlToField: TLinkFillControlToField;
-    procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
     Pessoa : TPessoa;
@@ -37,6 +36,9 @@ type
     function SalvarBefore: Boolean; override;
     function Salvar: Boolean; override;
     function Filtrar(Value: string): Boolean; override;
+    function Criar: Boolean; override;
+
+
 
     { Public declarations }
 
@@ -51,6 +53,16 @@ implementation
 
 uses AL.Cliente.DmDados, FireDAC.Phys.MongoDBWrapper;
 
+
+function TFrmALClientePessoa.Criar: Boolean;
+begin
+  Pessoa              := TPessoa.Create;
+  Persistencia.Tabela := 'PESSOA';
+
+  FieldText := 'razao_social_pes';
+  FieldID   := '_id';
+
+end;
 
 function TFrmALClientePessoa.Filtrar(Value: string): Boolean;
 var
@@ -73,13 +85,6 @@ begin
     end;
   end;
 
-end;
-
-procedure TFrmALClientePessoa.FormCreate(Sender: TObject);
-begin
-  inherited;
-  Pessoa              := TPessoa.Create;
-  Persistencia.Tabela := 'PESSOA';
 end;
 
 function TFrmALClientePessoa.Salvar: Boolean;

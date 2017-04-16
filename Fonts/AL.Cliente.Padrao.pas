@@ -59,6 +59,8 @@ type
 
     FAcao: TAcao;
     FPersistencia: TALPersistencia;
+    FFieldText: String;
+    FFieldID: String;
 
     procedure fnc_limparCampos;
     procedure fnc_atualizaLista;
@@ -66,11 +68,22 @@ type
     procedure fnc_buscarCampoChave(var i: Integer; const Item: TListBoxItem);
     procedure fnc_PreencherRegistros;
     procedure ExibirBotoes;
+    function Lista(oCrs: IMongoCursor): Boolean;
 
     { Private declarations }
   public
     { Public declarations }
     procedure fnc_montarGrid; virtual; abstract;
+
+
+    function CriarBefore : Boolean; virtual;
+    function Criar       : Boolean; virtual;
+    function CriarAfter  : Boolean; virtual;
+
+    function GetCon : TMongoCollection;
+    function ListaAoCriar: Boolean;
+
+
 
     function SalvarBefore: Boolean; virtual;
     function Salvar: Boolean; virtual;
@@ -80,6 +93,10 @@ type
   published
     property Acao         : TAcao           read FAcao         write FAcao;
     property Persistencia : TALPersistencia read FPersistencia write FPersistencia;
+    property FieldText    : String          read FFieldText    write FFieldText;
+    property FieldID      : String          read FFieldID      write FFieldID;
+
+
   end;
 
 var
@@ -89,7 +106,7 @@ implementation
 
 {$R *.fmx}
 
-uses AL.Cliente.DmDados, AL.Cliente.Menu;
+uses AL.Cliente.DmDados, AL.Cliente.Menu, System.Threading;
 
 procedure TFrmALClientePadrao.acEditarExecute(Sender: TObject);
 begin
@@ -130,6 +147,21 @@ end;
 procedure TFrmALClientePadrao.Button2Click(Sender: TObject);
 begin
   // fnc_ExibirMensagem('Teste de Mensagem', 'Sua Mensagem foi Exibida com Sucesso', tpAlerta);
+end;
+
+function TFrmALClientePadrao.Criar: Boolean;
+begin
+
+end;
+
+function TFrmALClientePadrao.CriarAfter: Boolean;
+begin
+
+end;
+
+function TFrmALClientePadrao.CriarBefore: Boolean;
+begin
+
 end;
 
 procedure TFrmALClientePadrao.fnc_atualizaLista;
@@ -182,13 +214,23 @@ end;
 procedure TFrmALClientePadrao.FormCreate(Sender: TObject);
 begin
   inherited;
-  lblTitulo.Text := Self.Caption;
-  TabControl.TabPosition := TTabPosition.None;
-  TabControl.ActiveTab := tabLista;
+  CriarBefore;
+
+  lblTitulo.Text          := Self.Caption;
+  TabControl.TabPosition  := TTabPosition.None;
+  TabControl.ActiveTab    := tabLista;
   ExibirBotoes;
 
   Persistencia := FrmALClienteDmDados.CriarPersistencia;
+  Criar;
+  CriarAfter;
+  ListaAoCriar;
 
+end;
+
+function TFrmALClientePadrao.GetCon: TMongoCollection;
+begin
+  Result := FrmALClienteDmDados.FConMongo[Persistencia.Banco][Persistencia.Tabela];
 end;
 
 procedure TFrmALClientePadrao.ExibirBotoes;
@@ -229,6 +271,20 @@ begin
     end; }
 end;
 
+function TFrmALClientePadrao.ListaAoCriar: Boolean;
+var
+  Task : ITask;
+begin
+  Task := TTask.Create(
+  procedure
+  begin
+    Sleep(500);
+    Lista(GetCon.Find().Limit(100));
+  end);
+  Task.Start;
+
+end;
+
 procedure TFrmALClientePadrao.ListBox1ItemClick(const Sender: TCustomListBox;
   const Item: TListBoxItem);
 var
@@ -260,6 +316,29 @@ procedure TFrmALClientePadrao.SearchBox1Enter(Sender: TObject);
 begin
   inherited;
   Filtrar(SearchBox1.Text);
+end;
+
+function TFrmALClientePadrao.Lista(oCrs :IMongoCursor): Boolean;
+begin
+  if not Assigned(oCrs) then
+    Exit;
+  if FFieldText.IsEmpty or FFieldID.IsEmpty then
+    Exit;
+
+  dsMongo.Close;
+  dsMongo.Cursor := oCrs;
+  dsMongo.Open;
+
+  with dsMongo do
+  begin
+    First;
+    ListBox1.Items.Clear;
+    while not Eof do
+    begin
+      ListBox1.Items.AddObject(FieldByName(FFieldText).AsString, TObject(FieldByName(FFieldID).AsInteger));
+      Next;
+    end;
+  end;
 end;
 
 end.
