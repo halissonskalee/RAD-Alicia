@@ -115,7 +115,7 @@ object FrmALClientePadrao: TFrmALClientePadrao
         Text = 'Lista'
         ExplicitSize.cx = 62.000000000000000000
         ExplicitSize.cy = 23.000000000000000000
-        object ListBox1: TListBox
+        object lbLista: TListBox
           Align = Client
           Margins.Left = 3.000000000000000000
           Margins.Top = 3.000000000000000000
@@ -125,7 +125,7 @@ object FrmALClientePadrao: TFrmALClientePadrao
           Size.Height = 305.000000000000000000
           Size.PlatformDefault = False
           TabOrder = 0
-          OnDblClick = ListBox1DblClick
+          OnDblClick = lbListaDblClick
           DisableFocusEffect = True
           DefaultItemStyles.ItemStyle = ''
           DefaultItemStyles.GroupHeaderStyle = ''
@@ -175,6 +175,16 @@ object FrmALClientePadrao: TFrmALClientePadrao
                 Size.Width = 384.000000000000000000
                 Size.Height = 22.000000000000000000
                 Size.PlatformDefault = False
+                OnChange = edtBuscaChange
+                object SearchEditButton1: TSearchEditButton
+                  CanFocus = False
+                  Cursor = crArrow
+                  Size.Width = 28.000000000000000000
+                  Size.Height = 14.000000000000000000
+                  Size.PlatformDefault = False
+                  TabOrder = 0
+                  OnClick = SearchEditButton1Click
+                end
               end
               object Label1: TLabel
                 StyledSettings = [Family, Size, Style, FontColor, Other]
@@ -294,5 +304,11 @@ object FrmALClientePadrao: TFrmALClientePadrao
     CollectionName = 'PESSOA'
     Left = 560
     Top = 233
+  end
+  object qyMongo: TFDMongoQuery
+    FormatOptions.AssignedValues = [fvStrsTrim2Len]
+    FormatOptions.StrsTrim2Len = True
+    Left = 563
+    Top = 289
   end
 end

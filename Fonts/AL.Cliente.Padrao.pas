@@ -42,7 +42,7 @@ type
     btnVoltar: TButton;
     pTitulo: TPanel;
     lblTitulo: TLabel;
-    ListBox1: TListBox;
+    lbLista: TListBox;
     ListBox2: TListBox;
     ListBoxItem1: TListBoxItem;
     edtBusca: TEdit;
@@ -50,6 +50,8 @@ type
     ListBoxItem4: TListBoxItem;
     Panel1: TPanel;
     btnEditar: TButton;
+    qyMongo: TFDMongoQuery;
+    SearchEditButton1: TSearchEditButton;
     procedure acNovoExecute(Sender: TObject);
     procedure acEditarExecute(Sender: TObject);
     procedure acSalvarExecute(Sender: TObject);
@@ -59,7 +61,9 @@ type
     procedure FormCreate(Sender: TObject);
     procedure acVoltarExecute(Sender: TObject);
     procedure acSairExecute(Sender: TObject);
-    procedure ListBox1DblClick(Sender: TObject);
+    procedure lbListaDblClick(Sender: TObject);
+    procedure edtBuscaChange(Sender: TObject);
+    procedure SearchEditButton1Click(Sender: TObject);
 
   private
 
@@ -86,7 +90,8 @@ type
     function Criar       : Boolean; virtual;
     function CriarAfter  : Boolean; virtual;
 
-    function Editar : Boolean; virtual;
+    function Editar(Json:String) : Boolean; virtual;
+
 
     function GetCon : TMongoCollection;
     function ListaAoCriar: Boolean;
@@ -119,7 +124,6 @@ uses AL.Cliente.DmDados, AL.Cliente.Menu, System.Threading;
 
 procedure TFrmALClientePadrao.acEditarExecute(Sender: TObject);
 begin
-  Editar;
   changeTabCadastro.ExecuteTarget(Self);
   ExibirBotoes;
 end;
@@ -256,10 +260,19 @@ begin
   Task := TTask.Create(
   procedure
   begin
-    Sleep(600);
+    Sleep(200);
     FocoInicial;
   end);
   Task.Start;
+
+  Task := TTask.Create(
+  procedure
+  begin
+    Sleep(500);
+    ListaAoCriar;
+  end);
+  Task.Start;
+
 end;
 
 function TFrmALClientePadrao.GetCon: TMongoCollection;
@@ -267,9 +280,15 @@ begin
   Result := FrmALClienteDmDados.FConMongo[Persistencia.Banco][Persistencia.Tabela];
 end;
 
-function TFrmALClientePadrao.Editar: Boolean;
+function TFrmALClientePadrao.Editar(Json:String) : Boolean;
 begin
 
+end;
+
+procedure TFrmALClientePadrao.edtBuscaChange(Sender: TObject);
+begin
+  inherited;
+  Filtrar(edtBusca.Text)
 end;
 
 procedure TFrmALClientePadrao.ExibirBotoes;
@@ -297,8 +316,16 @@ begin
 end;
 
 function TFrmALClientePadrao.Filtrar(Value: String): Boolean;
+var
+  Cursor : IMongoCursor;
 begin
+  Cursor := GetCon.Find()
+            .Match()
+              .Exp('razao_social_pes',  '{"$regex" : "ha*"}')
+            .&End;
 
+
+  Lista(Cursor)
 end;
 
 
@@ -316,23 +343,26 @@ begin
 end;
 
 function TFrmALClientePadrao.ListaAoCriar: Boolean;
-var
-  Task : ITask;
 begin
-  Task := TTask.Create(
-  procedure
-  begin
-    Sleep(500);
-    Lista(GetCon.Find().Limit(100));
-  end);
-  Task.Start;
-
+  Lista(GetCon.Find().Limit(100));
 end;
 
-procedure TFrmALClientePadrao.ListBox1DblClick(Sender: TObject);
+procedure TFrmALClientePadrao.lbListaDblClick(Sender: TObject);
+var
+  Cursor    : IMongoCursor;
 begin
   inherited;
   acEditar.Execute;
+
+//  lbLista.Selected.Data;
+
+  Cursor:= GetCon.Find()
+          .Match()
+            .Add('_id',0 )
+          .&End;
+
+  Cursor.Doc.AsJSON;
+  Editar(Cursor.Doc.AsJSON);
 end;
 
 procedure TFrmALClientePadrao.ListBox1ItemClick(const Sender: TCustomListBox;
@@ -362,6 +392,12 @@ begin
 
 end;
 
+procedure TFrmALClientePadrao.SearchEditButton1Click(Sender: TObject);
+begin
+  inherited;
+  Filtrar(edtBusca.Text);
+end;
+
 function TFrmALClientePadrao.Lista(oCrs :IMongoCursor): Boolean;
 begin
   if not Assigned(oCrs) then
@@ -376,10 +412,10 @@ begin
   with dsMongo do
   begin
     First;
-    ListBox1.Items.Clear;
+    lbLista.Items.Clear;
     while not Eof do
     begin
-      ListBox1.Items.AddObject(FieldByName(FFieldText).AsString, TObject(FieldByName(FFieldID).AsInteger));
+      lbLista.Items.AddObject(FieldByName(FFieldText).AsString, TObject(FieldByName(FFieldID).AsInteger));
       Next;
     end;
   end;

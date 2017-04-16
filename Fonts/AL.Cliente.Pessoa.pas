@@ -32,14 +32,10 @@ type
   public
     function SalvarBefore: Boolean; override;
     function Salvar: Boolean; override;
-    function Filtrar(Value: string): Boolean; override;
     function Criar: Boolean; override;
     function Fechar: Boolean; override;
     function FocoInicial: Boolean; override;
-
-
-
-
+    function Editar: Boolean; override;
 
     { Public declarations }
 
@@ -65,34 +61,17 @@ begin
 
 end;
 
+function TFrmALClientePessoa.Editar: Boolean;
+begin
+//  GetCon.Find('_id',ltbLista.Selected.Data);
+end;
+
 function TFrmALClientePessoa.Fechar: Boolean;
 begin
   FrmALClientePessoa := nil;
   Result := FrmALClientePessoa= nil;
 end;
 
-function TFrmALClientePessoa.Filtrar(Value: string): Boolean;
-var
-  oCrs: IMongoCursor;
-  LBItem    : TListBoxItem;
-begin
-  oCrs := FrmALClienteDmDados.FConMongo[Persistencia.Banco][Persistencia.Tabela].Find();
-  dsMongo.Close;
-  dsMongo.Cursor := oCrs;
-  dsMongo.Open;
-
-  with dsMongo do
-  begin
-    First;
-    ListBox1.Items.Clear;
-    while not Eof do
-    begin
-      ListBox1.Items.AddObject(FieldByName('razao_social_pes').AsString, TObject(FieldByName('_id').AsInteger));
-      Next;
-    end;
-  end;
-
-end;
 
 function TFrmALClientePessoa.FocoInicial: Boolean;
 begin
