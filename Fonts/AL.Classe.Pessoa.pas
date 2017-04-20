@@ -26,12 +26,13 @@ type
 
 
     { private declarations }
+    constructor InternalCreate(const Value : String);
   protected
     { protected declarations }
   public
     { public declarations }
     function AsJSON: String;
-
+    class function FromJSON(const Value : String) : TPessoa;
     property _id: integer read F_id write Set_id;
     property razao_social_pes : string read Frazao_social_pes write Setrazao_social_pes;
     property dt_cadastro_pes  : TDate read Fdt_cadastro_pes write Setdt_cadastro_pes;
@@ -49,6 +50,17 @@ implementation
 function TPessoa.AsJSON: String;
 begin
   Result := TJson.ObjectToJsonString(Self,[]);
+end;
+
+class function TPessoa.FromJSON(const Value: String): TPessoa;
+begin
+  Result := InternalCreate(Value);
+end;
+
+constructor TPessoa.InternalCreate(const Value: String);
+begin
+  Create;
+  Self := TJson.JsonToObject<TPessoa>(Value);
 end;
 
 procedure TPessoa.Setcpf_cnpj_pes(const Value: String);
@@ -76,5 +88,6 @@ procedure TPessoa.Set_id(const Value: integer);
 begin
   F_id := Value;
 end;
+
 
 end.

@@ -24,7 +24,9 @@ inherited FrmALClientePessoa: TFrmALClientePessoa
       end
     end
     inherited TabControl: TTabControl
+      TabIndex = 1
       inherited tabLista: TTabItem
+        IsSelected = False
         ExplicitSize.cx = 62.000000000000000000
         ExplicitSize.cy = 23.000000000000000000
         inherited lbLista: TListBox
@@ -39,6 +41,7 @@ inherited FrmALClientePessoa: TFrmALClientePessoa
         end
       end
       inherited tabCadastro: TTabItem
+        IsSelected = True
         ExplicitSize.cx = 85.000000000000000000
         ExplicitSize.cy = 23.000000000000000000
         object edt_id: TEdit

@@ -35,7 +35,9 @@ type
     function Criar: Boolean; override;
     function Fechar: Boolean; override;
     function FocoInicial: Boolean; override;
-    function Editar: Boolean; override;
+    function Editar(Json: string): Boolean; override;
+
+
 
     { Public declarations }
 
@@ -61,9 +63,18 @@ begin
 
 end;
 
-function TFrmALClientePessoa.Editar: Boolean;
+function TFrmALClientePessoa.Editar(Json: string): Boolean;
 begin
-//  GetCon.Find('_id',ltbLista.Selected.Data);
+  Pessoa := Pessoa.FromJSON(Json);
+
+  edt_id.Text               := Pessoa._id.ToString;
+  edtrazao_social_pes.Text  := Pessoa.razao_social_pes;
+  edtdt_cadastro_pes.Date   := Pessoa.dt_cadastro_pes;
+  cmbvtipo_pes.ItemIndex    := Pessoa.tipo_pes.ToInteger;
+
+
+
+
 end;
 
 function TFrmALClientePessoa.Fechar: Boolean;

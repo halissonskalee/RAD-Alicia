@@ -120,7 +120,7 @@ implementation
 
 {$R *.fmx}
 
-uses AL.Cliente.DmDados, AL.Cliente.Menu, System.Threading;
+uses AL.Cliente.DmDados, AL.Cliente.Menu, System.Threading, AL.Classe.Pessoa;
 
 procedure TFrmALClientePadrao.acEditarExecute(Sender: TObject);
 begin
@@ -236,7 +236,7 @@ end;
 
 function TFrmALClientePadrao.FocoInicial: Boolean;
 begin
-//  edtBusca.SetFocus;
+
 end;
 
 procedure TFrmALClientePadrao.FormCreate(Sender: TObject);
@@ -320,9 +320,9 @@ var
   Cursor : IMongoCursor;
 begin
   Cursor := GetCon.Find()
-            .Match()
-              .Exp('razao_social_pes',  '{"$regex" : "ha*"}')
-            .&End;
+             .Match()
+                .Exp('razao_social_pes', '{ "$regex" : "Won*" }')
+              .&End;
 
 
   Lista(Cursor)
@@ -349,20 +349,12 @@ end;
 
 procedure TFrmALClientePadrao.lbListaDblClick(Sender: TObject);
 var
-  Cursor    : IMongoCursor;
+  oCrs : IMongoCursor;
 begin
-  inherited;
-  acEditar.Execute;
+  oCrs := GetCon.Find().Match().Add(FFieldID,0).&End;
 
-//  lbLista.Selected.Data;
-
-  Cursor:= GetCon.Find()
-          .Match()
-            .Add('_id',0 )
-          .&End;
-
-  Cursor.Doc.AsJSON;
-  Editar(Cursor.Doc.AsJSON);
+  while oCrs.Next do
+    editar(oCrs.Doc.AsJSON);
 end;
 
 procedure TFrmALClientePadrao.ListBox1ItemClick(const Sender: TCustomListBox;
