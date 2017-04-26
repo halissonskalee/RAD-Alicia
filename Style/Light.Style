@@ -1008,8 +1008,8 @@ object TStyleContainer
   end
   object TLayout
     StyleName = 'tabitemstyle'
-    Position.X = 333.000000000000000000
-    Position.Y = 337.000000000000000000
+    Position.X = 497.000000000000000000
+    Position.Y = 174.000000000000000000
     Size.Width = 46.000000000000000000
     Size.Height = 20.000000000000000000
     Size.PlatformDefault = False
@@ -1020,22 +1020,13 @@ object TStyleContainer
       Align = Contents
       ClipChildren = True
       Corners = [TopLeft, TopRight]
-      Fill.Kind = Gradient
-      Fill.Gradient.Points = <
-        item
-          Color = xFFF4F4F6
-          Offset = 0.000000000000000000
-        end
-        item
-          Color = claWhite
-          Offset = 1.000000000000000000
-        end>
+      Fill.Kind = None
       Locked = True
       HitTest = False
       Size.Width = 46.000000000000000000
       Size.Height = 20.000000000000000000
       Size.PlatformDefault = False
-      Stroke.Color = xFFD9D9D9
+      Stroke.Kind = None
       object TColorAnimation
         Duration = 0.000000999999997475
         PropertyName = 'Fill.Color'
@@ -1101,16 +1092,7 @@ object TStyleContainer
       Align = Contents
       ClipChildren = True
       Corners = [BottomLeft, BottomRight]
-      Fill.Kind = Gradient
-      Fill.Gradient.Points = <
-        item
-          Color = xFFF4F4F6
-          Offset = 0.000000000000000000
-        end
-        item
-          Color = claWhite
-          Offset = 1.000000000000000000
-        end>
+      Fill.Color = claWhite
       Locked = True
       HitTest = False
       Sides = [Left, Bottom, Right]
@@ -1192,8 +1174,8 @@ object TStyleContainer
   end
   object TLayout
     StyleName = 'tabcontrolstyle'
-    Position.X = 285.000000000000000000
-    Position.Y = 296.000000000000000000
+    Position.X = 449.000000000000000000
+    Position.Y = 134.000000000000000000
     Size.Width = 142.000000000000000000
     Size.Height = 100.999992370605500000
     Size.PlatformDefault = False
@@ -1201,7 +1183,7 @@ object TStyleContainer
     TabOrder = 22
     object TRectangle
       Align = Contents
-      Fill.Color = xFFF0F0F0
+      Fill.Color = claWhite
       HitTest = False
       Size.Width = 142.000000000000000000
       Size.Height = 100.999992370605500000
@@ -1474,7 +1456,7 @@ object TStyleContainer
           end
           item
             Color = xFFE2E2E2
-            Offset = 0.800000011920928900
+            Offset = 0.800000011920929000
           end>
         Locked = True
         HitTest = False
@@ -1500,7 +1482,7 @@ object TStyleContainer
           end
           item
             Color = xFF00C5EE
-            Offset = 0.800000011920928900
+            Offset = 0.800000011920929000
           end>
         Locked = True
         HitTest = False
@@ -1540,7 +1522,7 @@ object TStyleContainer
           end
           item
             Color = xFFE2E2E2
-            Offset = 0.800000011920928900
+            Offset = 0.800000011920929000
           end>
         Fill.Gradient.StartPosition.Y = 0.500000000000000000
         Fill.Gradient.StopPosition.X = 1.000000000000000000
@@ -1569,7 +1551,7 @@ object TStyleContainer
           end
           item
             Color = xFF00C5EE
-            Offset = 0.800000011920928900
+            Offset = 0.800000011920929000
           end>
         Fill.Gradient.StartPosition.Y = 0.500000000000000000
         Fill.Gradient.StopPosition.X = 1.000000000000000000
@@ -1623,7 +1605,7 @@ object TStyleContainer
   object TLayout
     StyleName = 'combopopupstyle'
     ClipChildren = True
-    Opacity = 0.949999988079071100
+    Opacity = 0.949999988079071000
     Position.X = 310.000000000000000000
     Position.Y = 317.000000000000000000
     Size.Width = 92.000000000000000000
@@ -2015,7 +1997,7 @@ object TStyleContainer
       Position.Y = 4.000000000000000000
       Sides = [Left, Bottom]
       Size.Width = 9.000000000000000000
-      Size.Height = 6.000000953674317000
+      Size.Height = 6.000000953674316000
       Size.PlatformDefault = False
       Stroke.Color = xFFC0BEBF
       object TRectangle
@@ -2614,7 +2596,7 @@ object TStyleContainer
         end
       end
       object TInnerGlowEffect
-        Softness = 0.400000005960464400
+        Softness = 0.400000005960464500
         GlowColor = xFF4F4848
         Opacity = 0.299999982118606600
         Trigger = 'IsPressed=true'
@@ -2694,7 +2676,7 @@ object TStyleContainer
       XRadius = 3.000000000000000000
       YRadius = 3.000000000000000000
       object TInnerGlowEffect
-        Softness = 0.400000005960464400
+        Softness = 0.400000005960464500
         GlowColor = xFF4F4848
         Opacity = 0.899999976158142100
         Trigger = 'IsPressed=true'
@@ -2774,7 +2756,7 @@ object TStyleContainer
       XRadius = 3.000000000000000000
       YRadius = 3.000000000000000000
       object TInnerGlowEffect
-        Softness = 0.400000005960464400
+        Softness = 0.400000005960464500
         GlowColor = xFF4F4848
         Opacity = 0.899999976158142100
         Trigger = 'IsPressed=true'
@@ -3009,7 +2991,7 @@ object TStyleContainer
       Size.PlatformDefault = False
       Stroke.Color = xFFD5D5D5
       object TInnerGlowEffect
-        Softness = 0.400000005960464400
+        Softness = 0.400000005960464500
         GlowColor = xFF4F4848
         Opacity = 0.899999976158142100
         Trigger = 'IsPressed=true'
@@ -3100,7 +3082,7 @@ object TStyleContainer
       Fill.Gradient.StopPosition.Y = 0.000000000000000000
       Locked = True
       HitTest = False
-      Size.Width = 9.999999046325683000
+      Size.Width = 9.999999046325684000
       Size.Height = 18.999998092651370000
       Size.PlatformDefault = False
       Stroke.Color = xFFD0D0D0
@@ -3131,7 +3113,7 @@ object TStyleContainer
       Locked = True
       HitTest = False
       Size.Width = 18.999998092651370000
-      Size.Height = 9.999999046325683000
+      Size.Height = 9.999999046325684000
       Size.PlatformDefault = False
       Stroke.Color = xFFD0D0D0
     end
@@ -3379,7 +3361,7 @@ object TStyleContainer
       HitTest = False
       Margins.Left = 2.000000000000000000
       Margins.Right = 2.000000000000000000
-      Size.Width = 7.999999046325683000
+      Size.Width = 7.999999046325684000
       Size.Height = 47.000000000000000000
       Size.PlatformDefault = False
       Stroke.Color = claSilver
@@ -3626,8 +3608,8 @@ object TStyleContainer
   end
   object TLayout
     StyleName = 'comboboxstyle'
-    Position.X = 438.000000000000000000
-    Position.Y = 278.000000000000000000
+    Position.X = 476.000000000000000000
+    Position.Y = 172.000000000000000000
     Size.Width = 89.000000000000000000
     Size.Height = 26.000000000000000000
     Size.PlatformDefault = False
@@ -3647,20 +3629,7 @@ object TStyleContainer
       object TRectangle
         Align = Client
         Corners = [TopLeft, TopRight]
-        Fill.Kind = Gradient
-        Fill.Gradient.Points = <
-          item
-            Color = claWhitesmoke
-            Offset = 0.000000000000000000
-          end
-          item
-            Color = xFFE8E8E8
-            Offset = 1.000000000000000000
-          end>
-        Fill.Gradient.StartPosition.X = 0.500000000000000000
-        Fill.Gradient.StartPosition.Y = 1.000000000000000000
-        Fill.Gradient.StopPosition.X = 0.499999970197677600
-        Fill.Gradient.StopPosition.Y = 0.000000000000000000
+        Fill.Kind = None
         HitTest = False
         Margins.Bottom = 2.000000000000000000
         Sides = [Top, Left, Right]
@@ -3807,11 +3776,12 @@ object TStyleContainer
   end
   object TLayout
     StyleName = 'listboxstyle'
-    Position.X = 424.000000000000000000
-    Position.Y = 225.000000000000000000
+    Position.X = 462.000000000000000000
+    Position.Y = 119.000000000000000000
     Size.Width = 116.999992370605500000
     Size.Height = 131.000000000000000000
     Size.PlatformDefault = False
+    Visible = False
     TabOrder = 63
     object TBrushObject
       StyleName = 'AlternatingRowBackground'
@@ -3820,7 +3790,7 @@ object TStyleContainer
     object TRectangle
       StyleName = 'background'
       Align = Contents
-      Fill.Color = xFFF0F0F0
+      Fill.Color = claWhite
       Locked = True
       HitTest = False
       Padding.Left = 1.000000000000000000
@@ -4146,7 +4116,7 @@ object TStyleContainer
       end
     end
     object TFloatKeyAnimation
-      Duration = 0.599999964237213200
+      Duration = 0.599999964237213100
       Keys = <
         item
         end
@@ -6348,6 +6318,95 @@ object TStyleContainer
         StyleLookup = 'spinbottombutton'
         TabOrder = 0
       end
+    end
+  end
+  object TLayout
+    StyleName = 'ComboBox1Style1'
+    Position.X = 494.000000000000000000
+    Position.Y = 174.000000000000000000
+    Size.Width = 100.000000000000000000
+    Size.Height = 22.000000000000000000
+    Size.PlatformDefault = False
+    Visible = False
+    TabOrder = 91
+    object TRectangle
+      StyleName = 'background'
+      Align = Contents
+      Fill.Color = claWhite
+      Locked = True
+      HitTest = False
+      Size.Width = 100.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      XRadius = 3.000000000000000000
+      YRadius = 3.000000000000000000
+      object TRectangle
+        Align = Client
+        Corners = [TopLeft, TopRight]
+        Fill.Kind = Gradient
+        Fill.Gradient.Points = <
+          item
+            Color = claWhitesmoke
+            Offset = 0.000000000000000000
+          end
+          item
+            Color = xFFE8E8E8
+            Offset = 1.000000000000000000
+          end>
+        Fill.Gradient.StartPosition.X = 0.500000000000000000
+        Fill.Gradient.StartPosition.Y = 1.000000000000000000
+        Fill.Gradient.StopPosition.X = 0.499999970197677600
+        Fill.Gradient.StopPosition.Y = 0.000000000000000000
+        HitTest = False
+        Margins.Bottom = 2.000000000000000000
+        Sides = [Top, Left, Right]
+        Size.Width = 100.000000000000000000
+        Size.Height = 20.000000000000000000
+        Size.PlatformDefault = False
+        XRadius = 2.000000000000000000
+        YRadius = 2.000000000000000000
+      end
+    end
+    object TPath
+      Align = Right
+      Data.Path = {
+        0400000000000000DB86E4439C9A0044010000002489E643C1D7014401000000
+        497AE843C197004403000000DB86E4439C9A0044}
+      Fill.Color = xFF3DC9ED
+      Locked = True
+      HitTest = False
+      Margins.Top = 8.000000000000000000
+      Margins.Right = 5.000000000000000000
+      Margins.Bottom = 8.000000000000000000
+      Position.X = 87.000000000000000000
+      Position.Y = 8.000000000000000000
+      Size.Width = 8.000000000000000000
+      Size.Height = 6.000000000000000000
+      Size.PlatformDefault = False
+      Stroke.Kind = None
+    end
+    object TBrushObject
+      StyleName = 'foreground'
+      Brush.Color = xFF898989
+    end
+    object TLayout
+      StyleName = 'content'
+      Align = Contents
+      Locked = True
+      Margins.Left = 2.000000000000000000
+      Margins.Top = 2.000000000000000000
+      Margins.Right = 23.000000000000000000
+      Margins.Bottom = 2.000000000000000000
+      Size.Width = 75.000000000000000000
+      Size.Height = 18.000000000000000000
+      Size.PlatformDefault = False
+    end
+    object TGlowEffect
+      Softness = 0.200000002980232200
+      GlowColor = xFF3DC9ED
+      Opacity = 1.000000000000000000
+      Trigger = 'IsFocused=true'
+      Enabled = False
     end
   end
 end
