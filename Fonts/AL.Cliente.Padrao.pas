@@ -61,9 +61,10 @@ type
     procedure FormCreate(Sender: TObject);
     procedure acVoltarExecute(Sender: TObject);
     procedure acSairExecute(Sender: TObject);
-    procedure lbListaDblClick(Sender: TObject);
     procedure edtBuscaChange(Sender: TObject);
     procedure SearchEditButton1Click(Sender: TObject);
+    procedure lbListaItemClick(const Sender: TCustomListBox;
+      const Item: TListBoxItem);
 
   private
 
@@ -281,6 +282,20 @@ begin
   Result := FrmALClienteDmDados.FConMongo[Persistencia.Banco][Persistencia.Tabela];
 end;
 
+procedure TFrmALClientePadrao.lbListaItemClick(const Sender: TCustomListBox;  const Item: TListBoxItem);
+var
+  oCrs : IMongoCursor;
+begin
+  oCrs := GetCon.Find().Match().Add(FFieldID,Integer(Item.Data)).&End;
+  while oCrs.Next do
+  begin
+    editar(oCrs.Doc.AsJSON);
+    changeTabCadastro.Execute;
+    Acao := tpUpdate;
+    ExibirBotoes;
+  end;
+end;
+
 function TFrmALClientePadrao.Editar(Json:String) : Boolean;
 begin
 
@@ -346,16 +361,6 @@ end;
 function TFrmALClientePadrao.ListaAoCriar: Boolean;
 begin
   Lista(GetCon.Find().Limit(100));
-end;
-
-procedure TFrmALClientePadrao.lbListaDblClick(Sender: TObject);
-var
-  oCrs : IMongoCursor;
-begin
-  oCrs := GetCon.Find().Match().Add(FFieldID,0).&End;
-
-  while oCrs.Next do
-    editar(oCrs.Doc.AsJSON);
 end;
 
 procedure TFrmALClientePadrao.ListBox1ItemClick(const Sender: TCustomListBox;

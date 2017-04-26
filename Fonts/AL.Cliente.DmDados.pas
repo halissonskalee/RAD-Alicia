@@ -48,8 +48,8 @@ uses AL.Cliente.Registro, AL.Cliente.Menu ;
 function TFrmALClienteDmDados.CriarPersistencia: TALPersistencia;
 begin
   Result := TALPersistencia.Create;
-  Result.ConMongo := FConMongo;
-  Result.Env      := FEnv;
+  Result.ConMongo := FrmALClienteDmDados.FConMongo;
+  Result.Env      := FrmALClienteDmDados.FEnv;
   Result.Banco    := vRegistro.banco_reg;
   Result.Tabela   := '';
 end;

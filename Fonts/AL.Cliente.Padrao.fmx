@@ -99,14 +99,14 @@ object FrmALClientePadrao: TFrmALClientePadrao
       Size.Width = 678.000000000000000000
       Size.Height = 379.000000000000000000
       Size.PlatformDefault = False
-      TabIndex = 1
+      TabIndex = 0
       TabOrder = 1
       TabPosition = Bottom
       object tabLista: TTabItem
         CustomIcon = <
           item
           end>
-        IsSelected = False
+        IsSelected = True
         Size.Width = 43.000000000000000000
         Size.Height = 23.000000000000000000
         Size.PlatformDefault = False
@@ -125,11 +125,11 @@ object FrmALClientePadrao: TFrmALClientePadrao
           Size.Height = 305.000000000000000000
           Size.PlatformDefault = False
           TabOrder = 0
-          OnDblClick = lbListaDblClick
           DisableFocusEffect = True
           DefaultItemStyles.ItemStyle = ''
           DefaultItemStyles.GroupHeaderStyle = ''
           DefaultItemStyles.GroupFooterStyle = ''
+          OnItemClick = lbListaItemClick
           Viewport.Width = 670.000000000000000000
           Viewport.Height = 303.000000000000000000
           object ListBoxItem4: TListBoxItem
@@ -202,7 +202,7 @@ object FrmALClientePadrao: TFrmALClientePadrao
         CustomIcon = <
           item
           end>
-        IsSelected = True
+        IsSelected = False
         Size.Width = 67.000000000000000000
         Size.Height = 23.000000000000000000
         Size.PlatformDefault = False

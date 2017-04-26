@@ -27,7 +27,7 @@ type
 
     { private declarations }
     constructor InternalCreate(const Value : String);
-    function SetMongo(ConMongo: TMongoConnection; Env: TMongoEnv): Boolean;
+
 
   protected
     { protected declarations }
@@ -93,12 +93,6 @@ begin
   Fdt_cadastro_pes := Value;
 end;
 
-function TPessoa.SetMongo(ConMongo: TMongoConnection;
-  Env: TMongoEnv): Boolean;
-begin
-  FConMongo := ConMongo;
-  FEnv      := Env;
-end;
 
 function TPessoa.SetPersistencia(Persistencia: TALPersistencia): Boolean;
 begin
@@ -156,7 +150,6 @@ begin
         .Field('razao_social_pes',razao_social_pes)
       .&End
     .&End;
-
 
  FConMongo[FBanco][GetTabela].Update(MongoUpdate);
 end;

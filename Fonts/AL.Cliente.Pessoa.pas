@@ -71,12 +71,12 @@ function TFrmALClientePessoa.Editar(Json: string): Boolean;
 begin
   Pessoa := Pessoa.FromJSON(Json);
 
+
+  Pessoa.SetPersistencia(Persistencia);
   edt_id.Text               := Pessoa._id.ToString;
   edtrazao_social_pes.Text  := Pessoa.razao_social_pes;
   edtdt_cadastro_pes.Date   := Pessoa.dt_cadastro_pes;
   cmbvtipo_pes.ItemIndex    := Pessoa.tipo_pes.ToInteger;
-
-
 
 
 end;
@@ -101,9 +101,11 @@ begin
   Pessoa.razao_social_pes := edtrazao_social_pes.Text;
   Pessoa.dt_cadastro_pes  := edtdt_cadastro_pes.Date;
   Pessoa.tipo_pes         := cmbvtipo_pes.ItemIndex.ToString;
-  Pessoa.Insert;
 
-
+  if Acao = tpInsert  then
+    Pessoa.Insert;
+  if Acao = tpUpdate then
+    Pessoa.Update;
 
   Result := True;
 end;
