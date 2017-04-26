@@ -2533,8 +2533,8 @@ object TStyleContainer
   end
   object TLayout
     StyleName = 'buttonstyle'
-    Position.X = 310.000000000000000000
-    Position.Y = 335.000000000000000000
+    Position.X = 498.000000000000000000
+    Position.Y = 172.000000000000000000
     Size.Width = 91.000000000000000000
     Size.Height = 24.000000000000000000
     Size.PlatformDefault = False
@@ -2543,47 +2543,38 @@ object TStyleContainer
     object TRectangle
       StyleName = 'background'
       Align = Contents
-      Fill.Color = xFFF6F6F6
+      Fill.Color = xFF2067A2
       HitTest = False
       Size.Width = 91.000000000000000000
       Size.Height = 24.000000000000000000
       Size.PlatformDefault = False
-      Stroke.Color = xFFD5D5D5
+      Stroke.Color = xFF2067A2
       XRadius = 3.000000000000000000
       YRadius = 3.000000000000000000
       object TRectangle
         Align = Client
         Corners = [TopLeft, TopRight]
-        Fill.Kind = Gradient
-        Fill.Gradient.Points = <
-          item
-            Color = claWhitesmoke
-            Offset = 0.000000000000000000
-          end
-          item
-            Color = xFFE8E8E8
-            Offset = 1.000000000000000000
-          end>
+        Fill.Kind = None
         HitTest = False
         Margins.Bottom = 2.000000000000000000
         Sides = [Top, Left, Right]
         Size.Width = 91.000000000000000000
         Size.Height = 22.000000000000000000
         Size.PlatformDefault = False
-        Stroke.Color = xFFD5D5D5
+        Stroke.Kind = None
         XRadius = 2.000000000000000000
         YRadius = 2.000000000000000000
       end
       object TRectangle
         Align = Client
-        Fill.Color = xFF01BAE9
+        Fill.Kind = None
         Locked = True
         HitTest = False
         Opacity = 0.001000000047497451
         Size.Width = 91.000000000000000000
         Size.Height = 24.000000000000000000
         Size.PlatformDefault = False
-        Stroke.Color = xFF01BAE9
+        Stroke.Kind = None
         XRadius = 2.000000000000000000
         YRadius = 2.000000000000000000
         object TFloatAnimation
@@ -2627,7 +2618,7 @@ object TStyleContainer
       Size.Height = 20.000000000000000000
       Size.PlatformDefault = False
       Text = 'button'
-      TextSettings.FontColor = xFF828282
+      TextSettings.FontColor = claWhite
       object TColorAnimation
         Duration = 0.200000002980232200
         PropertyName = 'Fill.Color'
