@@ -139,8 +139,9 @@ end;
 procedure TFrmALClientePadrao.acSairExecute(Sender: TObject);
 begin
   inherited;
-  if Fechar then
-    FrmALClienteMenu.RemoverFormulario;
+  Fechar;
+
+
 end;
 
 procedure TFrmALClientePadrao.acSalvarExecute(Sender: TObject);

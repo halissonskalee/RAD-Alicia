@@ -39,6 +39,7 @@ type
 
 
 
+
     { Public declarations }
 
   end;
@@ -79,6 +80,7 @@ end;
 
 function TFrmALClientePessoa.Fechar: Boolean;
 begin
+  FrmALClientePessoa.lyCliente.RemoveObject(FrmALClientePessoa.lyCliente);
   FrmALClientePessoa := nil;
   Result := FrmALClientePessoa= nil;
 end;

@@ -24,24 +24,27 @@ inherited FrmALClientePessoa: TFrmALClientePessoa
       end
     end
     inherited TabControl: TTabControl
-      TabIndex = 1
       inherited tabLista: TTabItem
-        IsSelected = False
         ExplicitSize.cx = 62.000000000000000000
         ExplicitSize.cy = 23.000000000000000000
         inherited lbLista: TListBox
-          Viewport.Width = 670.000000000000000000
-          Viewport.Height = 303.000000000000000000
+          Viewport.Width = 26.000000000000000000
+          Viewport.Height = 0.000000000000000000
+          inherited ListBoxItem4: TListBoxItem
+            Size.Width = 26.000000000000000000
+          end
         end
         inherited Panel1: TPanel
           inherited ListBox2: TListBox
-            Viewport.Width = 666.000000000000000000
+            Viewport.Width = 38.000000000000000000
             Viewport.Height = 33.000000000000000000
+            inherited ListBoxItem1: TListBoxItem
+              Size.Width = 38.000000000000000000
+            end
           end
         end
       end
       inherited tabCadastro: TTabItem
-        IsSelected = True
         ExplicitSize.cx = 85.000000000000000000
         ExplicitSize.cy = 23.000000000000000000
         object edt_id: TEdit

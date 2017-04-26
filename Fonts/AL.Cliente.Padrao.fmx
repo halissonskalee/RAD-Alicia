@@ -99,14 +99,14 @@ object FrmALClientePadrao: TFrmALClientePadrao
       Size.Width = 678.000000000000000000
       Size.Height = 379.000000000000000000
       Size.PlatformDefault = False
-      TabIndex = 0
+      TabIndex = 1
       TabOrder = 1
       TabPosition = Bottom
       object tabLista: TTabItem
         CustomIcon = <
           item
           end>
-        IsSelected = True
+        IsSelected = False
         Size.Width = 43.000000000000000000
         Size.Height = 23.000000000000000000
         Size.PlatformDefault = False
@@ -202,7 +202,7 @@ object FrmALClientePadrao: TFrmALClientePadrao
         CustomIcon = <
           item
           end>
-        IsSelected = False
+        IsSelected = True
         Size.Width = 67.000000000000000000
         Size.Height = 23.000000000000000000
         Size.PlatformDefault = False
