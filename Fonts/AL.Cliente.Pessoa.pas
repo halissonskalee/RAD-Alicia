@@ -57,7 +57,10 @@ uses AL.Cliente.DmDados, FireDAC.Phys.MongoDBWrapper, AL.Cliente.Menu;
 function TFrmALClientePessoa.Criar: Boolean;
 begin
   Pessoa              := TPessoa.Create;
-  Persistencia.Tabela := 'PESSOA';
+  Persistencia.Tabela := Pessoa.GetTabela;
+  Pessoa.SetPersistencia(Persistencia);
+
+
 
   FieldText := 'razao_social_pes';
   FieldID   := '_id';
@@ -98,9 +101,9 @@ begin
   Pessoa.razao_social_pes := edtrazao_social_pes.Text;
   Pessoa.dt_cadastro_pes  := edtdt_cadastro_pes.Date;
   Pessoa.tipo_pes         := cmbvtipo_pes.ItemIndex.ToString;
-  Persistencia.JSON       := Pessoa.AsJSON;
+  Pessoa.Insert;
 
-  Persistencia.Insert;
+
 
   Result := True;
 end;
