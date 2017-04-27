@@ -36,6 +36,11 @@ type
     function Fechar: Boolean; override;
     function FocoInicial: Boolean; override;
     function Editar(Json: string): Boolean; override;
+    function FocoNovo: Boolean; override;
+    function FocoEditar: Boolean; override;
+
+
+
 
 
 
@@ -78,20 +83,30 @@ begin
   edtdt_cadastro_pes.Date   := Pessoa.dt_cadastro_pes;
   cmbvtipo_pes.ItemIndex    := Pessoa.tipo_pes.ToInteger;
 
-
+  Result := True;
 end;
 
 function TFrmALClientePessoa.Fechar: Boolean;
 begin
   FrmALClientePessoa.lyCliente.RemoveObject(FrmALClientePessoa.lyCliente);
-  FrmALClientePessoa := nil;
+  FreeAndNil(FrmALClientePessoa);
   Result := FrmALClientePessoa= nil;
 end;
 
 
+function TFrmALClientePessoa.FocoEditar: Boolean;
+begin
+  edtrazao_social_pes.SetFocus;
+end;
+
 function TFrmALClientePessoa.FocoInicial: Boolean;
 begin
   edtBusca.SetFocus
+end;
+
+function TFrmALClientePessoa.FocoNovo: Boolean;
+begin
+  edtrazao_social_pes.SetFocus;
 end;
 
 function TFrmALClientePessoa.Salvar: Boolean;

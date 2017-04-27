@@ -23,7 +23,6 @@ type
     actConfigurar: TAction;
     ListBox1: TListBox;
     SearchBox1: TSearchBox;
-    ListBoxItem1: TListBoxItem;
     lyCliente: TLayout;
     ListBoxItem2: TListBoxItem;
     StyleBook1: TStyleBook;
@@ -31,8 +30,9 @@ type
     procedure actMenuExecute(Sender: TObject);
     procedure actSairExecute(Sender: TObject);
     procedure FormCreate(Sender: TObject);
-    procedure ListBoxItem1Click(Sender: TObject);
     procedure ListBoxItem2Click(Sender: TObject);
+    procedure ListBox1KeyDown(Sender: TObject; var Key: Word; var KeyChar: Char;
+      Shift: TShiftState);
   private
     { Private declarations }
   public
@@ -64,17 +64,22 @@ begin
   mtvMenu.Mode        := TMultiViewMode.Drawer;
 end;
 
-procedure TFrmALClienteMenu.ListBoxItem1Click(Sender: TObject);
+procedure TFrmALClienteMenu.ListBox1KeyDown(Sender: TObject; var Key: Word;
+  var KeyChar: Char; Shift: TShiftState);
 begin
-  FrmALClientePadrao := TFrmALClientePadrao.Create(Self);
-  lyCliente.AddObject(FrmALClientePadrao.lyCliente);
+  if Key = vkEscape then
+    mtvMenu.HideMaster;
 end;
 
 procedure TFrmALClienteMenu.ListBoxItem2Click(Sender: TObject);
 begin
   mtvMenu.HideMaster;
+  if Assigned(FrmALClientePessoa) then
+    FrmALClientePessoa.Fechar;
+
   FrmALClientePessoa := TFrmALClientePessoa.Create(Self);
   lyCliente.AddObject(FrmALClientePessoa.lyCliente);
+
 end;
 
 

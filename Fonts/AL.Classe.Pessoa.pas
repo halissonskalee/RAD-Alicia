@@ -148,6 +148,9 @@ begin
     .Modify()
       .&Set()
         .Field('razao_social_pes',razao_social_pes)
+        .Field('dt_cadastro_pes' ,dt_cadastro_pes)
+        .Field('tipo_pes'        ,tipo_pes)
+        .Field('cpf_cnpj_pes'    ,cpf_cnpj_pes)
       .&End
     .&End;
 

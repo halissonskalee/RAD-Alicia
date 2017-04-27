@@ -305,10 +305,4 @@ object FrmALClientePadrao: TFrmALClientePadrao
     Left = 560
     Top = 233
   end
-  object qyMongo: TFDMongoQuery
-    FormatOptions.AssignedValues = [fvStrsTrim2Len]
-    FormatOptions.StrsTrim2Len = True
-    Left = 563
-    Top = 289
-  end
 end

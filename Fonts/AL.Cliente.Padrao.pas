@@ -50,11 +50,9 @@ type
     ListBoxItem4: TListBoxItem;
     Panel1: TPanel;
     btnEditar: TButton;
-    qyMongo: TFDMongoQuery;
     SearchEditButton1: TSearchEditButton;
     procedure acNovoExecute(Sender: TObject);
     procedure acEditarExecute(Sender: TObject);
-    procedure acSalvarExecute(Sender: TObject);
     procedure ListBox1ItemClick(const Sender: TCustomListBox;
       const Item: TListBoxItem);
     procedure Button2Click(Sender: TObject);
@@ -65,6 +63,7 @@ type
     procedure SearchEditButton1Click(Sender: TObject);
     procedure lbListaItemClick(const Sender: TCustomListBox;
       const Item: TListBoxItem);
+    procedure acSalvarExecute(Sender: TObject);
 
   private
 
@@ -99,6 +98,9 @@ type
 
     function Fechar: Boolean; virtual;
     function FocoInicial : Boolean ; virtual;
+    function FocoNovo    : Boolean ; virtual;
+    function FocoEditar  : Boolean ; virtual;
+
 
     function SalvarBefore: Boolean; virtual;
     function Salvar: Boolean; virtual;
@@ -135,18 +137,18 @@ begin
   fnc_limparCampos;
   changeTabCadastro.ExecuteTarget(Self);
   ExibirBotoes;
+  FocoNovo;
 end;
 
 procedure TFrmALClientePadrao.acSairExecute(Sender: TObject);
 begin
   inherited;
   Fechar;
-
-
 end;
 
 procedure TFrmALClientePadrao.acSalvarExecute(Sender: TObject);
 begin
+  inherited;
   if SalvarBefore then
     if Salvar then
       SalvarAfter
@@ -236,7 +238,17 @@ begin
     end; }
 end;
 
+function TFrmALClientePadrao.FocoEditar: Boolean;
+begin
+
+end;
+
 function TFrmALClientePadrao.FocoInicial: Boolean;
+begin
+
+end;
+
+function TFrmALClientePadrao.FocoNovo: Boolean;
 begin
 
 end;
@@ -244,7 +256,6 @@ end;
 procedure TFrmALClientePadrao.FormCreate(Sender: TObject);
 var
   Task : ITask;
-
 begin
   inherited;
   CriarBefore;
@@ -264,13 +275,8 @@ begin
   begin
     Sleep(200);
     FocoInicial;
-  end);
-  Task.Start;
 
-  Task := TTask.Create(
-  procedure
-  begin
-    Sleep(500);
+    Sleep(200);
     ListaAoCriar;
   end);
   Task.Start;
@@ -289,10 +295,13 @@ begin
   oCrs := GetCon.Find().Match().Add(FFieldID,Integer(Item.Data)).&End;
   while oCrs.Next do
   begin
-    editar(oCrs.Doc.AsJSON);
-    changeTabCadastro.Execute;
-    Acao := tpUpdate;
-    ExibirBotoes;
+    if editar(oCrs.Doc.AsJSON) then
+    begin
+      changeTabCadastro.Execute;
+      Acao := tpUpdate;
+      ExibirBotoes;
+      FocoEditar;
+    end;
   end;
 end;
 
@@ -381,8 +390,18 @@ begin
 end;
 
 function TFrmALClientePadrao.SalvarAfter: Boolean;
+var
+  Task : ITask;
 begin
   TabControl.ActiveTab := tabLista;
+
+  Task := TTask.Create(
+  procedure
+  begin
+    ListaAoCriar;
+    FocoInicial;
+  end);
+  Task.Start;
 end;
 
 function TFrmALClientePadrao.SalvarBefore: Boolean;
