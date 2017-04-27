@@ -1,3 +1,6 @@
+//  Expressoes regulares
+//  System.RegularExpressions
+//  TRegEx.IsMatch()
 unit AL.Cliente.Menu;
 
 interface
@@ -8,7 +11,7 @@ uses
   FMX.Controls.Presentation, FMX.MultiView, System.ImageList, FMX.ImgList,
   System.Actions, FMX.ActnList, FMX.ListBox, FMX.Layouts, FMX.Edit,
   FMX.SearchBox, FMX.DateTimeCtrls, System.Generics.Collections,
-  AL.Cliente.Padrao, FMX.TabControl;
+  AL.Cliente.Padrao, FMX.TabControl , System.RegularExpressions;
 
 type
   TFrmALClienteMenu = class(TForm)
