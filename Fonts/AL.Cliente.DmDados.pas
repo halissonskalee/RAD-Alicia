@@ -64,19 +64,23 @@ begin
   if vRegistro.banco_reg.IsEmpty then
     raise Exception.Create('MongoDB não configurado, verifique o arquivo de configuração, O Banco não foi informado');
 
+
+
   try
     FDConnection1.Params.Values['Server']  := vRegistro.host_reg;
     FDConnection1.Params.Values['DriverID']:= 'Mongo';
     FDConnection1.Connected := true;
   except on E: Exception do
-    ShowMessage('MongoDB, não foi possivel contar no host' + vRegistro.host_reg + ' na porta ' + vRegistro.porta_reg.ToString+ sLineBreak +
-                'Verifique as configurações do arquivo .ini ou do servidor');    
+      ShowMessage('MongoDB, não foi possivel contar no host' + vRegistro.host_reg + ' na porta ' + vRegistro.porta_reg.ToString+ sLineBreak +
+                  'Verifique as configurações do arquivo .ini ou do servidor');
   end;
     
   FConMongo := TMongoConnection(FDConnection1.CliObj);
   FEnv      := FConMongo.Env;
 
   //dmDados.FConMongo.Env.Monitor.Tracing := false;
+
+
 
 end;
 

@@ -2,41 +2,27 @@ unit AL.Classe.Pessoa;
 
 interface
 
-uses REST.Json, FireDAC.Phys.MongoDBWrapper, AL.Persistencia;
+uses AL.Classe.Padrao, REST.Json, FireDAC.Phys.MongoDBWrapper, AL.Persistencia;
 
 type
-  TPessoa = class
+  TPessoa = class(TPadrao)
   private
     F_id: integer;
-
-
     Fcpf_cnpj_pes: String;
     Frazao_social_pes: string;
     Ftipo_pes: String;
     Fdt_cadastro_pes: TDate;
-
-
     procedure Set_id(const Value: integer);
     procedure Setcpf_cnpj_pes(const Value: String);
-
     procedure Setrazao_social_pes(const Value: string);
     procedure Settipo_pes(const Value: String);
     procedure Setdt_cadastro_pes(const Value: TDate);
-
-
-
-    { private declarations }
     constructor InternalCreate(const Value : String);
-
-
   protected
     { protected declarations }
-    FConMongo : TMongoConnection;
-    FEnv      : TMongoEnv;
-    FBanco    : String;
   public
     { public declarations }
-    function GetTabela :String ;
+
     function AsJSON: String;
     class function FromJSON(const Value : String) : TPessoa;
 
@@ -44,7 +30,8 @@ type
 
     function Insert: Boolean;
     function Update : Boolean;
-    function SetPersistencia(Persistencia: TALPersistencia): Boolean;
+
+    function GetTabela: string; override;
 
     property _id: integer read F_id write Set_id;
     property razao_social_pes : string read Frazao_social_pes write Setrazao_social_pes;
@@ -72,7 +59,7 @@ begin
   Result := InternalCreate(Value);
 end;
 
-function TPessoa.GetTabela: String;
+function TPessoa.GetTabela: string;
 begin
   Result := 'PESSOA';
 end;
@@ -94,13 +81,6 @@ begin
 end;
 
 
-function TPessoa.SetPersistencia(Persistencia: TALPersistencia): Boolean;
-begin
-  FConMongo  := Persistencia.ConMongo;
-  FEnv       := Persistencia.Env;
-  FBanco     := Persistencia.Banco;
-end;
-
 procedure TPessoa.Setrazao_social_pes(const Value: string);
 begin
   Frazao_social_pes := Value;
@@ -119,8 +99,6 @@ end;
 
 
 function TPessoa.Insert: Boolean;
-var
-  oDoc: TMongoDocument;
 begin
   oDoc := FEnv.NewDoc;
 
@@ -136,12 +114,10 @@ end;
 
 
 function TPessoa.Update: Boolean;
-var
-  MongoUpdate : TMongoUpdate;
 begin
-  MongoUpdate := TMongoUpdate.Create(FEnv);
+  oUpd := TMongoUpdate.Create(FEnv);
 
-  MongoUpdate
+  oUpd
     .Match()
       .Add('_id',_id)
     .&End
@@ -154,7 +130,7 @@ begin
       .&End
     .&End;
 
- FConMongo[FBanco][GetTabela].Update(MongoUpdate);
+ FConMongo[FBanco][GetTabela].Update(oUpd);
 end;
 
 

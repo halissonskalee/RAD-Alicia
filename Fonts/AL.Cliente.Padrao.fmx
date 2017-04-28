@@ -132,13 +132,6 @@ object FrmALClientePadrao: TFrmALClientePadrao
           OnItemClick = lbListaItemClick
           Viewport.Width = 670.000000000000000000
           Viewport.Height = 303.000000000000000000
-          object ListBoxItem4: TListBoxItem
-            Size.Width = 670.000000000000000000
-            Size.Height = 25.000000000000000000
-            Size.PlatformDefault = False
-            TabOrder = 0
-            Text = 'ListBoxItem4'
-          end
         end
         object Panel1: TPanel
           Align = Top

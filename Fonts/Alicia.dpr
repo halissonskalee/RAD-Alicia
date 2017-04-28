@@ -11,7 +11,9 @@ uses
   AL.Classe.Registro in 'AL.Classe.Registro.pas',
   AL.Persistencia in 'AL.Persistencia.pas',
   AL.Classe.Pessoa in 'AL.Classe.Pessoa.pas',
-  AL.Cliente.Pessoa in 'AL.Cliente.Pessoa.pas' {FrmALClientePessoa};
+  AL.Cliente.Pessoa in 'AL.Cliente.Pessoa.pas' {FrmALClientePessoa},
+  AL.Classe.Endereco in 'AL.Classe.Endereco.pas',
+  AL.Classe.Padrao in 'AL.Classe.Padrao.pas';
 
 {$R *.res}
 

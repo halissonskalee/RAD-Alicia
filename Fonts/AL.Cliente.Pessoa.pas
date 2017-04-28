@@ -39,12 +39,6 @@ type
     function FocoNovo: Boolean; override;
     function FocoEditar: Boolean; override;
 
-
-
-
-
-
-
     { Public declarations }
 
   end;

@@ -47,7 +47,6 @@ type
     ListBoxItem1: TListBoxItem;
     edtBusca: TEdit;
     Label1: TLabel;
-    ListBoxItem4: TListBoxItem;
     Panel1: TPanel;
     btnEditar: TButton;
     SearchEditButton1: TSearchEditButton;
@@ -268,7 +267,6 @@ begin
   Persistencia := FrmALClienteDmDados.CriarPersistencia;
   Criar;
   CriarAfter;
-  ListaAoCriar;
 
   Task := TTask.Create(
   procedure
