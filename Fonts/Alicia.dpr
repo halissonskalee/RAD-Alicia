@@ -13,7 +13,8 @@ uses
   AL.Classe.Pessoa in 'AL.Classe.Pessoa.pas',
   AL.Cliente.Pessoa in 'AL.Cliente.Pessoa.pas' {FrmALClientePessoa},
   AL.Classe.Endereco in 'AL.Classe.Endereco.pas',
-  AL.Classe.Padrao in 'AL.Classe.Padrao.pas';
+  AL.Classe.Padrao in 'AL.Classe.Padrao.pas',
+  AL.Tipo in 'AL.Tipo.pas';
 
 {$R *.res}
 

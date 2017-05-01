@@ -2,72 +2,62 @@ unit AL.Classe.Pessoa;
 
 interface
 
-uses AL.Classe.Padrao, REST.Json, FireDAC.Phys.MongoDBWrapper, AL.Persistencia;
+uses AL.Classe.Padrao, REST.Json, FireDAC.Phys.MongoDBWrapper,
+     AL.Persistencia, AL.Classe.Endereco, AL.Tipo;
+
+
+
+
 
 type
-  TPessoa = class(TPadrao)
+  TPessoa = class
   private
     F_id: integer;
     Fcpf_cnpj_pes: String;
     Frazao_social_pes: string;
     Ftipo_pes: String;
     Fdt_cadastro_pes: TDate;
+    FGetConMongo: TALMongoConnection;
+    FGetEnv: TALMongoEnv;
+    FGetBanco: TALDataBase;
     procedure Set_id(const Value: integer);
     procedure Setcpf_cnpj_pes(const Value: String);
     procedure Setrazao_social_pes(const Value: string);
     procedure Settipo_pes(const Value: String);
     procedure Setdt_cadastro_pes(const Value: TDate);
-    constructor InternalCreate(const Value : String);
-  protected
-    { protected declarations }
+    procedure SetGetBanco(const Value: TALDataBase);
+    procedure SetGetConMongo(const Value: TALMongoConnection);
+    procedure SetGetEnv(const Value: TALMongoEnv);
   public
-    { public declarations }
-
-    function AsJSON: String;
-    class function FromJSON(const Value : String) : TPessoa;
-
+    function Insert    : Boolean;
+    function Update    : Boolean;
+    function GetTabela: string;
 
 
-    function Insert: Boolean;
-    function Update : Boolean;
-
-    function GetTabela: string; override;
-
-    property _id: integer read F_id write Set_id;
+    property _id              : integer read F_id write Set_id;
     property razao_social_pes : string read Frazao_social_pes write Setrazao_social_pes;
     property dt_cadastro_pes  : TDate read Fdt_cadastro_pes write Setdt_cadastro_pes;
     property tipo_pes         : String read Ftipo_pes write Settipo_pes;
     property cpf_cnpj_pes     : String read Fcpf_cnpj_pes write Setcpf_cnpj_pes;
+    property GetEnv           : TALMongoEnv  read FGetEnv write SetGetEnv;
+    property GetConMongo      : TALMongoConnection read FGetConMongo write SetGetConMongo;
+    property GetBanco         : TALDataBase read FGetBanco write SetGetBanco;
 
 
-
+//    property endereco_principal : TEndereco read Fendereco_principal write Setendereco_principal;
 
   end;
 
 implementation
 
+uses
+  FireDAC.Phys.MongoDBDataSet;
+
 { TPessoa }
-
-
-function TPessoa.AsJSON: String;
-begin
-  Result := TJson.ObjectToJsonString(Self,[]);
-end;
-
-class function TPessoa.FromJSON(const Value: String): TPessoa;
-begin
-  Result := InternalCreate(Value);
-end;
 
 function TPessoa.GetTabela: string;
 begin
   Result := 'PESSOA';
-end;
-
-constructor TPessoa.InternalCreate(const Value: String);
-begin
-  Create;
-  Self := TJson.JsonToObject<TPessoa>(Value);
 end;
 
 procedure TPessoa.Setcpf_cnpj_pes(const Value: String);
@@ -80,6 +70,27 @@ begin
   Fdt_cadastro_pes := Value;
 end;
 
+
+
+procedure TPessoa.SetGetBanco(const Value: TALDataBase);
+begin
+  FGetBanco := Value;
+end;
+
+procedure TPessoa.SetGetConMongo(const Value: TALMongoConnection);
+begin
+  FGetConMongo := Value;
+end;
+
+procedure TPessoa.SetGetEnv(const Value: TALMongoEnv);
+begin
+  FGetEnv := Value;
+end;
+
+{procedure TPessoa.Setendereco_principal(const Value: TEndereco);
+begin
+  Fendereco_principal := Value;
+end;}
 
 procedure TPessoa.Setrazao_social_pes(const Value: string);
 begin
@@ -99,8 +110,10 @@ end;
 
 
 function TPessoa.Insert: Boolean;
+var
+  oDoc : TMongoDocument;
 begin
-  oDoc := FEnv.NewDoc;
+  oDoc := GetEnv.NewDoc;
 
   oDoc
     .Add('_id' , _id)
@@ -109,13 +122,17 @@ begin
     .Add('tipo_pes', tipo_pes)
     .Add('cpf_cnpj_pes', cpf_cnpj_pes);
 
-  FConMongo[FBanco][GetTabela].Insert(oDoc);
+  GetConMongo[GetBanco][GetTabela].Insert(oDoc);
+
+
 end;
 
 
 function TPessoa.Update: Boolean;
+var
+  oUpd : TMongoUpdate;
 begin
-  oUpd := TMongoUpdate.Create(FEnv);
+  oUpd := TMongoUpdate.Create(GetEnv);
 
   oUpd
     .Match()
@@ -130,7 +147,7 @@ begin
       .&End
     .&End;
 
- FConMongo[FBanco][GetTabela].Update(oUpd);
+ GetConMongo[GetBanco][GetTabela].Update(oUpd);
 end;
 
 

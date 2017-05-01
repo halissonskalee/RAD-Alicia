@@ -1,9 +1,14 @@
 inherited FrmALClientePessoa: TFrmALClientePessoa
   Caption = 'Pessoa'
+  ClientHeight = 588
+  ClientWidth = 515
   DesignerMasterStyle = 0
   inherited lyCliente: TLayout
+    Size.Width = 515.000000000000000000
+    Size.Height = 563.000000000000000000
     TabOrder = 1
     inherited Panel2: TPanel
+      Size.Width = 515.000000000000000000
       inherited btnNovo: TButton
         Position.X = 48.000000000000000000
         Size.Width = 48.000000000000000000
@@ -24,6 +29,8 @@ inherited FrmALClientePessoa: TFrmALClientePessoa
       end
     end
     inherited TabControl: TTabControl
+      Size.Width = 515.000000000000000000
+      Size.Height = 515.000000000000000000
       TabIndex = 1
       inherited tabLista: TTabItem
         IsSelected = False
@@ -105,6 +112,7 @@ inherited FrmALClientePessoa: TFrmALClientePessoa
           Size.Height = 22.000000000000000000
           Size.PlatformDefault = False
           TabOrder = 3
+          OnChange = cmbvtipo_pesChange
           object ListBoxItem2: TListBoxItem
             IsSelected = True
             Size.Width = 19.000000000000000000
@@ -140,10 +148,192 @@ inherited FrmALClientePessoa: TFrmALClientePessoa
           TextSettings.WordWrap = False
           Text = 'C'#243'digo'
         end
+        object lCpfCnpj: TLabel
+          AutoSize = True
+          Position.X = 91.000000000000000000
+          Position.Y = 96.000000000000000000
+          Size.Width = 24.000000000000000000
+          Size.Height = 16.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.HorzAlign = Trailing
+          TextSettings.WordWrap = False
+          Text = 'CPF'
+        end
+        object edtcpf_cnpj_pes: TEdit
+          Touch.InteractiveGestures = [LongTap, DoubleTap]
+          TabOrder = 4
+          Position.X = 119.000000000000000000
+          Position.Y = 95.000000000000000000
+          Size.Width = 130.000000000000000000
+          Size.Height = 22.000000000000000000
+          Size.PlatformDefault = False
+        end
+        object GroupBox1: TGroupBox
+          Position.X = 18.000000000000000000
+          Position.Y = 125.000000000000000000
+          Size.Width = 482.000000000000000000
+          Size.Height = 217.000000000000000000
+          Size.PlatformDefault = False
+          Text = 'Endere'#231'o'
+          TabOrder = 10
+          object edtcodigo_cep: TEdit
+            Touch.InteractiveGestures = [LongTap, DoubleTap]
+            TabOrder = 1
+            Position.X = 72.000000000000000000
+            Position.Y = 32.000000000000000000
+            Size.Width = 105.000000000000000000
+            Size.Height = 22.000000000000000000
+            Size.PlatformDefault = False
+          end
+          object Label5: TLabel
+            AutoSize = True
+            Position.X = -8.000000000000000000
+            Position.Y = 35.000000000000000000
+            Size.Width = 24.000000000000000000
+            Size.Height = 16.000000000000000000
+            Size.PlatformDefault = False
+            TextSettings.HorzAlign = Trailing
+            TextSettings.WordWrap = False
+            Text = 'CEP'
+          end
+          object edtcidade_nome_cep: TEdit
+            Touch.InteractiveGestures = [LongTap, DoubleTap]
+            TabOrder = 2
+            Position.X = 72.000000000000000000
+            Position.Y = 56.000000000000000000
+            Size.Width = 257.000000000000000000
+            Size.Height = 22.000000000000000000
+            Size.PlatformDefault = False
+          end
+          object Label6: TLabel
+            AutoSize = True
+            Position.X = -8.000000000000000000
+            Position.Y = 59.000000000000000000
+            Size.Width = 41.000000000000000000
+            Size.Height = 16.000000000000000000
+            Size.PlatformDefault = False
+            TextSettings.HorzAlign = Trailing
+            TextSettings.WordWrap = False
+            Text = 'Cidade'
+          end
+          object edtcidade_codigo_cep: TEdit
+            Touch.InteractiveGestures = [LongTap, DoubleTap]
+            TabOrder = 9
+            TabStop = False
+            Position.X = 330.000000000000000000
+            Position.Y = 56.000000000000000000
+            Enabled = False
+            Size.Width = 66.000000000000000000
+            Size.Height = 22.000000000000000000
+            Size.PlatformDefault = False
+          end
+          object edtbairro_cep: TEdit
+            Touch.InteractiveGestures = [LongTap, DoubleTap]
+            TabOrder = 4
+            Position.X = 72.000000000000000000
+            Position.Y = 80.000000000000000000
+            Size.Width = 324.000000000000000000
+            Size.Height = 22.000000000000000000
+            Size.PlatformDefault = False
+          end
+          object Label7: TLabel
+            AutoSize = True
+            Position.X = -8.000000000000000000
+            Position.Y = 83.000000000000000000
+            Size.Width = 35.000000000000000000
+            Size.Height = 16.000000000000000000
+            Size.PlatformDefault = False
+            TextSettings.HorzAlign = Trailing
+            TextSettings.WordWrap = False
+            Text = 'Bairro'
+          end
+          object edtrua_cep: TEdit
+            Touch.InteractiveGestures = [LongTap, DoubleTap]
+            TabOrder = 5
+            Position.X = 72.000000000000000000
+            Position.Y = 103.000000000000000000
+            Size.Width = 201.000000000000000000
+            Size.Height = 22.000000000000000000
+            Size.PlatformDefault = False
+          end
+          object Label8: TLabel
+            AutoSize = True
+            Position.X = -8.000000000000000000
+            Position.Y = 107.000000000000000000
+            Size.Width = 24.000000000000000000
+            Size.Height = 16.000000000000000000
+            Size.PlatformDefault = False
+            TextSettings.HorzAlign = Trailing
+            TextSettings.WordWrap = False
+            Text = 'Rua'
+          end
+          object edtnumero_cep: TEdit
+            Touch.InteractiveGestures = [LongTap, DoubleTap]
+            TabOrder = 6
+            Position.X = 330.000000000000000000
+            Position.Y = 103.000000000000000000
+            Size.Width = 66.000000000000000000
+            Size.Height = 22.000000000000000000
+            Size.PlatformDefault = False
+          end
+          object Label9: TLabel
+            AutoSize = True
+            Position.X = 278.000000000000000000
+            Position.Y = 104.000000000000000000
+            Size.Width = 48.000000000000000000
+            Size.Height = 16.000000000000000000
+            Size.PlatformDefault = False
+            TextSettings.HorzAlign = Trailing
+            TextSettings.WordWrap = False
+            Text = 'N'#250'mero'
+          end
+          object edtuf_cep: TEdit
+            Touch.InteractiveGestures = [LongTap, DoubleTap]
+            TabOrder = 0
+            Position.X = 330.000000000000000000
+            Position.Y = 32.000000000000000000
+            Enabled = False
+            Size.Width = 66.000000000000000000
+            Size.Height = 22.000000000000000000
+            Size.PlatformDefault = False
+          end
+          object Label10: TLabel
+            AutoSize = True
+            Position.X = 308.000000000000000000
+            Position.Y = 35.000000000000000000
+            Size.Width = 18.000000000000000000
+            Size.Height = 16.000000000000000000
+            Size.PlatformDefault = False
+            TextSettings.HorzAlign = Trailing
+            TextSettings.WordWrap = False
+            Text = 'UF'
+          end
+          object edtcomplemento_cep: TEdit
+            Touch.InteractiveGestures = [LongTap, DoubleTap]
+            TabOrder = 3
+            Position.X = 72.000000000000000000
+            Position.Y = 126.000000000000000000
+            Size.Width = 324.000000000000000000
+            Size.Height = 22.000000000000000000
+            Size.PlatformDefault = False
+          end
+          object Label11: TLabel
+            AutoSize = True
+            Position.X = -8.000000000000000000
+            Position.Y = 129.000000000000000000
+            Size.Width = 79.000000000000000000
+            Size.Height = 16.000000000000000000
+            Size.PlatformDefault = False
+            TextSettings.HorzAlign = Trailing
+            TextSettings.WordWrap = False
+            Text = 'Complemento'
+          end
+        end
       end
     end
   end
   inherited pTitulo: TPanel
+    Size.Width = 515.000000000000000000
     TabOrder = 4
   end
   inherited ActionList1: TActionList

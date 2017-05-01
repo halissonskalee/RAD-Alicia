@@ -12,7 +12,7 @@ uses
   FireDAC.Phys.SQLite, FireDAC.Phys.SQLiteDef, FireDAC.Stan.ExprFuncs,
   FireDAC.Stan.Param, FireDAC.DatS, FireDAC.DApt.Intf, FireDAC.DApt,
   FireDAC.Comp.DataSet, FireDAC.Phys.SQLiteVDataSet, FireDAC.Phys.MongoDBDataSet,
-  FMX.Dialogs, AL.Persistencia, AL.Classe.Registro;
+  FMX.Dialogs, AL.Persistencia, AL.Classe.Registro, AL.Tipo;
 
 type
   TFrmALClienteDmDados = class(TDataModule)
@@ -31,10 +31,18 @@ type
     vRegistro : TRegistro;
     procedure executaSQL(Banco, Collection, SQL: String);
     function CriarPersistencia : TALPersistencia;
+    function GetBanco    : String;
+    function GetConMongo : TMongoConnection;
+    function GetEnv      : TMongoEnv;
   end;
+
 
 var
   FrmALClienteDmDados: TFrmALClienteDmDados;
+
+
+
+
 
 implementation
 
@@ -101,5 +109,24 @@ begin
 end;
 
 
+
+
+
+
+
+function TFrmALClienteDmDados.GetBanco: String;
+begin
+  Result :=vRegistro.banco_reg;
+end;
+
+function TFrmALClienteDmDados.GetConMongo: TMongoConnection;
+begin
+  Result := FConMongo;
+end;
+
+function TFrmALClienteDmDados.GetEnv: TMongoEnv;
+begin
+  Result := FEnv;
+end;
 
 end.

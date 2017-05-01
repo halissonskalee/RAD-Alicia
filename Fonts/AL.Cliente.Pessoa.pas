@@ -12,7 +12,7 @@ uses
   FMX.Edit, FMX.SearchBox, FMX.ListBox, FMX.Layouts, FMX.Controls.Presentation,
   FMX.DateTimeCtrls , AL.Classe.Pessoa, System.Rtti, System.Bindings.Outputs,
   Fmx.Bind.Editors, Data.Bind.EngExt, Fmx.Bind.DBEngExt, Data.Bind.Components,
-  Data.Bind.DBScope;
+  Data.Bind.DBScope, FireDAC.Phys.MongoDBWrapper;
 
 type
   TFrmALClientePessoa = class(TFrmALClientePadrao)
@@ -26,6 +26,25 @@ type
     ListBoxItem3: TListBoxItem;
     Label3: TLabel;
     Label4: TLabel;
+    lCpfCnpj: TLabel;
+    edtcpf_cnpj_pes: TEdit;
+    GroupBox1: TGroupBox;
+    edtcodigo_cep: TEdit;
+    Label5: TLabel;
+    edtcidade_nome_cep: TEdit;
+    Label6: TLabel;
+    edtcidade_codigo_cep: TEdit;
+    edtbairro_cep: TEdit;
+    Label7: TLabel;
+    edtrua_cep: TEdit;
+    Label8: TLabel;
+    edtnumero_cep: TEdit;
+    Label9: TLabel;
+    edtuf_cep: TEdit;
+    Label10: TLabel;
+    edtcomplemento_cep: TEdit;
+    Label11: TLabel;
+    procedure cmbvtipo_pesChange(Sender: TObject);
   private
     { Private declarations }
     Pessoa : TPessoa;
@@ -39,6 +58,7 @@ type
     function FocoNovo: Boolean; override;
     function FocoEditar: Boolean; override;
 
+
     { Public declarations }
 
   end;
@@ -50,16 +70,26 @@ implementation
 
 {$R *.fmx}
 
-uses AL.Cliente.DmDados, FireDAC.Phys.MongoDBWrapper, AL.Cliente.Menu;
+uses AL.Cliente.DmDados, AL.Cliente.Menu, Rest.Json;
 
+
+procedure TFrmALClientePessoa.cmbvtipo_pesChange(Sender: TObject);
+begin
+  inherited;
+  if cmbvtipo_pes.ItemIndex =0 then
+     lCpfCnpj.Text := 'CPF'
+  else
+     lCpfCnpj.Text := 'CNPJ';
+end;
 
 function TFrmALClientePessoa.Criar: Boolean;
 begin
   Pessoa              := TPessoa.Create;
-  Persistencia.Tabela := Pessoa.GetTabela;
-  Pessoa.SetPersistencia(Persistencia);
+  Pessoa.GetEnv       := FrmALClienteDmDados.GetEnv;
+  Pessoa.GetConMongo  := FrmALClienteDmDados.GetConMongo;
+  Pessoa.GetBanco     := FrmALClienteDmDados.GetBanco;
 
-
+  Persistencia.Tabela := 'PESSOA';
 
   FieldText := 'razao_social_pes';
   FieldID   := '_id';
@@ -68,14 +98,13 @@ end;
 
 function TFrmALClientePessoa.Editar(Json: string): Boolean;
 begin
-  Pessoa := Pessoa.FromJSON(Json);
+  Pessoa := TJson.JsonToObject<TPessoa>(Json);
 
-
-  Pessoa.SetPersistencia(Persistencia);
   edt_id.Text               := Pessoa._id.ToString;
   edtrazao_social_pes.Text  := Pessoa.razao_social_pes;
   edtdt_cadastro_pes.Date   := Pessoa.dt_cadastro_pes;
   cmbvtipo_pes.ItemIndex    := Pessoa.tipo_pes.ToInteger;
+  edtcpf_cnpj_pes.Text      := Pessoa.cpf_cnpj_pes;
 
   Result := True;
 end;
@@ -103,15 +132,33 @@ begin
   edtrazao_social_pes.SetFocus;
 end;
 
+
 function TFrmALClientePessoa.Salvar: Boolean;
+var
+  s : String;
 begin
 
   Pessoa._id              := StrToIntDef(edt_id.Text,0) ;
   Pessoa.razao_social_pes := edtrazao_social_pes.Text;
   Pessoa.dt_cadastro_pes  := edtdt_cadastro_pes.Date;
   Pessoa.tipo_pes         := cmbvtipo_pes.ItemIndex.ToString;
+  Pessoa.cpf_cnpj_pes     := edtcpf_cnpj_pes.Text;
 
-  if Acao = tpInsert  then
+{  Pessoa.endereco_principal.uf_cep            := edtuf_cep.Text;
+  Pessoa.endereco_principal.codigo_cep        := edtcodigo_cep.Text;
+  Pessoa.endereco_principal.cidade_codigo_cep := edtcidade_codigo_cep.Text;
+  Pessoa.endereco_principal.cidade_nome_cep   := edtcidade_nome_cep.Text;
+  Pessoa.endereco_principal.rua_cep           := edtrua_cep.Text;
+  Pessoa.endereco_principal.numero_cep        := edtnumero_cep.Text;
+  Pessoa.endereco_principal.bairro_cep        := edtbairro_cep.Text;
+  Pessoa.endereco_principal.complemento_cep   := edtcomplemento_cep.Text;}
+
+  s := TJson.ObjectToJsonString(Pessoa,[]);
+
+
+
+
+ if Acao = tpInsert  then
     Pessoa.Insert;
   if Acao = tpUpdate then
     Pessoa.Update;

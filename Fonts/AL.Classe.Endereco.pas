@@ -5,7 +5,7 @@ interface
 uses AL.Classe.Padrao, REST.Json, FireDAC.Phys.MongoDBWrapper, AL.Persistencia;
 
 type
-  TEndereco = class(TPadrao)
+  TEndereco = class
   private
     Frua_cep: String;
     Fbairro_cep: string;
