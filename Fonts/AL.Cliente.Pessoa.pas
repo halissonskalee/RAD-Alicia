@@ -134,8 +134,9 @@ end;
 
 
 function TFrmALClientePessoa.Salvar: Boolean;
-var
+{var
   s : String;
+  oDoc: TMongoDocument;}
 begin
 
   Pessoa._id              := StrToIntDef(edt_id.Text,0) ;
@@ -144,18 +145,21 @@ begin
   Pessoa.tipo_pes         := cmbvtipo_pes.ItemIndex.ToString;
   Pessoa.cpf_cnpj_pes     := edtcpf_cnpj_pes.Text;
 
-{  Pessoa.endereco_principal.uf_cep            := edtuf_cep.Text;
+  Pessoa.endereco_principal.uf_cep            := edtuf_cep.Text;
   Pessoa.endereco_principal.codigo_cep        := edtcodigo_cep.Text;
   Pessoa.endereco_principal.cidade_codigo_cep := edtcidade_codigo_cep.Text;
   Pessoa.endereco_principal.cidade_nome_cep   := edtcidade_nome_cep.Text;
   Pessoa.endereco_principal.rua_cep           := edtrua_cep.Text;
   Pessoa.endereco_principal.numero_cep        := edtnumero_cep.Text;
   Pessoa.endereco_principal.bairro_cep        := edtbairro_cep.Text;
-  Pessoa.endereco_principal.complemento_cep   := edtcomplemento_cep.Text;}
+  Pessoa.endereco_principal.complemento_cep   := edtcomplemento_cep.Text;
 
-  s := TJson.ObjectToJsonString(Pessoa,[]);
+{  s := TJson.ObjectToJsonString(Pessoa,[joDateFormatMongo]);
 
+  oDoc := FrmALClienteDmDados.FEnv.NewDoc;
+  oDoc.AsJSON := s;
 
+  FrmALClienteDmDados.FConMongo['BANCO']['TESTE'].Insert(oDoc);}
 
 
  if Acao = tpInsert  then

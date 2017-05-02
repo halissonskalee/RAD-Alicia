@@ -20,6 +20,7 @@ type
     FGetConMongo: TALMongoConnection;
     FGetEnv: TALMongoEnv;
     FGetBanco: TALDataBase;
+    Fendereco_principal: TEndereco;
     procedure Set_id(const Value: integer);
     procedure Setcpf_cnpj_pes(const Value: String);
     procedure Setrazao_social_pes(const Value: string);
@@ -28,12 +29,14 @@ type
     procedure SetGetBanco(const Value: TALDataBase);
     procedure SetGetConMongo(const Value: TALMongoConnection);
     procedure SetGetEnv(const Value: TALMongoEnv);
+    procedure Setendereco_principal(const Value: TEndereco);
+
   public
     function Insert    : Boolean;
     function Update    : Boolean;
     function GetTabela: string;
 
-
+    constructor Create ;
     property _id              : integer read F_id write Set_id;
     property razao_social_pes : string read Frazao_social_pes write Setrazao_social_pes;
     property dt_cadastro_pes  : TDate read Fdt_cadastro_pes write Setdt_cadastro_pes;
@@ -44,7 +47,7 @@ type
     property GetBanco         : TALDataBase read FGetBanco write SetGetBanco;
 
 
-//    property endereco_principal : TEndereco read Fendereco_principal write Setendereco_principal;
+    property endereco_principal : TEndereco read Fendereco_principal write Setendereco_principal;
 
   end;
 
@@ -54,6 +57,11 @@ uses
   FireDAC.Phys.MongoDBDataSet;
 
 { TPessoa }
+
+constructor TPessoa.Create;
+begin
+  endereco_principal := TEndereco.Create;
+end;
 
 function TPessoa.GetTabela: string;
 begin
@@ -71,6 +79,11 @@ begin
 end;
 
 
+
+procedure TPessoa.Setendereco_principal(const Value: TEndereco);
+begin
+  Fendereco_principal := Value;
+end;
 
 procedure TPessoa.SetGetBanco(const Value: TALDataBase);
 begin
@@ -120,7 +133,19 @@ begin
     .Add('razao_social_pes',razao_social_pes)
     .Add('dt_cadastro_pes',dt_cadastro_pes)
     .Add('tipo_pes', tipo_pes)
-    .Add('cpf_cnpj_pes', cpf_cnpj_pes);
+    .Add('cpf_cnpj_pes', cpf_cnpj_pes)
+    .BeginObject('endereco_principal')
+      .Add('uf_cep'           ,endereco_principal.uf_cep)
+      .Add('codigo_cep'       ,endereco_principal.codigo_cep)
+      .Add('cidade_codigo_cep',endereco_principal.cidade_codigo_cep)
+      .Add('cidade_nome_cep'  ,endereco_principal.cidade_nome_cep)
+      .Add('rua_cep'          ,endereco_principal.rua_cep)
+      .Add('numero_cep'       ,endereco_principal.numero_cep)
+      .Add('bairro_cep'       ,endereco_principal.bairro_cep)
+      .Add('complemento_cep'  ,endereco_principal.complemento_cep)
+    .EndObject;
+
+
 
   GetConMongo[GetBanco][GetTabela].Insert(oDoc);
 
