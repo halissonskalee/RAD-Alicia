@@ -5,10 +5,6 @@ interface
 uses AL.Classe.Padrao, REST.Json, FireDAC.Phys.MongoDBWrapper,
      AL.Persistencia, AL.Classe.Endereco, AL.Tipo;
 
-
-
-
-
 type
   TPessoa = class
   private
@@ -45,6 +41,7 @@ type
     property GetEnv           : TALMongoEnv  read FGetEnv write SetGetEnv;
     property GetConMongo      : TALMongoConnection read FGetConMongo write SetGetConMongo;
     property GetBanco         : TALDataBase read FGetBanco write SetGetBanco;
+
 
 
     property endereco_principal : TEndereco read Fendereco_principal write Setendereco_principal;
@@ -169,6 +166,14 @@ begin
         .Field('dt_cadastro_pes' ,dt_cadastro_pes)
         .Field('tipo_pes'        ,tipo_pes)
         .Field('cpf_cnpj_pes'    ,cpf_cnpj_pes)
+        .Field('endereco_principal.uf_cep'           ,endereco_principal.uf_cep)
+        .Field('endereco_principal.codigo_cep'       ,endereco_principal.codigo_cep)
+        .Field('endereco_principal.cidade_codigo_cep',endereco_principal.cidade_codigo_cep)
+        .Field('endereco_principal.cidade_nome_cep'  ,endereco_principal.cidade_nome_cep)
+        .Field('endereco_principal.rua_cep'          ,endereco_principal.rua_cep)
+        .Field('endereco_principal.numero_cep'       ,endereco_principal.numero_cep)
+        .Field('endereco_principal.bairro_cep'       ,endereco_principal.bairro_cep)
+        .Field('endereco_principal.complemento_cep'  ,endereco_principal.complemento_cep)
       .&End
     .&End;
 

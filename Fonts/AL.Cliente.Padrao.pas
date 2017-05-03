@@ -79,6 +79,7 @@ type
     procedure ExibirBotoes;
     function Lista(oCrs: IMongoCursor): Boolean;
 
+
     { Private declarations }
   public
     { Public declarations }
@@ -99,6 +100,10 @@ type
     function FocoInicial : Boolean ; virtual;
     function FocoNovo    : Boolean ; virtual;
     function FocoEditar  : Boolean ; virtual;
+
+    function NovoBefore: Boolean; virtual;
+    function Novo: Boolean; virtual;
+    function NovoAfter: Boolean; virtual;
 
 
     function SalvarBefore: Boolean; virtual;
@@ -132,11 +137,22 @@ end;
 
 procedure TFrmALClientePadrao.acNovoExecute(Sender: TObject);
 begin
-  Self.FAcao := tpInsert;
-  fnc_limparCampos;
-  changeTabCadastro.ExecuteTarget(Self);
-  ExibirBotoes;
-  FocoNovo;
+  if NovoBefore then
+    if Novo then
+    begin
+      Self.FAcao := tpInsert;
+      fnc_limparCampos;
+      changeTabCadastro.ExecuteTarget(Self);
+      ExibirBotoes;
+      NovoBefore;
+      FocoNovo;
+    end;
+
+
+
+
+
+
 end;
 
 procedure TFrmALClientePadrao.acSairExecute(Sender: TObject);
@@ -268,14 +284,14 @@ begin
   Criar;
   CriarAfter;
 
+  //Sleep(500);
+  ListaAoCriar;
+
   Task := TTask.Create(
   procedure
   begin
     Sleep(200);
     FocoInicial;
-
-    Sleep(200);
-    ListaAoCriar;
   end);
   Task.Start;
 
@@ -380,6 +396,21 @@ begin
   fnc_PreencherRegistros;
   changeTabCadastro.ExecuteTarget(Self);
   ExibirBotoes;
+end;
+
+function TFrmALClientePadrao.Novo: Boolean;
+begin
+
+end;
+
+function TFrmALClientePadrao.NovoAfter: Boolean;
+begin
+
+end;
+
+function TFrmALClientePadrao.NovoBefore: Boolean;
+begin
+
 end;
 
 function TFrmALClientePadrao.Salvar: Boolean;

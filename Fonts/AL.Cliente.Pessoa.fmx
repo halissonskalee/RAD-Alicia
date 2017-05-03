@@ -169,26 +169,25 @@ inherited FrmALClientePessoa: TFrmALClientePessoa
           Size.PlatformDefault = False
         end
         object GroupBox1: TGroupBox
-          Position.X = 18.000000000000000000
           Position.Y = 125.000000000000000000
-          Size.Width = 482.000000000000000000
-          Size.Height = 217.000000000000000000
+          Size.Width = 513.000000000000000000
+          Size.Height = 156.000000000000000000
           Size.PlatformDefault = False
           Text = 'Endere'#231'o'
           TabOrder = 10
           object edtcodigo_cep: TEdit
             Touch.InteractiveGestures = [LongTap, DoubleTap]
-            TabOrder = 1
-            Position.X = 72.000000000000000000
-            Position.Y = 32.000000000000000000
+            TabOrder = 0
+            Position.X = 96.000000000000000000
+            Position.Y = 16.000000000000000000
             Size.Width = 105.000000000000000000
             Size.Height = 22.000000000000000000
             Size.PlatformDefault = False
           end
           object Label5: TLabel
             AutoSize = True
-            Position.X = -8.000000000000000000
-            Position.Y = 35.000000000000000000
+            Position.X = 16.000000000000000000
+            Position.Y = 19.000000000000000000
             Size.Width = 24.000000000000000000
             Size.Height = 16.000000000000000000
             Size.PlatformDefault = False
@@ -198,17 +197,17 @@ inherited FrmALClientePessoa: TFrmALClientePessoa
           end
           object edtcidade_nome_cep: TEdit
             Touch.InteractiveGestures = [LongTap, DoubleTap]
-            TabOrder = 2
-            Position.X = 72.000000000000000000
-            Position.Y = 56.000000000000000000
+            TabOrder = 1
+            Position.X = 96.000000000000000000
+            Position.Y = 40.000000000000000000
             Size.Width = 257.000000000000000000
             Size.Height = 22.000000000000000000
             Size.PlatformDefault = False
           end
           object Label6: TLabel
             AutoSize = True
-            Position.X = -8.000000000000000000
-            Position.Y = 59.000000000000000000
+            Position.X = 16.000000000000000000
+            Position.Y = 43.000000000000000000
             Size.Width = 41.000000000000000000
             Size.Height = 16.000000000000000000
             Size.PlatformDefault = False
@@ -220,8 +219,8 @@ inherited FrmALClientePessoa: TFrmALClientePessoa
             Touch.InteractiveGestures = [LongTap, DoubleTap]
             TabOrder = 9
             TabStop = False
-            Position.X = 330.000000000000000000
-            Position.Y = 56.000000000000000000
+            Position.X = 354.000000000000000000
+            Position.Y = 40.000000000000000000
             Enabled = False
             Size.Width = 66.000000000000000000
             Size.Height = 22.000000000000000000
@@ -229,17 +228,17 @@ inherited FrmALClientePessoa: TFrmALClientePessoa
           end
           object edtbairro_cep: TEdit
             Touch.InteractiveGestures = [LongTap, DoubleTap]
-            TabOrder = 4
-            Position.X = 72.000000000000000000
-            Position.Y = 80.000000000000000000
+            TabOrder = 2
+            Position.X = 96.000000000000000000
+            Position.Y = 64.000000000000000000
             Size.Width = 324.000000000000000000
             Size.Height = 22.000000000000000000
             Size.PlatformDefault = False
           end
           object Label7: TLabel
             AutoSize = True
-            Position.X = -8.000000000000000000
-            Position.Y = 83.000000000000000000
+            Position.X = 16.000000000000000000
+            Position.Y = 67.000000000000000000
             Size.Width = 35.000000000000000000
             Size.Height = 16.000000000000000000
             Size.PlatformDefault = False
@@ -249,17 +248,17 @@ inherited FrmALClientePessoa: TFrmALClientePessoa
           end
           object edtrua_cep: TEdit
             Touch.InteractiveGestures = [LongTap, DoubleTap]
-            TabOrder = 5
-            Position.X = 72.000000000000000000
-            Position.Y = 103.000000000000000000
+            TabOrder = 3
+            Position.X = 96.000000000000000000
+            Position.Y = 87.000000000000000000
             Size.Width = 201.000000000000000000
             Size.Height = 22.000000000000000000
             Size.PlatformDefault = False
           end
           object Label8: TLabel
             AutoSize = True
-            Position.X = -8.000000000000000000
-            Position.Y = 107.000000000000000000
+            Position.X = 16.000000000000000000
+            Position.Y = 91.000000000000000000
             Size.Width = 24.000000000000000000
             Size.Height = 16.000000000000000000
             Size.PlatformDefault = False
@@ -269,17 +268,17 @@ inherited FrmALClientePessoa: TFrmALClientePessoa
           end
           object edtnumero_cep: TEdit
             Touch.InteractiveGestures = [LongTap, DoubleTap]
-            TabOrder = 6
-            Position.X = 330.000000000000000000
-            Position.Y = 103.000000000000000000
+            TabOrder = 4
+            Position.X = 354.000000000000000000
+            Position.Y = 87.000000000000000000
             Size.Width = 66.000000000000000000
             Size.Height = 22.000000000000000000
             Size.PlatformDefault = False
           end
           object Label9: TLabel
             AutoSize = True
-            Position.X = 278.000000000000000000
-            Position.Y = 104.000000000000000000
+            Position.X = 302.000000000000000000
+            Position.Y = 88.000000000000000000
             Size.Width = 48.000000000000000000
             Size.Height = 16.000000000000000000
             Size.PlatformDefault = False
@@ -289,9 +288,9 @@ inherited FrmALClientePessoa: TFrmALClientePessoa
           end
           object edtuf_cep: TEdit
             Touch.InteractiveGestures = [LongTap, DoubleTap]
-            TabOrder = 0
-            Position.X = 330.000000000000000000
-            Position.Y = 32.000000000000000000
+            TabOrder = 6
+            Position.X = 354.000000000000000000
+            Position.Y = 16.000000000000000000
             Enabled = False
             Size.Width = 66.000000000000000000
             Size.Height = 22.000000000000000000
@@ -299,8 +298,8 @@ inherited FrmALClientePessoa: TFrmALClientePessoa
           end
           object Label10: TLabel
             AutoSize = True
-            Position.X = 308.000000000000000000
-            Position.Y = 35.000000000000000000
+            Position.X = 332.000000000000000000
+            Position.Y = 19.000000000000000000
             Size.Width = 18.000000000000000000
             Size.Height = 16.000000000000000000
             Size.PlatformDefault = False
@@ -310,17 +309,17 @@ inherited FrmALClientePessoa: TFrmALClientePessoa
           end
           object edtcomplemento_cep: TEdit
             Touch.InteractiveGestures = [LongTap, DoubleTap]
-            TabOrder = 3
-            Position.X = 72.000000000000000000
-            Position.Y = 126.000000000000000000
+            TabOrder = 5
+            Position.X = 96.000000000000000000
+            Position.Y = 110.000000000000000000
             Size.Width = 324.000000000000000000
             Size.Height = 22.000000000000000000
             Size.PlatformDefault = False
           end
           object Label11: TLabel
             AutoSize = True
-            Position.X = -8.000000000000000000
-            Position.Y = 129.000000000000000000
+            Position.X = 16.000000000000000000
+            Position.Y = 113.000000000000000000
             Size.Width = 79.000000000000000000
             Size.Height = 16.000000000000000000
             Size.PlatformDefault = False

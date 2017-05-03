@@ -57,6 +57,9 @@ type
     function Editar(Json: string): Boolean; override;
     function FocoNovo: Boolean; override;
     function FocoEditar: Boolean; override;
+    function NovoBefore: Boolean; override;
+    function Novo: Boolean; override;
+
 
 
     { Public declarations }
@@ -85,9 +88,6 @@ end;
 function TFrmALClientePessoa.Criar: Boolean;
 begin
   Pessoa              := TPessoa.Create;
-  Pessoa.GetEnv       := FrmALClienteDmDados.GetEnv;
-  Pessoa.GetConMongo  := FrmALClienteDmDados.GetConMongo;
-  Pessoa.GetBanco     := FrmALClienteDmDados.GetBanco;
 
   Persistencia.Tabela := 'PESSOA';
 
@@ -105,6 +105,19 @@ begin
   edtdt_cadastro_pes.Date   := Pessoa.dt_cadastro_pes;
   cmbvtipo_pes.ItemIndex    := Pessoa.tipo_pes.ToInteger;
   edtcpf_cnpj_pes.Text      := Pessoa.cpf_cnpj_pes;
+
+
+
+  edtuf_cep.Text            :=  Pessoa.endereco_principal.uf_cep;
+  edtcodigo_cep.Text        :=  Pessoa.endereco_principal.codigo_cep;
+  edtcidade_codigo_cep.Text :=  Pessoa.endereco_principal.cidade_codigo_cep;
+  edtcidade_nome_cep.Text   :=  Pessoa.endereco_principal.cidade_nome_cep;
+  edtrua_cep.Text           :=  Pessoa.endereco_principal.rua_cep;
+  edtnumero_cep.Text        :=  Pessoa.endereco_principal.numero_cep;
+  edtbairro_cep.Text        :=  Pessoa.endereco_principal.bairro_cep ;
+  edtcomplemento_cep.Text   :=  Pessoa.endereco_principal.complemento_cep;
+
+
 
   Result := True;
 end;
@@ -133,11 +146,44 @@ begin
 end;
 
 
+function TFrmALClientePessoa.Novo: Boolean;
+var
+  oCrs: IMongoCursor;
+  oColl : TMongoCollection;
+begin
+
+  oColl := GetCon;
+
+  oCrs := oColl.Aggregate
+  .Group
+    .BeginObject('_id')
+      .Add('$max', '$_id')
+    .EndObject
+  .&End;
+
+ while oCrs.Next do
+  ShowMessage(oCrs.Doc.AsJSON);
+
+
+
+  edt_id.Enabled := False;
+  Result := True;
+end;
+
+function TFrmALClientePessoa.NovoBefore: Boolean;
+begin
+  Result := True;
+end;
+
 function TFrmALClientePessoa.Salvar: Boolean;
 {var
   s : String;
   oDoc: TMongoDocument;}
 begin
+  Pessoa.GetEnv       := FrmALClienteDmDados.GetEnv;
+  Pessoa.GetConMongo  := FrmALClienteDmDados.GetConMongo;
+  Pessoa.GetBanco     := FrmALClienteDmDados.GetBanco;
+
 
   Pessoa._id              := StrToIntDef(edt_id.Text,0) ;
   Pessoa.razao_social_pes := edtrazao_social_pes.Text;
