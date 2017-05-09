@@ -154,12 +154,7 @@ begin
 
   oColl := GetCon;
 
-  oCrs := oColl.Aggregate
-  .Group
-    .BeginObject('_id')
-      .Add('$max', '$_id')
-    .EndObject
-  .&End;
+//  oCrs := oColl.Aggregate().Group().ma
 
  while oCrs.Next do
   ShowMessage(oCrs.Doc.AsJSON);

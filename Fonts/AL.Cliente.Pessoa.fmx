@@ -61,53 +61,49 @@ inherited FrmALClientePessoa: TFrmALClientePessoa
         object edt_id: TEdit
           Touch.InteractiveGestures = [LongTap, DoubleTap]
           TabOrder = 0
-          Position.X = 119.000000000000000000
-          Position.Y = 3.000000000000000000
+          Position.X = 7.000000000000000000
+          Position.Y = 20.000000000000000000
         end
         object Label2: TLabel
-          AutoSize = True
-          Position.X = 76.000000000000000000
-          Position.Y = 27.000000000000000000
+          Position.X = 7.000000000000000000
+          Position.Y = 43.000000000000000000
           Size.Width = 37.000000000000000000
           Size.Height = 16.000000000000000000
           Size.PlatformDefault = False
-          TextSettings.HorzAlign = Trailing
           TextSettings.WordWrap = False
           Text = 'Nome'
         end
         object edtrazao_social_pes: TEdit
           Touch.InteractiveGestures = [LongTap, DoubleTap]
           TabOrder = 1
-          Position.X = 119.000000000000000000
-          Position.Y = 26.000000000000000000
+          Position.X = 7.000000000000000000
+          Position.Y = 60.000000000000000000
           Size.Width = 328.000000000000000000
           Size.Height = 22.000000000000000000
           Size.PlatformDefault = False
         end
         object edtdt_cadastro_pes: TDateEdit
           Date = 42840.000000000000000000
-          Position.X = 119.000000000000000000
-          Position.Y = 49.000000000000000000
+          Position.X = 7.000000000000000000
+          Position.Y = 100.000000000000000000
           Size.Width = 130.000000000000000000
           Size.Height = 22.000000000000000000
           Size.PlatformDefault = False
           TabOrder = 2
         end
         object Cadastro: TLabel
-          AutoSize = True
-          Position.X = 62.000000000000000000
-          Position.Y = 49.000000000000000000
+          Position.X = 7.000000000000000000
+          Position.Y = 82.000000000000000000
           Size.Width = 51.000000000000000000
           Size.Height = 16.000000000000000000
           Size.PlatformDefault = False
-          TextSettings.HorzAlign = Trailing
           TextSettings.WordWrap = False
           Text = 'Cadastro'
         end
         object cmbvtipo_pes: TComboBox
           ItemIndex = 0
-          Position.X = 119.000000000000000000
-          Position.Y = 72.000000000000000000
+          Position.X = 151.000000000000000000
+          Position.Y = 100.000000000000000000
           Size.Width = 129.000000000000000000
           Size.Height = 22.000000000000000000
           Size.PlatformDefault = False
@@ -127,100 +123,92 @@ inherited FrmALClientePessoa: TFrmALClientePessoa
           end
         end
         object Label3: TLabel
-          AutoSize = True
-          Position.X = 29.000000000000000000
-          Position.Y = 73.000000000000000000
+          Position.X = 151.000000000000000000
+          Position.Y = 82.000000000000000000
           Size.Width = 84.000000000000000000
           Size.Height = 16.000000000000000000
           Size.PlatformDefault = False
-          TextSettings.HorzAlign = Trailing
           TextSettings.WordWrap = False
           Text = 'Tipo de pessoa'
         end
         object Label4: TLabel
-          AutoSize = True
-          Position.X = 71.000000000000000000
+          Position.X = 7.000000000000000000
           Position.Y = 3.000000000000000000
           Size.Width = 42.000000000000000000
           Size.Height = 16.000000000000000000
           Size.PlatformDefault = False
-          TextSettings.HorzAlign = Trailing
           TextSettings.WordWrap = False
           Text = 'C'#243'digo'
         end
         object lCpfCnpj: TLabel
-          AutoSize = True
-          Position.X = 91.000000000000000000
-          Position.Y = 96.000000000000000000
+          Position.X = 7.000000000000000000
+          Position.Y = 123.000000000000000000
           Size.Width = 24.000000000000000000
           Size.Height = 16.000000000000000000
           Size.PlatformDefault = False
-          TextSettings.HorzAlign = Trailing
           TextSettings.WordWrap = False
           Text = 'CPF'
         end
         object edtcpf_cnpj_pes: TEdit
           Touch.InteractiveGestures = [LongTap, DoubleTap]
           TabOrder = 4
-          Position.X = 119.000000000000000000
-          Position.Y = 95.000000000000000000
+          Position.X = 7.000000000000000000
+          Position.Y = 141.000000000000000000
           Size.Width = 130.000000000000000000
           Size.Height = 22.000000000000000000
           Size.PlatformDefault = False
         end
         object GroupBox1: TGroupBox
-          Position.Y = 125.000000000000000000
+          Position.Y = 165.000000000000000000
           Size.Width = 513.000000000000000000
-          Size.Height = 156.000000000000000000
+          Size.Height = 329.000000000000000000
           Size.PlatformDefault = False
           Text = 'Endere'#231'o'
-          TabOrder = 10
+          TabOrder = 5
           object edtcodigo_cep: TEdit
             Touch.InteractiveGestures = [LongTap, DoubleTap]
             TabOrder = 0
-            Position.X = 96.000000000000000000
-            Position.Y = 16.000000000000000000
+            Position.X = 9.000000000000000000
+            Position.Y = 30.000000000000000000
             Size.Width = 105.000000000000000000
             Size.Height = 22.000000000000000000
             Size.PlatformDefault = False
           end
           object Label5: TLabel
             AutoSize = True
-            Position.X = 16.000000000000000000
-            Position.Y = 19.000000000000000000
+            Position.X = 9.000000000000000000
+            Position.Y = 15.000000000000000000
             Size.Width = 24.000000000000000000
             Size.Height = 16.000000000000000000
             Size.PlatformDefault = False
-            TextSettings.HorzAlign = Trailing
             TextSettings.WordWrap = False
             Text = 'CEP'
           end
           object edtcidade_nome_cep: TEdit
             Touch.InteractiveGestures = [LongTap, DoubleTap]
-            TabOrder = 1
-            Position.X = 96.000000000000000000
-            Position.Y = 40.000000000000000000
+            TabOrder = 2
+            Position.X = 9.000000000000000000
+            Position.Y = 70.000000000000000000
             Size.Width = 257.000000000000000000
             Size.Height = 22.000000000000000000
             Size.PlatformDefault = False
           end
           object Label6: TLabel
             AutoSize = True
-            Position.X = 16.000000000000000000
-            Position.Y = 43.000000000000000000
+            Position.X = 9.000000000000000000
+            Position.Y = 53.000000000000000000
             Size.Width = 41.000000000000000000
             Size.Height = 16.000000000000000000
             Size.PlatformDefault = False
-            TextSettings.HorzAlign = Trailing
             TextSettings.WordWrap = False
             Text = 'Cidade'
           end
           object edtcidade_codigo_cep: TEdit
             Touch.InteractiveGestures = [LongTap, DoubleTap]
-            TabOrder = 9
+            TabOrder = 3
             TabStop = False
-            Position.X = 354.000000000000000000
-            Position.Y = 40.000000000000000000
+            Position.X = 268.000000000000000000
+            Position.Y = 70.000000000000000000
             Enabled = False
             Size.Width = 66.000000000000000000
             Size.Height = 22.000000000000000000
@@ -228,69 +216,66 @@ inherited FrmALClientePessoa: TFrmALClientePessoa
           end
           object edtbairro_cep: TEdit
             Touch.InteractiveGestures = [LongTap, DoubleTap]
-            TabOrder = 2
-            Position.X = 96.000000000000000000
-            Position.Y = 64.000000000000000000
+            TabOrder = 4
+            Position.X = 9.000000000000000000
+            Position.Y = 116.000000000000000000
             Size.Width = 324.000000000000000000
             Size.Height = 22.000000000000000000
             Size.PlatformDefault = False
           end
           object Label7: TLabel
             AutoSize = True
-            Position.X = 16.000000000000000000
-            Position.Y = 67.000000000000000000
+            Position.X = 9.000000000000000000
+            Position.Y = 95.000000000000000000
             Size.Width = 35.000000000000000000
             Size.Height = 16.000000000000000000
             Size.PlatformDefault = False
-            TextSettings.HorzAlign = Trailing
             TextSettings.WordWrap = False
             Text = 'Bairro'
           end
           object edtrua_cep: TEdit
             Touch.InteractiveGestures = [LongTap, DoubleTap]
-            TabOrder = 3
-            Position.X = 96.000000000000000000
-            Position.Y = 87.000000000000000000
+            TabOrder = 5
+            Position.X = 9.000000000000000000
+            Position.Y = 155.000000000000000000
             Size.Width = 201.000000000000000000
             Size.Height = 22.000000000000000000
             Size.PlatformDefault = False
           end
           object Label8: TLabel
             AutoSize = True
-            Position.X = 16.000000000000000000
-            Position.Y = 91.000000000000000000
+            Position.X = 9.000000000000000000
+            Position.Y = 139.000000000000000000
             Size.Width = 24.000000000000000000
             Size.Height = 16.000000000000000000
             Size.PlatformDefault = False
-            TextSettings.HorzAlign = Trailing
             TextSettings.WordWrap = False
             Text = 'Rua'
           end
           object edtnumero_cep: TEdit
             Touch.InteractiveGestures = [LongTap, DoubleTap]
-            TabOrder = 4
-            Position.X = 354.000000000000000000
-            Position.Y = 87.000000000000000000
+            TabOrder = 6
+            Position.X = 215.000000000000000000
+            Position.Y = 155.000000000000000000
             Size.Width = 66.000000000000000000
             Size.Height = 22.000000000000000000
             Size.PlatformDefault = False
           end
           object Label9: TLabel
             AutoSize = True
-            Position.X = 302.000000000000000000
-            Position.Y = 88.000000000000000000
+            Position.X = 213.000000000000000000
+            Position.Y = 139.000000000000000000
             Size.Width = 48.000000000000000000
             Size.Height = 16.000000000000000000
             Size.PlatformDefault = False
-            TextSettings.HorzAlign = Trailing
             TextSettings.WordWrap = False
             Text = 'N'#250'mero'
           end
           object edtuf_cep: TEdit
             Touch.InteractiveGestures = [LongTap, DoubleTap]
-            TabOrder = 6
-            Position.X = 354.000000000000000000
-            Position.Y = 16.000000000000000000
+            TabOrder = 1
+            Position.X = 117.000000000000000000
+            Position.Y = 30.000000000000000000
             Enabled = False
             Size.Width = 66.000000000000000000
             Size.Height = 22.000000000000000000
@@ -298,32 +283,30 @@ inherited FrmALClientePessoa: TFrmALClientePessoa
           end
           object Label10: TLabel
             AutoSize = True
-            Position.X = 332.000000000000000000
-            Position.Y = 19.000000000000000000
+            Position.X = 116.000000000000000000
+            Position.Y = 12.000000000000000000
             Size.Width = 18.000000000000000000
             Size.Height = 16.000000000000000000
             Size.PlatformDefault = False
-            TextSettings.HorzAlign = Trailing
             TextSettings.WordWrap = False
             Text = 'UF'
           end
           object edtcomplemento_cep: TEdit
             Touch.InteractiveGestures = [LongTap, DoubleTap]
-            TabOrder = 5
-            Position.X = 96.000000000000000000
-            Position.Y = 110.000000000000000000
+            TabOrder = 7
+            Position.X = 9.000000000000000000
+            Position.Y = 196.000000000000000000
             Size.Width = 324.000000000000000000
             Size.Height = 22.000000000000000000
             Size.PlatformDefault = False
           end
           object Label11: TLabel
             AutoSize = True
-            Position.X = 16.000000000000000000
-            Position.Y = 113.000000000000000000
+            Position.X = 9.000000000000000000
+            Position.Y = 178.000000000000000000
             Size.Width = 79.000000000000000000
             Size.Height = 16.000000000000000000
             Size.PlatformDefault = False
-            TextSettings.HorzAlign = Trailing
             TextSettings.WordWrap = False
             Text = 'Complemento'
           end
