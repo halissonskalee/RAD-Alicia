@@ -44,7 +44,9 @@ type
     Label10: TLabel;
     edtcomplemento_cep: TEdit;
     Label11: TLabel;
+    SearchEditButton2: TSearchEditButton;
     procedure cmbvtipo_pesChange(Sender: TObject);
+    procedure SearchEditButton2Click(Sender: TObject);
   private
     { Private declarations }
     Pessoa : TPessoa;
@@ -73,7 +75,8 @@ implementation
 
 {$R *.fmx}
 
-uses AL.Cliente.DmDados, AL.Cliente.Menu, Rest.Json;
+uses AL.Cliente.DmDados, AL.Cliente.Menu, Rest.Json, AL.Cliente.CEP,
+  AL.Classe.Endereco;
 
 
 procedure TFrmALClientePessoa.cmbvtipo_pesChange(Sender: TObject);
@@ -151,7 +154,7 @@ var
   oCrs: IMongoCursor;
   oColl : TMongoCollection;
 begin
-
+{
   oColl := GetCon;
 
 //  oCrs := oColl.Aggregate().Group().ma
@@ -161,7 +164,7 @@ begin
 
 
 
-  edt_id.Enabled := False;
+  edt_id.Enabled := False;}
   Result := True;
 end;
 
@@ -214,6 +217,22 @@ end;
 function TFrmALClientePessoa.SalvarBefore: Boolean;
 begin
   Result := True;
+end;
+
+procedure TFrmALClientePessoa.SearchEditButton2Click(Sender: TObject);
+var
+  vEndereco :TEndereco;
+begin
+  inherited;
+  vEndereco := FrmALClienteCEP.BuscarCEP(edtcodigo_cep.Text);
+  edtcodigo_cep.Text                := vEndereco.codigo_cep;
+  edtuf_cep.Text                    := vEndereco.uf_cep;
+  edtcidade_nome_cep.Text           := vEndereco.cidade_nome_cep;
+  edtcidade_codigo_cep.Text         := vEndereco.cidade_codigo_cep;
+  edtbairro_cep.Text                := vEndereco.bairro_cep;
+  edtrua_cep.Text                   := vEndereco.rua_cep;
+//  edtnumero_cep.Text                := vEndereco.numero_cep;
+  edtcomplemento_cep.Text           := vEndereco.complemento_cep;
 end;
 
 end.

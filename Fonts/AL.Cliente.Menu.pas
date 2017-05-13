@@ -50,7 +50,7 @@ implementation
 
 {$R *.fmx}
 
-uses AL.Cliente.DmDados, AL.Cliente.Pessoa;
+uses AL.Cliente.DmDados, AL.Cliente.Pessoa, AL.Cliente.CEP;
 
 procedure TFrmALClienteMenu.actMenuExecute(Sender: TObject);
 begin
@@ -64,6 +64,7 @@ end;
 
 procedure TFrmALClienteMenu.FormCreate(Sender: TObject);
 begin
+  FrmALClienteCEP     := TFrmALClienteCEP.Create(Self);
   FrmALClienteDmDados := TFrmALClienteDmDados.Create(Self);
   mtvMenu.Mode        := TMultiViewMode.Drawer;
 end;

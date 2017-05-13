@@ -173,6 +173,15 @@ inherited FrmALClientePessoa: TFrmALClientePessoa
             Size.Width = 105.000000000000000000
             Size.Height = 22.000000000000000000
             Size.PlatformDefault = False
+            object SearchEditButton2: TSearchEditButton
+              CanFocus = False
+              Cursor = crArrow
+              Size.Width = 28.000000000000000000
+              Size.Height = 14.000000000000000000
+              Size.PlatformDefault = False
+              TabOrder = 0
+              OnClick = SearchEditButton2Click
+            end
           end
           object Label5: TLabel
             AutoSize = True
@@ -189,6 +198,7 @@ inherited FrmALClientePessoa: TFrmALClientePessoa
             TabOrder = 2
             Position.X = 9.000000000000000000
             Position.Y = 70.000000000000000000
+            Enabled = False
             Size.Width = 257.000000000000000000
             Size.Height = 22.000000000000000000
             Size.PlatformDefault = False
