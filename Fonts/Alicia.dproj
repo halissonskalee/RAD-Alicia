@@ -341,7 +341,7 @@
             <DesignClass>TDataModule</DesignClass>
         </DCCReference>
         <DCCReference Include="AL.Helper.Edit.pas"/>
-        <DCCReference Include="AL.Classe.Geradore.pas"/>
+        <DCCReference Include="AL.Classe.Gerador.pas"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

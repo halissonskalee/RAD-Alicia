@@ -12,7 +12,7 @@ uses
   FireDAC.Phys.SQLite, FireDAC.Phys.SQLiteDef, FireDAC.Stan.ExprFuncs,
   FireDAC.Stan.Param, FireDAC.DatS, FireDAC.DApt.Intf, FireDAC.DApt,
   FireDAC.Comp.DataSet, FireDAC.Phys.SQLiteVDataSet, FireDAC.Phys.MongoDBDataSet,
-  FMX.Dialogs, AL.Persistencia, AL.Classe.Registro, AL.Tipo;
+  FMX.Dialogs, AL.Persistencia, AL.Classe.Registro, AL.Tipo, AL.Classe.Gerador;
 
 type
   TFrmALClienteDmDados = class(TDataModule)
@@ -29,18 +29,14 @@ type
     FConMongo : TMongoConnection;
     FEnv      : TMongoEnv;
     vRegistro : TRegistro;
+    vGerador  : TGerador;
     procedure executaSQL(Banco, Collection, SQL: String);
     function CriarPersistencia : TALPersistencia;
     function GetBanco    : String;
     function GetConMongo : TMongoConnection;
     function GetEnv      : TMongoEnv;
-
-    // geradores
-    function Gen_pessoa : Integer;
-
-
+    function GetFDCon    : TFDConnection;
   end;
-
 
 var
   FrmALClienteDmDados: TFrmALClienteDmDados;
@@ -84,16 +80,23 @@ begin
     FDConnection1.Params.Values['DriverID']:= 'Mongo';
     FDConnection1.Connected := true;
   except on E: Exception do
-      ShowMessage('MongoDB, não foi possivel contar no host' + vRegistro.host_reg + ' na porta ' + vRegistro.porta_reg.ToString+ sLineBreak +
-                  'Verifique as configurações do arquivo .ini ou do servidor');
+    raise Exception.Create('MongoDB, não foi possivel contar no host' + vRegistro.host_reg + ' na porta ' + vRegistro.porta_reg.ToString+ sLineBreak +
+                            'Verifique as configurações do arquivo .ini ou do servidor');
   end;
-    
+
+  if not FDConnection1.Connected then
+    FrmALClienteMenu.Close;
+
   FConMongo := TMongoConnection(FDConnection1.CliObj);
   FEnv      := FConMongo.Env;
 
-  //dmDados.FConMongo.Env.Monitor.Tracing := false;
-
-
+  //
+  vGerador := TGerador.Create;
+  vGerador.GetEnv      := GetEnv;
+  vGerador.GetConMongo := GetConMongo;
+  vGerador.GetBanco    := GetBanco;
+  vGerador.GetFDCon    := GetFDCon;
+  vGerador.CriarGerador;
 
 end;
 
@@ -113,41 +116,7 @@ begin
 
 end;
 
-function TFrmALClienteDmDados.Gen_pessoa: Integer;
-var
-  oCrs: IMongoCursor;
-  oDoc: TMongoDocument;
-  JSONValue : TJSONValue;
-begin
-  FConMongo[GetBanco]['GERADORES'].Update()
-      .Match
-        .Add('_id', 0)
-      .&End
-      .Modify
-        .Inc()
-          .Field('PESSOA_PES', 1)
-        .&end
-      .&End
-      .Exec;
 
-  oCrs := FConMongo[GetBanco]['GERADORES'].Find();
-
-
-  if not oCrs.Next then
-  begin
-    oDoc := FEnv.NewDoc;
-    oDoc
-      .Add('_id',0)
-      .Add('PESSOA_PES',0);
-
-      FConMongo[GetBanco]['GERADORES'].Insert(oDoc);
-    oCrs := FConMongo[GetBanco]['GERADORES'].Find();
-  end;
-
-  JSONValue := TJSONObject.ParseJSONValue(oCrs.Doc.AsJSON);
-  Result    := JSONValue.GetValue<Integer>('PESSOA_PES');
-
-end;
 
 function TFrmALClienteDmDados.GetBanco: String;
 begin
@@ -162,6 +131,11 @@ end;
 function TFrmALClienteDmDados.GetEnv: TMongoEnv;
 begin
   Result := FEnv;
+end;
+
+function TFrmALClienteDmDados.GetFDCon: TFDConnection;
+begin
+  Result := FDConnection1;
 end;
 
 end.

@@ -178,7 +178,7 @@ begin
 
 
   if Acao = tpInsert  then
-    edt_id.AsInteger := FrmALClienteDmDados.Gen_pessoa;
+    edt_id.AsInteger :=  FrmALClienteDmDados.vGerador.Pessoa;
 
   Pessoa._id              := StrToIntDef(edt_id.Text,0) ;
   Pessoa.razao_social_pes := edtrazao_social_pes.Text;

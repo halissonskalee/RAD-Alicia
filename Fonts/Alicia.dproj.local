@@ -6,7 +6,7 @@
     <Transaction>2017/04/12 21:32:28.000.961,C:\RAD-Alicia\Fonts\Unit1.fmx=C:\RAD-Alicia\Fonts\AL.Cliente.Modelo.fmx</Transaction>
     <Transaction>2017/04/13 16:56:33.000.088,C:\RAD-Alicia\Fonts\Unit1.fmx=C:\RAD-Alicia\Fonts\AL.Cliente.Pessoa.fmx</Transaction>
     <Transaction>2017/05/13 08:02:33.000.963,C:\RAD-Alicia\Fonts\Unit1.dfm=C:\RAD-Alicia\Fonts\AL.Cliente.CEP.dfm</Transaction>
-    <Transaction>2017/05/14 11:56:34.623,C:\RAD-Alicia\Fonts\AL.Classe.Geradore.pas=C:\RAD-Alicia\Fonts\Unit1.pas</Transaction>
+    <Transaction>2017/05/14 12:04:32.545,C:\RAD-Alicia\Fonts\AL.Classe.Gerador.pas=C:\RAD-Alicia\Fonts\AL.Classe.Geradore.pas</Transaction>
   </Transactions>
 	<ActiveMobileDevice>
 		<PMacInCloud iOSSimulator="iPhone5"/>
