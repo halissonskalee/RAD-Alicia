@@ -1,7 +1,7 @@
 unit AL.Tipo;
 
 interface
-uses AL.Classe.Padrao, REST.Json, FireDAC.Phys.MongoDBWrapper;
+uses REST.Json, FireDAC.Phys.MongoDBWrapper;
 
 type TALMongoConnection = function :TMongoConnection of object;
 type TALMongoEnv        = function :TMongoEnv of object;

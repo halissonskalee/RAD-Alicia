@@ -15,7 +15,9 @@ uses
   AL.Classe.Endereco in 'AL.Classe.Endereco.pas',
   AL.Classe.Padrao in 'AL.Classe.Padrao.pas',
   AL.Tipo in 'AL.Tipo.pas',
-  AL.Cliente.CEP in 'AL.Cliente.CEP.pas' {FrmALClienteCEP: TDataModule};
+  AL.Cliente.CEP in 'AL.Cliente.CEP.pas' {FrmALClienteCEP: TDataModule},
+  AL.Helper.Edit in 'AL.Helper.Edit.pas',
+  AL.Classe.Geradore in 'AL.Classe.Geradore.pas';
 
 {$R *.res}
 

@@ -76,7 +76,7 @@ implementation
 {$R *.fmx}
 
 uses AL.Cliente.DmDados, AL.Cliente.Menu, Rest.Json, AL.Cliente.CEP,
-  AL.Classe.Endereco;
+  AL.Classe.Endereco, AL.Helper.Edit;
 
 
 procedure TFrmALClientePessoa.cmbvtipo_pesChange(Sender: TObject);
@@ -150,21 +150,14 @@ end;
 
 
 function TFrmALClientePessoa.Novo: Boolean;
-var
-  oCrs: IMongoCursor;
-  oColl : TMongoCollection;
 begin
-{
-  oColl := GetCon;
+  edt_id.AsInteger          :=0;
+  edt_id.Leitura            :=True;
+  edtrazao_social_pes.Clear;
+  edtdt_cadastro_pes.Date   := Now;
+  cmbvtipo_pes.ItemIndex    := 0;
+  edtcpf_cnpj_pes.Clear     ;
 
-//  oCrs := oColl.Aggregate().Group().ma
-
- while oCrs.Next do
-  ShowMessage(oCrs.Doc.AsJSON);
-
-
-
-  edt_id.Enabled := False;}
   Result := True;
 end;
 
@@ -182,6 +175,10 @@ begin
   Pessoa.GetConMongo  := FrmALClienteDmDados.GetConMongo;
   Pessoa.GetBanco     := FrmALClienteDmDados.GetBanco;
 
+
+
+  if Acao = tpInsert  then
+    edt_id.AsInteger := FrmALClienteDmDados.Gen_pessoa;
 
   Pessoa._id              := StrToIntDef(edt_id.Text,0) ;
   Pessoa.razao_social_pes := edtrazao_social_pes.Text;

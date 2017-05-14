@@ -34,6 +34,11 @@ type
     function GetBanco    : String;
     function GetConMongo : TMongoConnection;
     function GetEnv      : TMongoEnv;
+
+    // geradores
+    function Gen_pessoa : Integer;
+
+
   end;
 
 
@@ -48,7 +53,7 @@ implementation
 
 {%CLASSGROUP 'FMX.Controls.TControl'}
 
-uses AL.Cliente.Registro, AL.Cliente.Menu ;
+uses AL.Cliente.Registro, AL.Cliente.Menu, System.JSON ;
 
 {$R *.dfm}
 
@@ -108,11 +113,41 @@ begin
 
 end;
 
+function TFrmALClienteDmDados.Gen_pessoa: Integer;
+var
+  oCrs: IMongoCursor;
+  oDoc: TMongoDocument;
+  JSONValue : TJSONValue;
+begin
+  FConMongo[GetBanco]['GERADORES'].Update()
+      .Match
+        .Add('_id', 0)
+      .&End
+      .Modify
+        .Inc()
+          .Field('PESSOA_PES', 1)
+        .&end
+      .&End
+      .Exec;
+
+  oCrs := FConMongo[GetBanco]['GERADORES'].Find();
 
 
+  if not oCrs.Next then
+  begin
+    oDoc := FEnv.NewDoc;
+    oDoc
+      .Add('_id',0)
+      .Add('PESSOA_PES',0);
 
+      FConMongo[GetBanco]['GERADORES'].Insert(oDoc);
+    oCrs := FConMongo[GetBanco]['GERADORES'].Find();
+  end;
 
+  JSONValue := TJSONObject.ParseJSONValue(oCrs.Doc.AsJSON);
+  Result    := JSONValue.GetValue<Integer>('PESSOA_PES');
 
+end;
 
 function TFrmALClienteDmDados.GetBanco: String;
 begin

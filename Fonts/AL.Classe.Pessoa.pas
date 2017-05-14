@@ -6,7 +6,7 @@ uses AL.Classe.Padrao, REST.Json, FireDAC.Phys.MongoDBWrapper,
      AL.Persistencia, AL.Classe.Endereco, AL.Tipo;
 
 type
-  TPessoa = class
+  TPessoa = class(TPadrao)
   private
     F_id: integer;
     Fcpf_cnpj_pes: String;
@@ -38,9 +38,7 @@ type
     property dt_cadastro_pes  : TDate read Fdt_cadastro_pes write Setdt_cadastro_pes;
     property tipo_pes         : String read Ftipo_pes write Settipo_pes;
     property cpf_cnpj_pes     : String read Fcpf_cnpj_pes write Setcpf_cnpj_pes;
-    property GetEnv           : TALMongoEnv  read FGetEnv write SetGetEnv;
-    property GetConMongo      : TALMongoConnection read FGetConMongo write SetGetConMongo;
-    property GetBanco         : TALDataBase read FGetBanco write SetGetBanco;
+
 
 
 
