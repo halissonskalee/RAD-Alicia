@@ -3,8 +3,8 @@ object FrmALClientePadrao: TFrmALClientePadrao
   Top = 0
   Border.Styling = False
   Caption = 'Form2'
-  ClientHeight = 452
-  ClientWidth = 678
+  ClientHeight = 460
+  ClientWidth = 663
   Position = ScreenCenter
   StyleBook = FrmALClienteMenu.StyleBook1
   FormFactor.Width = 320
@@ -14,13 +14,13 @@ object FrmALClientePadrao: TFrmALClientePadrao
   DesignerMasterStyle = 0
   object lyCliente: TLayout
     Align = Client
-    Size.Width = 678.000000000000000000
-    Size.Height = 427.000000000000000000
+    Size.Width = 663.000000000000000000
+    Size.Height = 435.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 2
     object Panel2: TPanel
       Align = Top
-      Size.Width = 678.000000000000000000
+      Size.Width = 663.000000000000000000
       Size.Height = 48.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 0
@@ -96,17 +96,17 @@ object FrmALClientePadrao: TFrmALClientePadrao
     end
     object TabControl: TTabControl
       Align = Client
-      Size.Width = 678.000000000000000000
-      Size.Height = 379.000000000000000000
+      Size.Width = 663.000000000000000000
+      Size.Height = 387.000000000000000000
       Size.PlatformDefault = False
-      TabIndex = 0
+      TabIndex = 2
       TabOrder = 1
       TabPosition = Bottom
       object tabLista: TTabItem
         CustomIcon = <
           item
           end>
-        IsSelected = True
+        IsSelected = False
         Size.Width = 43.000000000000000000
         Size.Height = 23.000000000000000000
         Size.PlatformDefault = False
@@ -115,37 +115,19 @@ object FrmALClientePadrao: TFrmALClientePadrao
         Text = 'Lista'
         ExplicitSize.cx = 62.000000000000000000
         ExplicitSize.cy = 23.000000000000000000
-        object lbLista: TListBox
-          Align = Client
-          Margins.Left = 3.000000000000000000
-          Margins.Top = 3.000000000000000000
-          Margins.Right = 3.000000000000000000
-          Margins.Bottom = 3.000000000000000000
-          Size.Width = 672.000000000000000000
-          Size.Height = 305.000000000000000000
-          Size.PlatformDefault = False
-          TabOrder = 0
-          DisableFocusEffect = True
-          DefaultItemStyles.ItemStyle = ''
-          DefaultItemStyles.GroupHeaderStyle = ''
-          DefaultItemStyles.GroupFooterStyle = ''
-          OnItemClick = lbListaItemClick
-          Viewport.Width = 670.000000000000000000
-          Viewport.Height = 303.000000000000000000
-        end
         object Panel1: TPanel
           Align = Top
-          Size.Width = 678.000000000000000000
+          Size.Width = 663.000000000000000000
           Size.Height = 45.000000000000000000
           Size.PlatformDefault = False
-          TabOrder = 1
+          TabOrder = 0
           object ListBox2: TListBox
             Align = Client
             Margins.Left = 5.000000000000000000
             Margins.Top = 5.000000000000000000
             Margins.Right = 5.000000000000000000
             Margins.Bottom = 5.000000000000000000
-            Size.Width = 668.000000000000000000
+            Size.Width = 653.000000000000000000
             Size.Height = 35.000000000000000000
             Size.PlatformDefault = False
             TabOrder = 0
@@ -153,10 +135,10 @@ object FrmALClientePadrao: TFrmALClientePadrao
             DefaultItemStyles.ItemStyle = ''
             DefaultItemStyles.GroupHeaderStyle = ''
             DefaultItemStyles.GroupFooterStyle = ''
-            Viewport.Width = 666.000000000000000000
+            Viewport.Width = 651.000000000000000000
             Viewport.Height = 33.000000000000000000
             object ListBoxItem1: TListBoxItem
-              Size.Width = 666.000000000000000000
+              Size.Width = 651.000000000000000000
               Size.Height = 32.000000000000000000
               Size.PlatformDefault = False
               TabOrder = 0
@@ -190,6 +172,17 @@ object FrmALClientePadrao: TFrmALClientePadrao
             end
           end
         end
+        object griLista: TGrid
+          Align = Client
+          Size.Width = 663.000000000000000000
+          Size.Height = 319.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 1
+          RowCount = 0
+          RowHeight = 21.000000000000000000
+          Viewport.Width = 661.000000000000000000
+          Viewport.Height = 296.000000000000000000
+        end
       end
       object tabCadastro: TTabItem
         CustomIcon = <
@@ -205,11 +198,45 @@ object FrmALClientePadrao: TFrmALClientePadrao
         ExplicitSize.cx = 85.000000000000000000
         ExplicitSize.cy = 23.000000000000000000
       end
+      object tabDesenvolvedor: TTabItem
+        CustomIcon = <
+          item
+          end>
+        IsSelected = True
+        Size.Width = 116.000000000000000000
+        Size.Height = 23.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = ''
+        TabOrder = 0
+        Text = 'tabDesenvolvedor'
+        object Button1: TButton
+          Position.X = 16.000000000000000000
+          Position.Y = 8.000000000000000000
+          Size.Width = 129.000000000000000000
+          Size.Height = 22.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 0
+          Text = 'Lista de index'
+          OnClick = Button1Click
+        end
+        object Memo1: TMemo
+          Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
+          DataDetectorTypes = []
+          Position.X = 16.000000000000000000
+          Position.Y = 56.000000000000000000
+          Size.Width = 625.000000000000000000
+          Size.Height = 281.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 1
+          Viewport.Width = 623.000000000000000000
+          Viewport.Height = 279.000000000000000000
+        end
+      end
     end
   end
   object pTitulo: TPanel
     Align = Top
-    Size.Width = 678.000000000000000000
+    Size.Width = 663.000000000000000000
     Size.Height = 25.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 5
@@ -227,8 +254,8 @@ object FrmALClientePadrao: TFrmALClientePadrao
   end
   object ActionList1: TActionList
     Images = FrmALClienteMenu.ImageList1
-    Left = 560
-    Top = 160
+    Left = 240
+    Top = 168
     object acSalvar: TAction
       Category = 'TooBar'
       Text = 'Salvar'
@@ -279,23 +306,29 @@ object FrmALClientePadrao: TFrmALClientePadrao
       ImageIndex = 6
     end
   end
-  object dsMongo: TFDMongoDataSet
-    FormatOptions.AssignedValues = [fvMaxBcdPrecision, fvMaxBcdScale, fvStrsTrim2Len]
+  object SQLListar: TFDMongoDataSet
+    FormatOptions.AssignedValues = [fvStrsTrim2Len]
     FormatOptions.StrsTrim2Len = True
-    FormatOptions.MaxBcdPrecision = 2147483647
-    FormatOptions.MaxBcdScale = 2147483647
-    UpdateOptions.AssignedValues = [uvUpdateChngFields, uvUpdateMode, uvLockMode, uvLockPoint, uvLockWait, uvRefreshMode, uvFetchGeneratorsPoint, uvCheckRequired, uvCheckReadOnly, uvCheckUpdatable]
-    UpdateOptions.UpdateChangedFields = False
-    UpdateOptions.LockWait = True
-    UpdateOptions.RefreshMode = rmManual
-    UpdateOptions.FetchGeneratorsPoint = gpNone
-    UpdateOptions.CheckRequired = False
-    UpdateOptions.CheckReadOnly = False
-    UpdateOptions.CheckUpdatable = False
     Connection = FrmALClienteDmDados.FDConnection1
-    DatabaseName = 'ALICIA'
-    CollectionName = 'PESSOA'
-    Left = 560
-    Top = 233
+    Left = 126
+    Top = 195
+  end
+  object BindSourceDB1: TBindSourceDB
+    DataSet = SQLListar
+    ScopeMappings = <>
+    Left = 121
+    Top = 296
+  end
+  object BindingsList1: TBindingsList
+    Methods = <>
+    OutputConverters = <>
+    Left = 124
+    Top = 245
+    object LinkGridToDataSourceBindSourceDB1: TLinkGridToDataSource
+      Category = 'Quick Bindings'
+      DataSource = BindSourceDB1
+      GridControl = griLista
+      Columns = <>
+    end
   end
 end

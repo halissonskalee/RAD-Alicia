@@ -1,14 +1,14 @@
 inherited FrmALClientePessoa: TFrmALClientePessoa
   Caption = 'Pessoa'
-  ClientHeight = 588
-  ClientWidth = 515
+  ClientHeight = 536
+  ClientWidth = 719
   DesignerMasterStyle = 0
   inherited lyCliente: TLayout
-    Size.Width = 515.000000000000000000
-    Size.Height = 563.000000000000000000
+    Size.Width = 719.000000000000000000
+    Size.Height = 511.000000000000000000
     TabOrder = 1
     inherited Panel2: TPanel
-      Size.Width = 515.000000000000000000
+      Size.Width = 719.000000000000000000
       inherited btnNovo: TButton
         Position.X = 48.000000000000000000
         Size.Width = 48.000000000000000000
@@ -29,33 +29,30 @@ inherited FrmALClientePessoa: TFrmALClientePessoa
       end
     end
     inherited TabControl: TTabControl
-      Size.Width = 515.000000000000000000
-      Size.Height = 515.000000000000000000
-      TabIndex = 1
+      Size.Width = 719.000000000000000000
+      Size.Height = 463.000000000000000000
       inherited tabLista: TTabItem
-        IsSelected = False
         ExplicitSize.cx = 62.000000000000000000
         ExplicitSize.cy = 23.000000000000000000
-        inherited lbLista: TListBox
-          Size.Width = 44.000000000000000000
-          Size.Height = 0.000000000000000000
-          Viewport.Width = 42.000000000000000000
-          Viewport.Height = 0.000000000000000000
-        end
         inherited Panel1: TPanel
-          Size.Width = 50.000000000000000000
+          Size.Width = 719.000000000000000000
           inherited ListBox2: TListBox
-            Size.Width = 40.000000000000000000
-            Viewport.Width = 38.000000000000000000
+            Size.Width = 709.000000000000000000
+            Viewport.Width = 707.000000000000000000
             Viewport.Height = 33.000000000000000000
             inherited ListBoxItem1: TListBoxItem
-              Size.Width = 38.000000000000000000
+              Size.Width = 707.000000000000000000
             end
           end
         end
+        inherited griLista: TGrid
+          Size.Width = 719.000000000000000000
+          Size.Height = 395.000000000000000000
+          Viewport.Width = 717.000000000000000000
+          Viewport.Height = 372.000000000000000000
+        end
       end
       inherited tabCadastro: TTabItem
-        IsSelected = True
         ExplicitSize.cx = 85.000000000000000000
         ExplicitSize.cy = 23.000000000000000000
         object edt_id: TEdit
@@ -322,10 +319,18 @@ inherited FrmALClientePessoa: TFrmALClientePessoa
           end
         end
       end
+      inherited tabDesenvolvedor: TTabItem
+        ExplicitSize.cx = 67.000000000000000000
+        ExplicitSize.cy = 23.000000000000000000
+        inherited Memo1: TMemo
+          Viewport.Width = 625.000000000000000000
+          Viewport.Height = 281.000000000000000000
+        end
+      end
     end
   end
   inherited pTitulo: TPanel
-    Size.Width = 515.000000000000000000
+    Size.Width = 719.000000000000000000
     TabOrder = 4
   end
   inherited ActionList1: TActionList

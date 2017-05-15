@@ -12,7 +12,8 @@ uses
   FMX.Edit, FMX.SearchBox, FMX.ListBox, FMX.Layouts, FMX.Controls.Presentation,
   FMX.DateTimeCtrls , AL.Classe.Pessoa, System.Rtti, System.Bindings.Outputs,
   Fmx.Bind.Editors, Data.Bind.EngExt, Fmx.Bind.DBEngExt, Data.Bind.Components,
-  Data.Bind.DBScope, FireDAC.Phys.MongoDBWrapper;
+  Data.Bind.DBScope, FireDAC.Phys.MongoDBWrapper, Fmx.Bind.Grid, Data.Bind.Grid,
+  FMX.Grid, FMX.ScrollBox, FMX.Memo;
 
 type
   TFrmALClientePessoa = class(TFrmALClientePadrao)
@@ -61,6 +62,8 @@ type
     function FocoEditar: Boolean; override;
     function NovoBefore: Boolean; override;
     function Novo: Boolean; override;
+
+
 
 
 
@@ -147,7 +150,6 @@ function TFrmALClientePessoa.FocoNovo: Boolean;
 begin
   edtrazao_social_pes.SetFocus;
 end;
-
 
 function TFrmALClientePessoa.Novo: Boolean;
 begin

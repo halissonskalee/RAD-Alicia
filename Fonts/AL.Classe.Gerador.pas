@@ -7,12 +7,9 @@ Uses AL.Tipo, AL.Classe.Padrao, System.JSON, FMX.Dialogs;
 type
   TGerador = class(TPadrao)
   public
-
     function Pessoa : Integer;
     function GetTabela: string; override;
     function CriarGerador : Boolean;
-
-
 end;
 
 implementation
@@ -77,6 +74,18 @@ var
   SQL : TFDMongoDataSet;
 begin
   try
+    GetConMongo[GetBanco][GetTabela].Update()
+      .Match
+        .Add('_id', 0)
+      .&End
+      .Modify
+        .Inc()
+          .Field('PESSOA', 1)
+        .&end
+      .&End
+      .Exec;
+
+
     SQL            := TFDMongoDataSet.Create(nil);
     SQL.Connection := GetFDCon;
     SQL.Close;

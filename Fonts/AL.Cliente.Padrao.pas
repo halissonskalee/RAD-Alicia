@@ -14,7 +14,9 @@ uses
   Data.DB, FireDAC.Comp.DataSet, FireDAC.Comp.Client,
   FireDAC.Phys.MongoDBDataSet, FireDAC.Stan.Async, FireDAC.DApt,
   AL.Cliente.Modelo,
-  AL.Persistencia;
+  AL.Persistencia, System.Rtti, Fmx.Bind.Grid, System.Bindings.Outputs,
+  Fmx.Bind.Editors, Data.Bind.EngExt, Fmx.Bind.DBEngExt, Data.Bind.Components,
+  Data.Bind.Grid, FMX.Grid, Data.Bind.DBScope, FMX.ScrollBox, FMX.Memo;
 
 type
   TAcao = (tpInsert, tpUpdate, tpLista);
@@ -37,12 +39,10 @@ type
     tabCadastro: TTabItem;
     changeTabLista: TChangeTabAction;
     changeTabCadastro: TChangeTabAction;
-    dsMongo: TFDMongoDataSet;
     acVoltar: TAction;
     btnVoltar: TButton;
     pTitulo: TPanel;
     lblTitulo: TLabel;
-    lbLista: TListBox;
     ListBox2: TListBox;
     ListBoxItem1: TListBoxItem;
     edtBusca: TEdit;
@@ -50,6 +50,14 @@ type
     Panel1: TPanel;
     btnEditar: TButton;
     SearchEditButton1: TSearchEditButton;
+    griLista: TGrid;
+    SQLListar: TFDMongoDataSet;
+    BindSourceDB1: TBindSourceDB;
+    BindingsList1: TBindingsList;
+    LinkGridToDataSourceBindSourceDB1: TLinkGridToDataSource;
+    tabDesenvolvedor: TTabItem;
+    Button1: TButton;
+    Memo1: TMemo;
     procedure acNovoExecute(Sender: TObject);
     procedure acEditarExecute(Sender: TObject);
     procedure ListBox1ItemClick(const Sender: TCustomListBox;
@@ -63,6 +71,8 @@ type
     procedure lbListaItemClick(const Sender: TCustomListBox;
       const Item: TListBoxItem);
     procedure acSalvarExecute(Sender: TObject);
+    procedure SQLListarBeforeOpen(DataSet: TDataSet);
+    procedure Button1Click(Sender: TObject);
 
   private
 
@@ -77,7 +87,7 @@ type
     procedure fnc_buscarCampoChave(var i: Integer; const Item: TListBoxItem);
     procedure fnc_PreencherRegistros;
     procedure ExibirBotoes;
-    function Lista(oCrs: IMongoCursor): Boolean;
+
 
 
     { Private declarations }
@@ -94,7 +104,7 @@ type
 
 
     function GetCon : TMongoCollection;
-    function ListaAoCriar: Boolean;
+    function ListaAoCriar: Boolean; virtual;
 
     function Fechar: Boolean; virtual;
     function FocoInicial : Boolean ; virtual;
@@ -184,6 +194,17 @@ begin
     ExibirBotoes;
   end;
 
+end;
+
+procedure TFrmALClientePadrao.Button1Click(Sender: TObject);
+var
+  oCrs: IMongoCursor;
+begin
+  inherited;
+  oCrs := GetCon.ListIndexes;
+  Memo1.Lines.Clear;
+  while oCrs.Next do
+    Memo1.Lines.Add(oCrs.Doc.AsJSON)
 end;
 
 procedure TFrmALClientePadrao.Button2Click(Sender: TObject);
@@ -276,7 +297,7 @@ begin
   CriarBefore;
 
   lblTitulo.Text          := Self.Caption;
-  TabControl.TabPosition  := TTabPosition.None;
+//  TabControl.TabPosition  := TTabPosition.None;
   TabControl.ActiveTab    := tabLista;
   ExibirBotoes;
 
@@ -284,7 +305,7 @@ begin
   Criar;
   CriarAfter;
 
-  //Sleep(500);
+
   ListaAoCriar;
 
   Task := TTask.Create(
@@ -355,16 +376,8 @@ begin
 end;
 
 function TFrmALClientePadrao.Filtrar(Value: String): Boolean;
-var
-  Cursor : IMongoCursor;
 begin
-  Cursor := GetCon.Find()
-             .Match()
-                .Exp('razao_social_pes', '{ "$regex" : "Won*" }')
-              .&End;
 
-
-  Lista(Cursor)
 end;
 
 
@@ -383,7 +396,14 @@ end;
 
 function TFrmALClientePadrao.ListaAoCriar: Boolean;
 begin
-  Lista(GetCon.Find().Limit(100));
+  SQLListar.Close;
+  SQLListar.Cursor := GetCon.Find()
+                              .Project()
+                                .Field('_id', true)
+                                .Field('razao_social_pes', true)
+                                .Field('data_cadastro_pes', true)
+                              .&End;
+  SQLListar.Open;
 end;
 
 procedure TFrmALClientePadrao.ListBox1ItemClick(const Sender: TCustomListBox;
@@ -444,27 +464,13 @@ begin
   Filtrar(edtBusca.Text);
 end;
 
-function TFrmALClientePadrao.Lista(oCrs :IMongoCursor): Boolean;
+
+
+procedure TFrmALClientePadrao.SQLListarBeforeOpen(DataSet: TDataSet);
 begin
-  if not Assigned(oCrs) then
-    Exit;
-  if FFieldText.IsEmpty or FFieldID.IsEmpty then
-    Exit;
-
-  dsMongo.Close;
-  dsMongo.Cursor := oCrs;
-  dsMongo.Open;
-
-  with dsMongo do
-  begin
-    First;
-    lbLista.Items.Clear;
-    while not Eof do
-    begin
-      lbLista.Items.AddObject(FieldByName(FFieldText).AsString, TObject(FieldByName(FFieldID).AsInteger));
-      Next;
-    end;
-  end;
+  inherited;
+  SQLListar.DatabaseName   := FrmALClienteDmDados.GetBanco;
+  SQLListar.CollectionName := Persistencia.Tabela;
 end;
 
 end.
