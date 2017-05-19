@@ -16,7 +16,6 @@ type
       function GetALTextLabel: String;
     protected
       procedure SetName(const NewName: TComponentName); override;
-
     public
       procedure AfterConstruction; override;
 
