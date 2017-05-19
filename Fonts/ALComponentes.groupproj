@@ -1,0 +1,48 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{44FD5B74-BBDA-476E-92E8-772BA116D365}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="TALLabel.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="TALEdit.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="TALLabel">
+        <MSBuild Projects="TALLabel.dproj"/>
+    </Target>
+    <Target Name="TALLabel:Clean">
+        <MSBuild Projects="TALLabel.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="TALLabel:Make">
+        <MSBuild Projects="TALLabel.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="TALEdit">
+        <MSBuild Projects="TALEdit.dproj"/>
+    </Target>
+    <Target Name="TALEdit:Clean">
+        <MSBuild Projects="TALEdit.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="TALEdit:Make">
+        <MSBuild Projects="TALEdit.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="TALLabel;TALEdit"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="TALLabel:Clean;TALEdit:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="TALLabel:Make;TALEdit:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>

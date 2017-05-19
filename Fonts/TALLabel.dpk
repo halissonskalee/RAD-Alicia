@@ -1,4 +1,4 @@
-package TALEdit;
+package TALLabel;
 
 {$R *.res}
 {$IFDEF IMPLICITBUILDING This IFDEF should not be used by users}
@@ -29,10 +29,9 @@ package TALEdit;
 
 requires
   rtl,
-  fmx,
-  TALLabel;
+  fmx;
 
 contains
-  AL.Componente.TEdit in 'AL.Componente.TEdit.pas';
+  AL.Componente.TLabel in 'AL.Componente.TLabel.pas';
 
 end.

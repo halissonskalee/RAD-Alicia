@@ -6,12 +6,12 @@ uses
   System.SysUtils, System.Classes, FMX.Types, FMX.Controls,
   FMX.Controls.Presentation, FMX.Edit, System.UITypes,
   System.Variants, FMX.Forms, FMX.Graphics, FMX.Dialogs,
-  FMX.StdCtrls;
+  FMX.StdCtrls, AL.Componente.TLabel;
 
 type
   TALEdit = class(TEdit)
     private
-      FALlabel: Tlabel;
+      FALlabel: TALlabel;
       procedure SetALTextLabel(const Value: String);
       function GetALTextLabel: String;
     protected
@@ -39,7 +39,7 @@ end;
 procedure TALEdit.AfterConstruction;
 begin
   inherited;
-  FALlabel            := Tlabel.Create(nil);
+  FALlabel            := TALlabel.Create(nil);
   FALlabel.Text       := 'label';
   FALlabel.Name       := 'lb' + Name;
   FALlabel.Position.X := 0;
