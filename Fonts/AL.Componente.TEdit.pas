@@ -59,7 +59,11 @@ end;
 procedure TALEdit.SetALTextLabel(const Value: String);
 begin
   if Assigned(FALlabel) then
-    FALlabel.Text := Value;
+  begin
+    FALlabel.AutoSize := False;
+    FALlabel.Text     := Value;
+    FALlabel.AutoSize := True;
+  end;
 end;
 
 procedure TALEdit.SetName(const NewName: TComponentName);
