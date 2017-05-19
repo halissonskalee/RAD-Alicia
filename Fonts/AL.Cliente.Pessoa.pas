@@ -13,22 +13,16 @@ uses
   FMX.DateTimeCtrls , AL.Classe.Pessoa, System.Rtti, System.Bindings.Outputs,
   Fmx.Bind.Editors, Data.Bind.EngExt, Fmx.Bind.DBEngExt, Data.Bind.Components,
   Data.Bind.DBScope, FireDAC.Phys.MongoDBWrapper, Fmx.Bind.Grid, Data.Bind.Grid,
-  FMX.Grid, FMX.ScrollBox, FMX.Memo;
+  FMX.Grid, FMX.ScrollBox, FMX.Memo, AL.Componente.TEdit;
 
 type
   TFrmALClientePessoa = class(TFrmALClientePadrao)
-    edt_id: TEdit;
-    Label2: TLabel;
-    edtrazao_social_pes: TEdit;
     edtdt_cadastro_pes: TDateEdit;
     Cadastro: TLabel;
     cmbvtipo_pes: TComboBox;
     ListBoxItem2: TListBoxItem;
     ListBoxItem3: TListBoxItem;
     Label3: TLabel;
-    Label4: TLabel;
-    lCpfCnpj: TLabel;
-    edtcpf_cnpj_pes: TEdit;
     GroupBox1: TGroupBox;
     edtcodigo_cep: TEdit;
     Label5: TLabel;
@@ -46,6 +40,9 @@ type
     edtcomplemento_cep: TEdit;
     Label11: TLabel;
     SearchEditButton2: TSearchEditButton;
+    edt_id: TALEdit;
+    edtrazao_social_pes: TALEdit;
+    edtcpf_cnpj_pes: TALEdit;
     procedure cmbvtipo_pesChange(Sender: TObject);
     procedure SearchEditButton2Click(Sender: TObject);
   private
@@ -86,9 +83,9 @@ procedure TFrmALClientePessoa.cmbvtipo_pesChange(Sender: TObject);
 begin
   inherited;
   if cmbvtipo_pes.ItemIndex =0 then
-     lCpfCnpj.Text := 'CPF'
+     edtcpf_cnpj_pes.ALTextLabel := 'CPF'
   else
-     lCpfCnpj.Text := 'CNPJ';
+     edtcpf_cnpj_pes.ALTextLabel := 'CNPJ';
 end;
 
 function TFrmALClientePessoa.Criar: Boolean;
