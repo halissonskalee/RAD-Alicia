@@ -17,7 +17,8 @@ uses
   AL.Tipo in 'AL.Tipo.pas',
   AL.Cliente.CEP in 'AL.Cliente.CEP.pas' {FrmALClienteCEP: TDataModule},
   AL.Helper.Edit in 'AL.Helper.Edit.pas',
-  AL.Classe.Gerador in 'AL.Classe.Gerador.pas';
+  AL.Classe.Gerador in 'AL.Classe.Gerador.pas',
+  AL.Rotinas in 'AL.Rotinas.pas';
 
 {$R *.res}
 

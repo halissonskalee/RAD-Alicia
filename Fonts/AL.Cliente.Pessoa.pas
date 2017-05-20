@@ -13,16 +13,11 @@ uses
   FMX.DateTimeCtrls , AL.Classe.Pessoa, System.Rtti, System.Bindings.Outputs,
   Fmx.Bind.Editors, Data.Bind.EngExt, Fmx.Bind.DBEngExt, Data.Bind.Components,
   Data.Bind.DBScope, FireDAC.Phys.MongoDBWrapper, Fmx.Bind.Grid, Data.Bind.Grid,
-  FMX.Grid, FMX.ScrollBox, FMX.Memo, AL.Componente.TEdit;
+  FMX.Grid, FMX.ScrollBox, FMX.Memo, AL.Componente.TEdit, FMX.Grid.Style,
+  AL.Componente.TDateEdit, AL.Componente.TComboBox;
 
 type
   TFrmALClientePessoa = class(TFrmALClientePadrao)
-    edtdt_cadastro_pes: TDateEdit;
-    Cadastro: TLabel;
-    cmbvtipo_pes: TComboBox;
-    ListBoxItem2: TListBoxItem;
-    ListBoxItem3: TListBoxItem;
-    Label3: TLabel;
     GroupBox1: TGroupBox;
     edtcodigo_cep: TEdit;
     Label5: TLabel;
@@ -43,6 +38,10 @@ type
     edt_id: TALEdit;
     edtrazao_social_pes: TALEdit;
     edtcpf_cnpj_pes: TALEdit;
+    edtdt_cadastro_pes: TALDateEdit;
+    cmbvtipo_pes: TALComboBox;
+    ListBoxItem2: TListBoxItem;
+    ListBoxItem3: TListBoxItem;
     procedure cmbvtipo_pesChange(Sender: TObject);
     procedure SearchEditButton2Click(Sender: TObject);
   private

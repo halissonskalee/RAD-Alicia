@@ -16,7 +16,8 @@ uses
   AL.Cliente.Modelo,
   AL.Persistencia, System.Rtti, Fmx.Bind.Grid, System.Bindings.Outputs,
   Fmx.Bind.Editors, Data.Bind.EngExt, Fmx.Bind.DBEngExt, Data.Bind.Components,
-  Data.Bind.Grid, FMX.Grid, Data.Bind.DBScope, FMX.ScrollBox, FMX.Memo;
+  Data.Bind.Grid, FMX.Grid, Data.Bind.DBScope, FMX.ScrollBox, FMX.Memo,
+  FMX.Grid.Style;
 
 type
   TAcao = (tpInsert, tpUpdate, tpLista);

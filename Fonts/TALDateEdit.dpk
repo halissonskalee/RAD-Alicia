@@ -1,4 +1,4 @@
-package TALEdit;
+package TALDateEdit;
 
 {$R *.res}
 {$IFDEF IMPLICITBUILDING This IFDEF should not be used by users}
@@ -30,16 +30,9 @@ package TALEdit;
 requires
   rtl,
   fmx,
-  TALLabel,
-  dbrtl,
-  FireDAC,
-  FireDACCommonDriver,
-  FireDACCommon,
-  FireDACMongoDBDriver,
-  RESTComponents;
+  TALLabel;
 
 contains
-  AL.Componente.TEdit in 'AL.Componente.TEdit.pas',
-  AL.Tipo in 'AL.Tipo.pas';
+  AL.Componente.TDateEdit in 'AL.Componente.TDateEdit.pas';
 
 end.

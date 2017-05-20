@@ -9,6 +9,12 @@
         <Projects Include="TALEdit.dproj">
             <Dependencies/>
         </Projects>
+        <Projects Include="TALDateEdit.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="TALComboBox.dproj">
+            <Dependencies/>
+        </Projects>
     </ItemGroup>
     <ProjectExtensions>
         <Borland.Personality>Default.Personality.12</Borland.Personality>
@@ -35,14 +41,32 @@
     <Target Name="TALEdit:Make">
         <MSBuild Projects="TALEdit.dproj" Targets="Make"/>
     </Target>
+    <Target Name="TALDateEdit">
+        <MSBuild Projects="TALDateEdit.dproj"/>
+    </Target>
+    <Target Name="TALDateEdit:Clean">
+        <MSBuild Projects="TALDateEdit.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="TALDateEdit:Make">
+        <MSBuild Projects="TALDateEdit.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="TALComboBox">
+        <MSBuild Projects="TALComboBox.dproj"/>
+    </Target>
+    <Target Name="TALComboBox:Clean">
+        <MSBuild Projects="TALComboBox.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="TALComboBox:Make">
+        <MSBuild Projects="TALComboBox.dproj" Targets="Make"/>
+    </Target>
     <Target Name="Build">
-        <CallTarget Targets="TALLabel;TALEdit"/>
+        <CallTarget Targets="TALLabel;TALEdit;TALDateEdit;TALComboBox"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="TALLabel:Clean;TALEdit:Clean"/>
+        <CallTarget Targets="TALLabel:Clean;TALEdit:Clean;TALDateEdit:Clean;TALComboBox:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="TALLabel:Make;TALEdit:Make"/>
+        <CallTarget Targets="TALLabel:Make;TALEdit:Make;TALDateEdit:Make;TALComboBox:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>

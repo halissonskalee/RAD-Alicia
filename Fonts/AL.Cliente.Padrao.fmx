@@ -36,7 +36,6 @@ object FrmALClientePadrao: TFrmALClientePadrao
         Size.PlatformDefault = False
         StyleLookup = 'composetoolbutton'
         TabOrder = 1
-        Visible = True
       end
       object btnSalvar: TButton
         Action = acSalvar
@@ -50,7 +49,6 @@ object FrmALClientePadrao: TFrmALClientePadrao
         Size.PlatformDefault = False
         StyleLookup = 'composetoolbutton'
         TabOrder = 5
-        Visible = True
       end
       object btnExcluir: TButton
         Action = acExcluir
@@ -64,7 +62,6 @@ object FrmALClientePadrao: TFrmALClientePadrao
         Size.PlatformDefault = False
         StyleLookup = 'composetoolbutton'
         TabOrder = 6
-        Visible = True
       end
       object btnVoltar: TButton
         Action = acVoltar
@@ -77,7 +74,6 @@ object FrmALClientePadrao: TFrmALClientePadrao
         Size.PlatformDefault = False
         StyleLookup = 'priortoolbutton'
         TabOrder = 8
-        Visible = True
       end
       object btnEditar: TButton
         Action = acEditar
@@ -91,7 +87,6 @@ object FrmALClientePadrao: TFrmALClientePadrao
         Size.PlatformDefault = False
         StyleLookup = 'composetoolbutton'
         TabOrder = 4
-        Visible = True
       end
     end
     object TabControl: TTabControl
@@ -102,12 +97,19 @@ object FrmALClientePadrao: TFrmALClientePadrao
       TabIndex = 2
       TabOrder = 1
       TabPosition = Bottom
+      Sizes = (
+        663s
+        364s
+        663s
+        364s
+        663s
+        364s)
       object tabLista: TTabItem
         CustomIcon = <
           item
           end>
         IsSelected = False
-        Size.Width = 43.000000000000000000
+        Size.Width = 44.000000000000000000
         Size.Height = 23.000000000000000000
         Size.PlatformDefault = False
         StyleLookup = ''
@@ -135,8 +137,8 @@ object FrmALClientePadrao: TFrmALClientePadrao
             DefaultItemStyles.ItemStyle = ''
             DefaultItemStyles.GroupHeaderStyle = ''
             DefaultItemStyles.GroupFooterStyle = ''
-            Viewport.Width = 651.000000000000000000
-            Viewport.Height = 33.000000000000000000
+            Viewport.Width = 653.000000000000000000
+            Viewport.Height = 35.000000000000000000
             object ListBoxItem1: TListBoxItem
               Size.Width = 651.000000000000000000
               Size.Height = 32.000000000000000000
@@ -174,14 +176,16 @@ object FrmALClientePadrao: TFrmALClientePadrao
         end
         object griLista: TGrid
           Align = Client
+          CanFocus = True
+          ClipChildren = True
           Size.Width = 663.000000000000000000
           Size.Height = 319.000000000000000000
           Size.PlatformDefault = False
           TabOrder = 1
-          RowCount = 0
           RowHeight = 21.000000000000000000
-          Viewport.Width = 661.000000000000000000
-          Viewport.Height = 296.000000000000000000
+          RowCount = 0
+          Viewport.Width = 663.000000000000000000
+          Viewport.Height = 319.000000000000000000
         end
       end
       object tabCadastro: TTabItem
@@ -189,7 +193,7 @@ object FrmALClientePadrao: TFrmALClientePadrao
           item
           end>
         IsSelected = False
-        Size.Width = 67.000000000000000000
+        Size.Width = 68.000000000000000000
         Size.Height = 23.000000000000000000
         Size.PlatformDefault = False
         StyleLookup = ''
@@ -203,12 +207,14 @@ object FrmALClientePadrao: TFrmALClientePadrao
           item
           end>
         IsSelected = True
-        Size.Width = 116.000000000000000000
+        Size.Width = 117.000000000000000000
         Size.Height = 23.000000000000000000
         Size.PlatformDefault = False
         StyleLookup = ''
         TabOrder = 0
         Text = 'tabDesenvolvedor'
+        ExplicitSize.cx = 116.000000000000000000
+        ExplicitSize.cy = 23.000000000000000000
         object Button1: TButton
           Position.X = 16.000000000000000000
           Position.Y = 8.000000000000000000
@@ -228,8 +234,8 @@ object FrmALClientePadrao: TFrmALClientePadrao
           Size.Height = 281.000000000000000000
           Size.PlatformDefault = False
           TabOrder = 1
-          Viewport.Width = 623.000000000000000000
-          Viewport.Height = 279.000000000000000000
+          Viewport.Width = 625.000000000000000000
+          Viewport.Height = 281.000000000000000000
         end
       end
     end
