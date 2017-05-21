@@ -17,7 +17,7 @@ uses
   AL.Persistencia, System.Rtti, Fmx.Bind.Grid, System.Bindings.Outputs,
   Fmx.Bind.Editors, Data.Bind.EngExt, Fmx.Bind.DBEngExt, Data.Bind.Components,
   Data.Bind.Grid, FMX.Grid, Data.Bind.DBScope, FMX.ScrollBox, FMX.Memo,
-  FMX.Grid.Style;
+  FMX.Grid.Style, FMX.Objects;
 
 type
   TAcao = (tpInsert, tpUpdate, tpLista);
@@ -59,6 +59,11 @@ type
     tabDesenvolvedor: TTabItem;
     Button1: TButton;
     Memo1: TMemo;
+    btnVoltarPath: TPath;
+    btnSalvarPath: TPath;
+    btnNovoPath: TPath;
+    btnExcluirPath: TPath;
+    btnEditarPath: TPath;
     procedure acNovoExecute(Sender: TObject);
     procedure acEditarExecute(Sender: TObject);
     procedure ListBox1ItemClick(const Sender: TCustomListBox;

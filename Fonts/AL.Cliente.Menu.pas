@@ -32,7 +32,9 @@ type
     lyCliente: TLayout;
     ListBoxItem2: TListBoxItem;
     StyleBook1: TStyleBook;
-    ImageList1: TImageList;
+    btnMenuPath: TPath;
+    btnSairPath: TPath;
+    btnConfigurarPth: TPath;
     procedure actSairExecute(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure ListBoxItem2Click(Sender: TObject);
