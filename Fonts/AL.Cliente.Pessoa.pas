@@ -14,7 +14,7 @@ uses
   Fmx.Bind.Editors, Data.Bind.EngExt, Fmx.Bind.DBEngExt, Data.Bind.Components,
   Data.Bind.DBScope, FireDAC.Phys.MongoDBWrapper, Fmx.Bind.Grid, Data.Bind.Grid,
   FMX.Grid, FMX.ScrollBox, FMX.Memo, AL.Componente.TEdit, FMX.Grid.Style,
-  AL.Componente.TDateEdit, AL.Componente.TComboBox;
+  AL.Componente.TDateEdit, AL.Componente.TComboBox, FMX.Objects;
 
 type
   TFrmALClientePessoa = class(TFrmALClientePadrao)
@@ -42,6 +42,7 @@ type
     cmbvtipo_pes: TALComboBox;
     ListBoxItem2: TListBoxItem;
     ListBoxItem3: TListBoxItem;
+    Path1: TPath;
     procedure cmbvtipo_pesChange(Sender: TObject);
     procedure SearchEditButton2Click(Sender: TObject);
   private

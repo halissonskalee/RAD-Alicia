@@ -139,6 +139,15 @@
         <DCCReference Include="FireDACCommon.dcp"/>
         <DCCReference Include="FireDACMongoDBDriver.dcp"/>
         <DCCReference Include="RESTComponents.dcp"/>
+        <DCCReference Include="IndyIPCommon.dcp"/>
+        <DCCReference Include="IndySystem.dcp"/>
+        <DCCReference Include="IndyProtocols.dcp"/>
+        <DCCReference Include="IndyCore.dcp"/>
+        <DCCReference Include="IndyIPClient.dcp"/>
+        <DCCReference Include="fmxFireDAC.dcp"/>
+        <DCCReference Include="bindcompfmx.dcp"/>
+        <DCCReference Include="TALDateEdit.dcp"/>
+        <DCCReference Include="TALComboBox.dcp"/>
         <DCCReference Include="AL.Componente.TEdit.pas"/>
         <DCCReference Include="AL.Tipo.pas"/>
         <BuildConfiguration Include="Release">

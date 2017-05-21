@@ -6,20 +6,25 @@ uses
   System.SysUtils, System.Classes, FMX.Types, FMX.Controls,
   FMX.Controls.Presentation, FMX.Edit, System.UITypes,
   System.Variants, FMX.Forms, FMX.Graphics, FMX.Dialogs,
-  FMX.StdCtrls, AL.Componente.TLabel, AL.Tipo, FMX.Text;
+  FMX.StdCtrls, AL.Componente.TLabel, AL.Tipo, FMX.Text,
+  FMX.Objects;
 
 type
   TALEdit = class(TEdit)
   private
     FALlabel: TALlabel;
+    FALPath : TPath;
+
     FALTipo: TALTipo;
     FALOnValidate: TValidateTextEvent;
     FALOnValidating: TValidateTextEvent;
+    FALValido: Boolean;
     procedure SetALTextLabel(const Value: String);
     function GetALTextLabel: String;
     procedure SetALTipo(const Value: TALTipo);
     procedure SetALOnValidate(const Value: TValidateTextEvent);
     procedure SetALOnValidating(const Value: TValidateTextEvent);
+    procedure SetALValido(const Value: Boolean);
   protected
     procedure SetName(const NewName: TComponentName); override;
     procedure InternalValidate(Sender: TObject; var Text: string);
@@ -35,11 +40,14 @@ type
     property ALTipo: TALTipo read FALTipo write SetALTipo;
     property ALOnValidating: TValidateTextEvent  read FALOnValidating write SetALOnValidating;
     property ALOnValidate: TValidateTextEvent  read FALOnValidate write SetALOnValidate;
+    property ALValido :Boolean read FALValido write SetALValido;
   end;
 
 procedure Register;
 
 implementation
+
+uses AL.Rotinas ;
 
 procedure Register;
 begin
@@ -54,6 +62,7 @@ begin
 
   OnValidate   := InternalValidate;
   OnValidating := InternalValidating;
+  ALValido     := True;
 
 
   CharCase := TEditCharCase.ecUpperCase;
@@ -80,6 +89,13 @@ procedure TALEdit.InternalValidate(Sender: TObject; var Text: string);
 begin
   if Assigned(FALOnValidate) then
     FALOnValidate(Sender,Text);
+
+  if ALTipo = Pessoa then
+  begin
+    ALValido := ValidarCpf(Text);
+  end;
+
+
 end;
 
 procedure TALEdit.InternalValidating(Sender: TObject; var Text: string);
@@ -117,6 +133,33 @@ begin
     FilterChar := '0123456789';
   end;
 
+end;
+
+procedure TALEdit.SetALValido(const Value: Boolean);
+begin
+  FALValido := Value;
+
+  if not Value then
+  begin
+    if not Assigned(FALPath) then
+      FALPath := TPath.Create(nil);
+    FALPath.Name := Name + 'path';
+    FALPath.Data.Data  := 'M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z';
+    FALPAth.Fill.Color :=  TAlphaColorRec.Red;
+    FALPAth.Fill.Kind  :=  TBrushKind.Solid;
+    FALPAth.Stroke.Color := TAlphaColorRec.White;
+    FALPAth.Stroke.Kind  := TBrushKind.Solid;
+    FALPath.Position.X := Width;
+    FALPath.Position.Y := 0;
+    FALPath.Height     := 22;
+    FALPath.Width      := 22;
+    FALPath.Stored     := False;
+    FALPath.Parent     := Self;
+    FALPath.Locked     := True;
+  end
+  else
+    if Assigned(FALPath) then
+      FALPath.Destroy
 end;
 
 procedure TALEdit.SetName(const NewName: TComponentName);

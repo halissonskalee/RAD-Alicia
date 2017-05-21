@@ -46,8 +46,8 @@ inherited FrmALClientePessoa: TFrmALClientePessoa
           Size.Width = 719.000000000000000000
           inherited ListBox2: TListBox
             Size.Width = 709.000000000000000000
-            Viewport.Width = 707.000000000000000000
-            Viewport.Height = 33.000000000000000000
+            Viewport.Width = 709.000000000000000000
+            Viewport.Height = 35.000000000000000000
             inherited ListBoxItem1: TListBoxItem
               Size.Width = 707.000000000000000000
             end
@@ -232,7 +232,9 @@ inherited FrmALClientePessoa: TFrmALClientePessoa
           TabOrder = 1
           Position.X = 7.000000000000000000
           Position.Y = 16.000000000000000000
+          CharCase = ecUpperCase
           ALTextLabel = 'Codigo'
+          ALTipo = Nada
         end
         object edtrazao_social_pes: TALEdit
           Touch.InteractiveGestures = [LongTap, DoubleTap]
@@ -242,14 +244,18 @@ inherited FrmALClientePessoa: TFrmALClientePessoa
           Size.Width = 505.000000000000000000
           Size.Height = 22.000000000000000000
           Size.PlatformDefault = False
+          CharCase = ecUpperCase
           ALTextLabel = 'Nome'
+          ALTipo = Nada
         end
         object edtcpf_cnpj_pes: TALEdit
           Touch.InteractiveGestures = [LongTap, DoubleTap]
           TabOrder = 3
           Position.X = 8.000000000000000000
           Position.Y = 138.000000000000000000
+          CharCase = ecUpperCase
           ALTextLabel = 'CPF'
+          ALTipo = Nada
         end
         object edtdt_cadastro_pes: TALDateEdit
           Date = 42874.000000000000000000
@@ -284,6 +290,27 @@ inherited FrmALClientePessoa: TFrmALClientePessoa
             TabOrder = 1
             Text = 'Juridica'
           end
+        end
+        object Path1: TPath
+          Data.Path = {
+            1A00000000000000000040410000004002000000295CCF400000004002000000
+            00000040295CCF400200000000000040000040410200000000000040F6288C41
+            02000000295CCF400000B04102000000000040410000B04102000000F6288C41
+            0000B041020000000000B041F6288C41020000000000B0410000404102000000
+            0000B041285CCF4002000000F6288C4100000040020000000000404100000040
+            0300000000004041000000400000000000005041000088410100000000003041
+            0000884101000000000030410000304101000000000050410000304101000000
+            0000504100008841030000000000504100008841000000000000504100001041
+            01000000000030410000104101000000000030410000E0400100000000005041
+            0000E040010000000000504100001041030000000000504100001041}
+          Fill.Color = claRed
+          Position.X = 108.000000000000000000
+          Position.Y = 15.000000000000000000
+          Size.Width = 22.000000000000000000
+          Size.Height = 23.000000000000000000
+          Size.PlatformDefault = False
+          Stroke.Kind = None
+          WrapMode = Fit
         end
       end
       inherited tabDesenvolvedor: TTabItem

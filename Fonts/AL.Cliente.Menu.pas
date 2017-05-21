@@ -14,7 +14,7 @@ uses
   System.Actions, FMX.ActnList, FMX.ListBox, FMX.Layouts, FMX.Edit,
   FMX.SearchBox, FMX.DateTimeCtrls, System.Generics.Collections,
   AL.Cliente.Padrao, FMX.TabControl, System.RegularExpressions,
-  AL.Componente.TEdit;
+  AL.Componente.TEdit, FMX.Objects;
 
 type
   TFrmALClienteMenu = class(TForm)
@@ -33,6 +33,7 @@ type
     ListBoxItem2: TListBoxItem;
     StyleBook1: TStyleBook;
     ImageList1: TImageList;
+    Path1: TPath;
     ALEdit1: TALEdit;
     procedure actSairExecute(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -41,6 +42,7 @@ type
       Shift: TShiftState);
     procedure ALEdit1ALOnValidate(Sender: TObject; var Text: string);
     procedure ALEdit1ALOnValidating(Sender: TObject; var Text: string);
+    procedure actMenuExecute(Sender: TObject);
 
   private
 
@@ -58,6 +60,11 @@ implementation
 
 uses AL.Cliente.DmDados, AL.Cliente.Pessoa, AL.Cliente.CEP, AL.Rotinas;
 
+procedure TFrmALClienteMenu.actMenuExecute(Sender: TObject);
+begin
+//
+end;
+
 procedure TFrmALClienteMenu.actSairExecute(Sender: TObject);
 begin
   Application.Terminate;
@@ -66,13 +73,8 @@ end;
 procedure TFrmALClienteMenu.ALEdit1ALOnValidate(Sender: TObject;
   var Text: string);
 begin
-  ValidarCpf(Text);
+  //
 
-  Sleep(10);
-{  if ValidarCpf(Text) then
-    ShowMessage('Validao')
-  else
-    ShowMessage('INValidao');}
 end;
 
 
