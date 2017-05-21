@@ -19,8 +19,6 @@ uses
 type
   TFrmALClientePessoa = class(TFrmALClientePadrao)
     GroupBox1: TGroupBox;
-    edtcodigo_cep: TEdit;
-    Label5: TLabel;
     edtcidade_nome_cep: TEdit;
     Label6: TLabel;
     edtcidade_codigo_cep: TEdit;
@@ -34,15 +32,13 @@ type
     Label10: TLabel;
     edtcomplemento_cep: TEdit;
     Label11: TLabel;
-    SearchEditButton2: TSearchEditButton;
     edt_id: TALEdit;
     edtrazao_social_pes: TALEdit;
     edtcpf_cnpj_pes: TALEdit;
     edtdt_cadastro_pes: TALDateEdit;
-    cmbvtipo_pes: TALComboBox;
-    ListBoxItem2: TListBoxItem;
-    ListBoxItem3: TListBoxItem;
-    Path1: TPath;
+    edtcodigo_cep: TALEdit;
+    SearchEditButton2: TSearchEditButton;
+    cmbtipo_pes: TALComboBox;
     procedure cmbvtipo_pesChange(Sender: TObject);
     procedure SearchEditButton2Click(Sender: TObject);
   private
@@ -82,7 +78,7 @@ uses AL.Cliente.DmDados, AL.Cliente.Menu, Rest.Json, AL.Cliente.CEP,
 procedure TFrmALClientePessoa.cmbvtipo_pesChange(Sender: TObject);
 begin
   inherited;
-  if cmbvtipo_pes.ItemIndex =0 then
+  if cmbtipo_pes.ItemIndex =0 then
      edtcpf_cnpj_pes.ALTextLabel := 'CPF'
   else
      edtcpf_cnpj_pes.ALTextLabel := 'CNPJ';
@@ -106,7 +102,7 @@ begin
   edt_id.Text               := Pessoa._id.ToString;
   edtrazao_social_pes.Text  := Pessoa.razao_social_pes;
   edtdt_cadastro_pes.Date   := Pessoa.dt_cadastro_pes;
-  cmbvtipo_pes.ItemIndex    := Pessoa.tipo_pes.ToInteger;
+  cmbtipo_pes.ItemIndex    := Pessoa.tipo_pes.ToInteger;
   edtcpf_cnpj_pes.Text      := Pessoa.cpf_cnpj_pes;
 
 
@@ -154,7 +150,7 @@ begin
   edt_id.Leitura            :=True;
   edtrazao_social_pes.Clear;
   edtdt_cadastro_pes.Date   := Now;
-  cmbvtipo_pes.ItemIndex    := 0;
+  cmbtipo_pes.ItemIndex    := 0;
   edtcpf_cnpj_pes.Clear     ;
 
   Result := True;
@@ -182,7 +178,7 @@ begin
   Pessoa._id              := StrToIntDef(edt_id.Text,0) ;
   Pessoa.razao_social_pes := edtrazao_social_pes.Text;
   Pessoa.dt_cadastro_pes  := edtdt_cadastro_pes.Date;
-  Pessoa.tipo_pes         := cmbvtipo_pes.ItemIndex.ToString;
+  Pessoa.tipo_pes         := cmbtipo_pes.ItemIndex.ToString;
   Pessoa.cpf_cnpj_pes     := edtcpf_cnpj_pes.Text;
 
   Pessoa.endereco_principal.uf_cep            := edtuf_cep.Text;

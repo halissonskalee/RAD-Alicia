@@ -14,7 +14,7 @@ uses
   System.Actions, FMX.ActnList, FMX.ListBox, FMX.Layouts, FMX.Edit,
   FMX.SearchBox, FMX.DateTimeCtrls, System.Generics.Collections,
   AL.Cliente.Padrao, FMX.TabControl, System.RegularExpressions,
-  AL.Componente.TEdit, FMX.Objects;
+  AL.Componente.TEdit, FMX.Objects, AL.Componente.TComboBox;
 
 type
   TFrmALClienteMenu = class(TForm)
@@ -33,8 +33,6 @@ type
     ListBoxItem2: TListBoxItem;
     StyleBook1: TStyleBook;
     ImageList1: TImageList;
-    Path1: TPath;
-    ALEdit1: TALEdit;
     procedure actSairExecute(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure ListBoxItem2Click(Sender: TObject);
@@ -74,10 +72,7 @@ procedure TFrmALClienteMenu.ALEdit1ALOnValidate(Sender: TObject;
   var Text: string);
 begin
   //
-
 end;
-
-
 
 procedure TFrmALClienteMenu.ALEdit1ALOnValidating(Sender: TObject;
   var Text: string);

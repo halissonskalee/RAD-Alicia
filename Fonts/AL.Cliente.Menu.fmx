@@ -27,7 +27,6 @@ object FrmALClienteMenu: TFrmALClienteMenu
       Size.PlatformDefault = False
       StyleLookup = 'trashtoolbutton'
       TabOrder = 2
-      Visible = False
     end
     object btnConfigurar: TButton
       Action = actConfigurar
@@ -58,30 +57,10 @@ object FrmALClienteMenu: TFrmALClienteMenu
   end
   object lyCliente: TLayout
     Align = Client
-    Size.Width = 544.000000000000000000
+    Size.Width = 794.000000000000000000
     Size.Height = 535.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 5
-    object Path1: TPath
-      Data.Path = {
-        1A00000000000000000040410000004002000000295CCF400000004002000000
-        00000040295CCF400200000000000040000040410200000000000040F6288C41
-        02000000295CCF400000B04102000000000040410000B04102000000F6288C41
-        0000B041020000000000B041F6288C41020000000000B0410000404102000000
-        0000B041285CCF4002000000F6288C4100000040020000000000404100000040
-        0300000000004041000000400000000000005041000088410100000000003041
-        0000884101000000000030410000304101000000000050410000304101000000
-        0000504100008841030000000000504100008841000000000000504100001041
-        01000000000030410000104101000000000030410000E0400100000000005041
-        0000E040010000000000504100001041030000000000504100001041}
-      Fill.Color = xFFE91942
-      Position.X = 72.000000000000000000
-      Position.Y = 328.000000000000000000
-      Size.Width = 50.000000000000000000
-      Size.Height = 50.000000000000000000
-      Size.PlatformDefault = False
-      Stroke.Color = claWhite
-    end
   end
   object StyleBook1: TStyleBook
     Styles = <
@@ -4005,10 +3984,11 @@ object FrmALClienteMenu: TFrmALClienteMenu
   end
   object mtvMenu: TMultiView
     MasterButton = btnMenu
-    Mode = Panel
+    Mode = Drawer
     Size.Width = 250.000000000000000000
     Size.Height = 535.000000000000000000
     Size.PlatformDefault = False
+    Visible = False
     TabOrder = 0
     object ListBox1: TListBox
       Size.Width = 249.000000000000000000
@@ -4040,17 +4020,6 @@ object FrmALClienteMenu: TFrmALClienteMenu
         Size.PlatformDefault = False
       end
     end
-  end
-  object ALEdit1: TALEdit
-    Touch.InteractiveGestures = [LongTap, DoubleTap]
-    TabOrder = 9
-    FilterChar = '0123456789'
-    Position.X = 344.000000000000000000
-    Position.Y = 280.000000000000000000
-    CharCase = ecUpperCase
-    ALTextLabel = 'label'
-    ALTipo = Pessoa
-    ALValido = True
   end
   object ActionList1: TActionList
     Images = ImageList1

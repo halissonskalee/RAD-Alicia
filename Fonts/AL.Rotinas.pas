@@ -10,7 +10,7 @@ uses
   System.Actions, FMX.ActnList, FMX.ListBox, FMX.Layouts, FMX.Edit,
   FMX.SearchBox, FMX.DateTimeCtrls, System.Generics.Collections,
   AL.Cliente.Padrao, FMX.TabControl, System.RegularExpressions,
-  AL.Componente.TEdit, AL.Helper.Strings;
+  AL.Componente.TEdit ;
 
 function ValidarCpf(Value: string): boolean;
 function RemoverNumeros (Value:String): String;

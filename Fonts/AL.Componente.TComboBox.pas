@@ -36,7 +36,7 @@ end;
 procedure TALComboBox.AfterConstruction;
 begin
   inherited;
-  DisableFocusEffect := True;
+  DisableFocusEffect := False;
   FALlabel := TALlabel.Create(nil);
   FALlabel.Text := 'label';
   FALlabel.Name := 'lb' + Name;
