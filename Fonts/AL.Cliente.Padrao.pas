@@ -64,6 +64,7 @@ type
     btnNovoPath: TPath;
     btnExcluirPath: TPath;
     btnEditarPath: TPath;
+    vCadastro: TVertScrollBox;
     procedure acNovoExecute(Sender: TObject);
     procedure acEditarExecute(Sender: TObject);
     procedure ListBox1ItemClick(const Sender: TCustomListBox;

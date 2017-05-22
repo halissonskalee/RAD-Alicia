@@ -18,7 +18,7 @@ uses
 
 type
   TFrmALClientePessoa = class(TFrmALClientePadrao)
-    GroupBox1: TGroupBox;
+    gEndereco: TGroupBox;
     edtcidade_nome_cep: TEdit;
     Label6: TLabel;
     edtcidade_codigo_cep: TEdit;
@@ -39,8 +39,14 @@ type
     edtcodigo_cep: TALEdit;
     SearchEditButton2: TSearchEditButton;
     cmbtipo_pes: TALComboBox;
+    gPrincipal: TGroupBox;
+    gUsuario: TGroupBox;
+    edtusuario_login: TALEdit;
+    edtusuario_senha: TALEdit;
+    rUsuario: TRadioButton;
     procedure cmbvtipo_pesChange(Sender: TObject);
     procedure SearchEditButton2Click(Sender: TObject);
+    procedure rUsuarioChange(Sender: TObject);
   private
     { Private declarations }
     Pessoa : TPessoa;
@@ -86,24 +92,25 @@ end;
 
 function TFrmALClientePessoa.Criar: Boolean;
 begin
-  Pessoa              := TPessoa.Create;
-
-  Persistencia.Tabela := 'PESSOA';
-
-  FieldText := 'razao_social_pes';
-  FieldID   := '_id';
-
+  Pessoa               := TPessoa.Create;
+  Persistencia.Tabela  := 'PESSOA';
+  FieldText            := 'razao_social_pes';
+  FieldID              := '_id';
+  rUsuario.IsChecked := False;
 end;
 
 function TFrmALClientePessoa.Editar(Json: string): Boolean;
 begin
   Pessoa := TJson.JsonToObject<TPessoa>(Json);
 
-  edt_id.Text               := Pessoa._id.ToString;
-  edtrazao_social_pes.Text  := Pessoa.razao_social_pes;
-  edtdt_cadastro_pes.Date   := Pessoa.dt_cadastro_pes;
+  edt_id.Text              := Pessoa._id.ToString;
+  edtrazao_social_pes.Text := Pessoa.razao_social_pes;
+  edtdt_cadastro_pes.Date  := Pessoa.dt_cadastro_pes;
   cmbtipo_pes.ItemIndex    := Pessoa.tipo_pes.ToInteger;
-  edtcpf_cnpj_pes.Text      := Pessoa.cpf_cnpj_pes;
+  edtcpf_cnpj_pes.Text     := Pessoa.cpf_cnpj_pes;
+  rUsuario.IsChecked     := Pessoa.usuario;
+  edtusuario_login.Text    := Pessoa.usuario_login;
+  edtusuario_senha.Text    := Pessoa.usuario_senha;
 
 
 
@@ -146,12 +153,13 @@ end;
 
 function TFrmALClientePessoa.Novo: Boolean;
 begin
-  edt_id.AsInteger          :=0;
-  edt_id.Leitura            :=True;
+  edt_id.AsInteger           := 0;
+  edt_id.Leitura             := True;
   edtrazao_social_pes.Clear;
-  edtdt_cadastro_pes.Date   := Now;
-  cmbtipo_pes.ItemIndex    := 0;
-  edtcpf_cnpj_pes.Clear     ;
+  edtdt_cadastro_pes.Date    := Now;
+  cmbtipo_pes.ItemIndex      := 0;
+  edtcpf_cnpj_pes.Clear;
+  rUsuario.IsChecked       := False;
 
   Result := True;
 end;
@@ -159,6 +167,12 @@ end;
 function TFrmALClientePessoa.NovoBefore: Boolean;
 begin
   Result := True;
+end;
+
+procedure TFrmALClientePessoa.rUsuarioChange(Sender: TObject);
+begin
+  inherited;
+  gUsuario.Visible := not rUsuario.IsChecked;
 end;
 
 function TFrmALClientePessoa.Salvar: Boolean;
@@ -180,6 +194,11 @@ begin
   Pessoa.dt_cadastro_pes  := edtdt_cadastro_pes.Date;
   Pessoa.tipo_pes         := cmbtipo_pes.ItemIndex.ToString;
   Pessoa.cpf_cnpj_pes     := edtcpf_cnpj_pes.Text;
+
+  Pessoa.usuario        := rUsuario.IsChecked;
+  Pessoa.usuario_login  := edtusuario_login.Text;
+  Pessoa.usuario_senha  := edtusuario_senha.Text;
+
 
   Pessoa.endereco_principal.uf_cep            := edtuf_cep.Text;
   Pessoa.endereco_principal.codigo_cep        := edtcodigo_cep.Text;

@@ -29,12 +29,14 @@ type
     actConfigurar: TAction;
     ListBox1: TListBox;
     SearchBox1: TSearchBox;
-    lyCliente: TLayout;
+    lySistema: TLayout;
     ListBoxItem2: TListBoxItem;
     StyleBook1: TStyleBook;
     btnMenuPath: TPath;
     btnSairPath: TPath;
     btnConfigurarPth: TPath;
+    lyMenssagem: TLayout;
+    lyCliente: TLayout;
     procedure actSairExecute(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure ListBoxItem2Click(Sender: TObject);
@@ -58,7 +60,8 @@ implementation
 
 {$R *.fmx}
 
-uses AL.Cliente.DmDados, AL.Cliente.Pessoa, AL.Cliente.CEP, AL.Rotinas;
+uses AL.Cliente.DmDados, AL.Cliente.Pessoa, AL.Cliente.CEP,
+     AL.Rotinas, AL.Cliente.Senha;
 
 procedure TFrmALClienteMenu.actMenuExecute(Sender: TObject);
 begin
@@ -84,9 +87,9 @@ end;
 
 procedure TFrmALClienteMenu.FormCreate(Sender: TObject);
 begin
-  FrmALClienteCEP := TFrmALClienteCEP.Create(Self);
-  FrmALClienteDmDados := TFrmALClienteDmDados.Create(Self);
-  mtvMenu.Mode := TMultiViewMode.Drawer;
+  mtvMenu.Mode        := TMultiViewMode.Drawer;
+  FrmALClienteSenha   := TFrmALClienteSenha.Create(self);
+  lyMenssagem.AddObject(FrmALClienteSenha.lySenha);
 end;
 
 procedure TFrmALClienteMenu.ListBox1KeyDown(Sender: TObject; var Key: Word;

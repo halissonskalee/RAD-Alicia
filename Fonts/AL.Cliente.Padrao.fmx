@@ -289,8 +289,8 @@ object FrmALClientePadrao: TFrmALClientePadrao
             DefaultItemStyles.ItemStyle = ''
             DefaultItemStyles.GroupHeaderStyle = ''
             DefaultItemStyles.GroupFooterStyle = ''
-            Viewport.Width = 651.000000000000000000
-            Viewport.Height = 33.000000000000000000
+            Viewport.Width = 653.000000000000000000
+            Viewport.Height = 35.000000000000000000
             object ListBoxItem1: TListBoxItem
               Size.Width = 651.000000000000000000
               Size.Height = 32.000000000000000000
@@ -336,8 +336,8 @@ object FrmALClientePadrao: TFrmALClientePadrao
           TabOrder = 1
           RowHeight = 21.000000000000000000
           RowCount = 0
-          Viewport.Width = 661.000000000000000000
-          Viewport.Height = 308.000000000000000000
+          Viewport.Width = 663.000000000000000000
+          Viewport.Height = 331.000000000000000000
         end
       end
       object tabCadastro: TTabItem
@@ -353,6 +353,15 @@ object FrmALClientePadrao: TFrmALClientePadrao
         Text = 'Cadastro'
         ExplicitSize.cx = 85.000000000000000000
         ExplicitSize.cy = 23.000000000000000000
+        object vCadastro: TVertScrollBox
+          Align = Client
+          Size.Width = 663.000000000000000000
+          Size.Height = 376.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 0
+          Viewport.Width = 663.000000000000000000
+          Viewport.Height = 376.000000000000000000
+        end
       end
       object tabDesenvolvedor: TTabItem
         CustomIcon = <
@@ -386,8 +395,8 @@ object FrmALClientePadrao: TFrmALClientePadrao
           Size.Height = 281.000000000000000000
           Size.PlatformDefault = False
           TabOrder = 1
-          Viewport.Width = 623.000000000000000000
-          Viewport.Height = 279.000000000000000000
+          Viewport.Width = 625.000000000000000000
+          Viewport.Height = 281.000000000000000000
         end
       end
     end

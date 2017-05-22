@@ -1,0 +1,96 @@
+object FrmALClienteSenha: TFrmALClienteSenha
+  Left = 0
+  Top = 0
+  Caption = 'Form1'
+  ClientHeight = 417
+  ClientWidth = 601
+  StyleBook = FrmALClienteMenu.StyleBook1
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  OnCreate = FormCreate
+  DesignerMasterStyle = 0
+  object lySenha: TLayout
+    Align = Client
+    Size.Width = 601.000000000000000000
+    Size.Height = 417.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 0
+    object pFundo: TPanel
+      Align = Client
+      Size.Width = 601.000000000000000000
+      Size.Height = 417.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      object recSenha: TRectangle
+        Align = VertCenter
+        Fill.Color = claWhite
+        Position.Y = 138.000000000000000000
+        Size.Width = 601.000000000000000000
+        Size.Height = 141.000000000000000000
+        Size.PlatformDefault = False
+        Stroke.Kind = None
+        object btnEntra: TButton
+          Anchors = [akTop]
+          Position.X = 152.000000000000000000
+          Position.Y = 84.000000000000000000
+          Size.Width = 300.000000000000000000
+          Size.Height = 22.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 2
+          Text = 'Entrar'
+          OnClick = btnEntraClick
+        end
+        object btnSair: TButton
+          Anchors = [akTop]
+          Position.X = 152.000000000000000000
+          Position.Y = 109.000000000000000000
+          Size.Width = 300.000000000000000000
+          Size.Height = 22.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 3
+          Text = 'Sair'
+          OnClick = btnSairClick
+        end
+        object edtSenha: TALEdit
+          Touch.InteractiveGestures = [LongTap, DoubleTap]
+          Anchors = [akTop]
+          TabOrder = 1
+          Password = True
+          Position.X = 152.000000000000000000
+          Position.Y = 59.000000000000000000
+          Size.Width = 300.000000000000000000
+          Size.Height = 22.000000000000000000
+          Size.PlatformDefault = False
+          CharCase = ecUpperCase
+          ALTextLabel = 'Senha'
+          ALTipo = Nada
+          ALValido = True
+          ALObrigatorio = False
+        end
+        object edtUsuario: TALEdit
+          Touch.InteractiveGestures = [LongTap, DoubleTap]
+          Anchors = [akTop]
+          TabOrder = 0
+          Position.X = 152.000000000000000000
+          Position.Y = 20.000000000000000000
+          Size.Width = 300.000000000000000000
+          Size.Height = 22.000000000000000000
+          Size.PlatformDefault = False
+          CharCase = ecUpperCase
+          ALTextLabel = 'Usu'#225'rio'
+          ALTipo = Nada
+          ALValido = True
+          ALObrigatorio = False
+        end
+        object AniIndicator1: TAniIndicator
+          Align = Center
+          DragMode = dmAutomatic
+          Enabled = True
+          Style = Circular
+          Visible = False
+        end
+      end
+    end
+  end
+end

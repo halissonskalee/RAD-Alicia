@@ -17,6 +17,9 @@ type
     FGetEnv: TALMongoEnv;
     FGetBanco: TALDataBase;
     Fendereco_principal: TEndereco;
+    Fusuario_senha: String;
+    Fusuario_login: String;
+    FUsuario: Boolean;
     procedure Set_id(const Value: integer);
     procedure Setcpf_cnpj_pes(const Value: String);
     procedure Setrazao_social_pes(const Value: string);
@@ -26,6 +29,9 @@ type
     procedure SetGetConMongo(const Value: TALMongoConnection);
     procedure SetGetEnv(const Value: TALMongoEnv);
     procedure Setendereco_principal(const Value: TEndereco);
+    procedure SetUsuario(const Value: Boolean);
+    procedure Setusuario_login(const Value: String);
+    procedure Setusuario_senha(const Value: String);
 
   public
     function Insert    : Boolean;
@@ -38,6 +44,12 @@ type
     property dt_cadastro_pes  : TDate read Fdt_cadastro_pes write Setdt_cadastro_pes;
     property tipo_pes         : String read Ftipo_pes write Settipo_pes;
     property cpf_cnpj_pes     : String read Fcpf_cnpj_pes write Setcpf_cnpj_pes;
+
+    property usuario          : Boolean read FUsuario write SetUsuario;
+    property usuario_login    :String read Fusuario_login write Setusuario_login;
+    property usuario_senha    :String read Fusuario_senha write Setusuario_senha;
+
+
 
 
 
@@ -111,6 +123,21 @@ begin
   Ftipo_pes := Value;
 end;
 
+procedure TPessoa.SetUsuario(const Value: Boolean);
+begin
+  FUsuario := Value;
+end;
+
+procedure TPessoa.Setusuario_login(const Value: String);
+begin
+  Fusuario_login := Value;
+end;
+
+procedure TPessoa.Setusuario_senha(const Value: String);
+begin
+  Fusuario_senha := Value;
+end;
+
 procedure TPessoa.Set_id(const Value: integer);
 begin
   F_id := Value;
@@ -129,6 +156,9 @@ begin
     .Add('dt_cadastro_pes',dt_cadastro_pes)
     .Add('tipo_pes', tipo_pes)
     .Add('cpf_cnpj_pes', cpf_cnpj_pes)
+    .Add('usuario_senha',usuario_senha)
+    .Add('usuario_login',usuario_login)
+    .Add('Usuario',Usuario)
     .BeginObject('endereco_principal')
       .Add('uf_cep'           ,endereco_principal.uf_cep)
       .Add('codigo_cep'       ,endereco_principal.codigo_cep)
@@ -164,6 +194,9 @@ begin
         .Field('dt_cadastro_pes' ,dt_cadastro_pes)
         .Field('tipo_pes'        ,tipo_pes)
         .Field('cpf_cnpj_pes'    ,cpf_cnpj_pes)
+        .Field('usuario'         ,usuario)
+        .Field('usuario_login'   ,usuario_login)
+        .Field('usuario_senha'   ,usuario_senha)
         .Field('endereco_principal.uf_cep'           ,endereco_principal.uf_cep)
         .Field('endereco_principal.codigo_cep'       ,endereco_principal.codigo_cep)
         .Field('endereco_principal.cidade_codigo_cep',endereco_principal.cidade_codigo_cep)
