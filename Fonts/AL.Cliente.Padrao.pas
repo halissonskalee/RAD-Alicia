@@ -17,7 +17,7 @@ uses
   AL.Persistencia, System.Rtti, Fmx.Bind.Grid, System.Bindings.Outputs,
   Fmx.Bind.Editors, Data.Bind.EngExt, Fmx.Bind.DBEngExt, Data.Bind.Components,
   Data.Bind.Grid, FMX.Grid, Data.Bind.DBScope, FMX.ScrollBox, FMX.Memo,
-  FMX.Grid.Style, FMX.Objects;
+  FMX.Grid.Style, FMX.Objects, AL.Componente.TLabel;
 
 type
   TAcao = (tpInsert, tpUpdate, tpLista);
@@ -25,15 +25,12 @@ type
 type
   TFrmALClientePadrao = class(TFrmALClienteModelo)
     Panel2: TPanel;
-    btnNovo: TButton;
     ActionList1: TActionList;
     acSalvar: TAction;
     acExcluir: TAction;
     acSair: TAction;
     acNovo: TAction;
     acEditar: TAction;
-    btnSalvar: TButton;
-    btnExcluir: TButton;
     lyCliente: TLayout;
     TabControl: TTabControl;
     tabLista: TTabItem;
@@ -41,7 +38,6 @@ type
     changeTabLista: TChangeTabAction;
     changeTabCadastro: TChangeTabAction;
     acVoltar: TAction;
-    btnVoltar: TButton;
     pTitulo: TPanel;
     lblTitulo: TLabel;
     ListBox2: TListBox;
@@ -49,7 +45,6 @@ type
     edtBusca: TEdit;
     Label1: TLabel;
     Panel1: TPanel;
-    btnEditar: TButton;
     SearchEditButton1: TSearchEditButton;
     griLista: TGrid;
     SQLListar: TFDMongoDataSet;
@@ -59,12 +54,29 @@ type
     tabDesenvolvedor: TTabItem;
     Button1: TButton;
     Memo1: TMemo;
-    btnVoltarPath: TPath;
-    btnSalvarPath: TPath;
-    btnNovoPath: TPath;
-    btnExcluirPath: TPath;
-    btnEditarPath: TPath;
     vCadastro: TVertScrollBox;
+    btnCriar: TButton;
+    btnFindIndex: TButton;
+    btnVoltar: TButton;
+    Panel4: TPanel;
+    ALLabel1: TALLabel;
+    Image1: TImage;
+    btnNovo: TButton;
+    Panel3: TPanel;
+    ALLabel2: TALLabel;
+    Image2: TImage;
+    btnEditar: TButton;
+    Panel5: TPanel;
+    ALLabel3: TALLabel;
+    Image3: TImage;
+    btnSalvar: TButton;
+    Panel6: TPanel;
+    ALLabel4: TALLabel;
+    Image4: TImage;
+    btnExcluir: TButton;
+    Panel7: TPanel;
+    ALLabel5: TALLabel;
+    Image5: TImage;
     procedure acNovoExecute(Sender: TObject);
     procedure acEditarExecute(Sender: TObject);
     procedure ListBox1ItemClick(const Sender: TCustomListBox;
@@ -80,6 +92,8 @@ type
     procedure acSalvarExecute(Sender: TObject);
     procedure SQLListarBeforeOpen(DataSet: TDataSet);
     procedure Button1Click(Sender: TObject);
+    procedure btnCriarClick(Sender: TObject);
+    procedure btnFindIndexClick(Sender: TObject);
 
   private
 
@@ -200,6 +214,46 @@ begin
     changeTabLista.ExecuteTarget(Self);
     ExibirBotoes;
   end;
+
+end;
+
+procedure TFrmALClientePadrao.btnCriarClick(Sender: TObject);
+var
+  idx: TMongoIndex;
+  oCrs: IMongoCursor;
+begin
+  inherited;
+  idx := TMongoIndex.Create(FrmALClienteDmDados.GetEnv);
+  try
+      idx.Keys('{ "texto" : "text" }, { "default_language": "portuguese" }');
+      idx.Options.Name := 'texto_text';
+
+
+      //FrmALClienteDmDados.GetConMongo['teste']['buscafonetica'].CreateIndex(idx);
+      GetCon.CreateIndex(idx);
+      //oCrs := FrmALClienteDmDados.GetConMongo['teste']['buscafonetica'].ListIndexes;
+      oCrs := GetCon.ListIndexes;
+      while oCrs.Next do
+        Memo1.Lines.Add(oCrs.Doc.AsJSON)
+  finally
+    idx.Free;
+  end;
+
+end;
+
+procedure TFrmALClientePadrao.btnFindIndexClick(Sender: TObject);
+var
+  oCrs: IMongoCursor;
+begin
+
+//  oCrs := FConMongo['teste']['buscafonetica'].Find().Match('{ "$text" : { "$search" : "Caminho prender" } }').&End;
+
+  oCrs := getCon.Find().Match('{ "$text" : { "$search" : "halisson" } }').&End;
+
+
+  while oCrs.Next do
+    Memo1.Lines.Add(oCrs.Doc.AsJSON)
+
 
 end;
 

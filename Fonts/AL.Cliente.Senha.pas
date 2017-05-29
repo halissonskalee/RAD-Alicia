@@ -6,7 +6,7 @@ uses
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.Layouts,
   FMX.Controls.Presentation, FMX.StdCtrls, FMX.Objects, FMX.Edit,
-  AL.Componente.TEdit;
+  AL.Componente.TEdit, AL.Componente.TLabel;
 
 type
   TFrmALClienteSenha = class(TForm)
@@ -14,10 +14,16 @@ type
     edtSenha: TALEdit;
     edtUsuario: TALEdit;
     pFundo: TPanel;
-    btnEntra: TButton;
-    btnSair: TButton;
     recSenha: TRectangle;
     AniIndicator1: TAniIndicator;
+    btnSair: TButton;
+    Image2: TImage;
+    Sair: TALLabel;
+    Panel3: TPanel;
+    btnEntra: TButton;
+    Panel4: TPanel;
+    ALLabel1: TALLabel;
+    Image1: TImage;
     procedure btnSairClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure btnEntraClick(Sender: TObject);

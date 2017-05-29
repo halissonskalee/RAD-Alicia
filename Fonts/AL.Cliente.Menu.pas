@@ -14,29 +14,38 @@ uses
   System.Actions, FMX.ActnList, FMX.ListBox, FMX.Layouts, FMX.Edit,
   FMX.SearchBox, FMX.DateTimeCtrls, System.Generics.Collections,
   AL.Cliente.Padrao, FMX.TabControl, System.RegularExpressions,
-  AL.Componente.TEdit, FMX.Objects, AL.Componente.TComboBox;
+  AL.Componente.TEdit, FMX.Objects, AL.Componente.TComboBox, FMX.ScrollBox,
+  FMX.Memo, AL.Componente.TLabel;
 
 type
   TFrmALClienteMenu = class(TForm)
     mtvMenu: TMultiView;
     ToolBar1: TToolBar;
-    btnMenu: TButton;
     ActionList1: TActionList;
     actMenu: TAction;
-    btnConfigurar: TButton;
     actSair: TAction;
-    btnSair: TButton;
     actConfigurar: TAction;
     ListBox1: TListBox;
     SearchBox1: TSearchBox;
     lySistema: TLayout;
     ListBoxItem2: TListBoxItem;
     StyleBook1: TStyleBook;
-    btnMenuPath: TPath;
-    btnSairPath: TPath;
-    btnConfigurarPth: TPath;
     lyMenssagem: TLayout;
     lyCliente: TLayout;
+    Button1: TButton;
+    memoteste: TMemo;
+    btnMenu: TButton;
+    Panel7: TPanel;
+    ALLabel5: TALLabel;
+    Image5: TImage;
+    btnConfigurar: TButton;
+    Panel1: TPanel;
+    ALLabel1: TALLabel;
+    Image1: TImage;
+    btnSair: TButton;
+    Panel2: TPanel;
+    ALLabel2: TALLabel;
+    Image2: TImage;
     procedure actSairExecute(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure ListBoxItem2Click(Sender: TObject);
@@ -45,6 +54,7 @@ type
     procedure ALEdit1ALOnValidate(Sender: TObject; var Text: string);
     procedure ALEdit1ALOnValidating(Sender: TObject; var Text: string);
     procedure actMenuExecute(Sender: TObject);
+    procedure Button1Click(Sender: TObject);
 
   private
 
@@ -61,7 +71,7 @@ implementation
 {$R *.fmx}
 
 uses AL.Cliente.DmDados, AL.Cliente.Pessoa, AL.Cliente.CEP,
-     AL.Rotinas, AL.Cliente.Senha;
+     AL.Rotinas, AL.Cliente.Senha, FireDAC.Phys.MongoDBWrapper;
 
 procedure TFrmALClienteMenu.actMenuExecute(Sender: TObject);
 begin
@@ -83,6 +93,30 @@ procedure TFrmALClienteMenu.ALEdit1ALOnValidating(Sender: TObject;
   var Text: string);
 begin
   Sleep(10);
+end;
+
+procedure TFrmALClienteMenu.Button1Click(Sender: TObject);
+var
+  oCrs: IMongoCursor;
+begin
+
+   oCrs := FrmALClienteDmDados.FConMongo['ALICIA']['PESSOA'].Find()
+  .Match()
+//    .Exp('title', '{ "$regex" : "The*" }')
+    .Exp('razao_social_pes', '{ "$regex" : "SK" }')
+  .&End
+{  .Project()
+    .Field('_id', false)
+    .Field('title', true)
+    .Field('awards.text', true)
+  .&End
+  .Sort()
+    .Field('year', true)
+  .&End}
+  .Limit(100);
+
+  while oCrs.Next do
+    memoteste.Lines.Add(oCrs.Doc.AsJSON)
 end;
 
 procedure TFrmALClienteMenu.FormCreate(Sender: TObject);

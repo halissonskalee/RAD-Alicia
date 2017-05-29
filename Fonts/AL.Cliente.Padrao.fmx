@@ -15,197 +15,131 @@ object FrmALClientePadrao: TFrmALClientePadrao
   object lyCliente: TLayout
     Align = Client
     Size.Width = 663.000000000000000000
-    Size.Height = 435.000000000000000000
+    Size.Height = 460.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 2
     object Panel2: TPanel
       Align = Top
+      Position.Y = 25.000000000000000000
       Size.Width = 663.000000000000000000
-      Size.Height = 36.000000000000000000
+      Size.Height = 46.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 0
-      object btnNovo: TButton
-        Action = acNovo
-        Align = Left
-        Enabled = True
-        ImageIndex = 3
-        Position.X = 46.000000000000000000
-        Size.Width = 46.000000000000000000
-        Size.Height = 36.000000000000000000
-        Size.PlatformDefault = False
-        StyleLookup = 'composetoolbutton'
-        TabOrder = 1
-        object btnNovoPath: TPath
-          Align = Center
-          Data.Path = {
-            32000000000000000000B8410000204101000000000068410000204102000000
-            33336341000020410200000000006041CDCC1C41020000000000604100001841
-            01000000000060410000803F0200000000006041CCCCCC3E020000009A995941
-            0000000002000000000050410000000001000000000030410000000002000000
-            66662641000000000200000000002041CDCCCC3E02000000000020410000803F
-            0100000000002041000018410200000000002041CDCC1C4102000000CDCC1C41
-            00002041020000000000184100002041010000000000803F0000204102000000
-            CCCCCC3E00002041020000000000000066662641020000000000000000003041
-            01000000000000000000504102000000000000009A99594102000000CDCCCC3E
-            00006041020000000000803F0000604101000000000018410000604102000000
-            CDCC1C4100006041020000000000204133336341020000000000204100006841
-            01000000000020410000B8410200000000002041CDCCBC410200000066662641
-            0000C04102000000000030410000C04101000000000050410000C04102000000
-            9A9959410000C0410200000000006041CDCCBC4102000000000060410000B841
-            0100000000006041000068410200000000006041333363410200000033336341
-            00006041020000000000684100006041010000000000B8410000604102000000
-            CDCCBC4100006041020000000000C0419A995941020000000000C04100005041
-            010000000000C04100003041020000000000C0416666264102000000CDCCBC41
-            00002041020000000000B84100002041030000000000B84100002041}
-          Fill.Color = claWhite
-          Locked = True
-          Size.Width = 25.000000000000000000
-          Size.Height = 25.000000000000000000
-          Size.PlatformDefault = False
-          Stroke.Color = claWhite
-        end
-      end
-      object btnSalvar: TButton
-        Action = acSalvar
-        Align = Left
-        Enabled = True
-        ImageIndex = 4
-        Position.X = 138.000000000000000000
-        Size.Width = 46.000000000000000000
-        Size.Height = 36.000000000000000000
-        Size.PlatformDefault = False
-        StyleLookup = 'composetoolbutton'
-        TabOrder = 5
-        object btnSalvarPath: TPath
-          Align = Center
-          Data.Path = {
-            0800000000000000000010419A998141010000009A9999400000404101000000
-            9A99594066665641010000000000104100009841010000000000A8410000E040
-            01000000CDCC9C413333B34001000000000010419A9981410300000000001041
-            9A998141}
-          Fill.Color = claWhite
-          Locked = True
-          Size.Width = 25.000000000000000000
-          Size.Height = 25.000000000000000000
-          Size.PlatformDefault = False
-          Stroke.Color = claWhite
-        end
-      end
-      object btnExcluir: TButton
-        Action = acExcluir
-        Align = Left
-        Enabled = True
-        ImageIndex = 5
-        Position.X = 184.000000000000000000
-        Size.Width = 46.000000000000000000
-        Size.Height = 36.000000000000000000
-        Size.PlatformDefault = False
-        StyleLookup = 'composetoolbutton'
-        TabOrder = 6
-        object btnExcluirPath: TPath
-          Align = Center
-          Data.Path = {
-            B7000000000000005A4C13443D0A5E43020000005A4C134476BE574302000000
-            23931444D0A252430200000014261644D0A252430200000005B91744D0A25243
-            02000000000019445AC4574302000000000019443D0A5E430100000000001944
-            06E1244402000000000019441FB5294402000000190417445E1A2E4402000000
-            1FD51344D14A31440200000036A61044CB793444020000006D3F0C44A2753644
-            02000000546B0744A27536440100000079293C43A275364402000000D5D82843
-            A27536440200000010381743CB793444020000000C820A43D14A314402000000
-            498CFB42D71B2E440200000091ADEB42C9B629440200000091ADEB4206E12444
-            0100000091ADEB423D0A5E430200000091ADEB4276BE574302000000DDE4F542
-            D0A2524302000000F43D0143D0A2524302000000BB890743D0A2524302000000
-            61A50C4359C457430200000061A50C433D0A5E430100000061A50C4306E12444
-            0200000061A50C434E2228440200000019041243081C2B4402000000B39D1A43
-            5E422D44020000004D372343D5682F4402000000781E2F43EBC1304402000000
-            55233C43EBC1304401000000EC690744EBC130440200000023AB0A44EBC13044
-            0200000044A30D44B4682F4402000000CBC90F445E422D4402000000BBF11144
-            6E1A2B4402000000484913442D22284402000000484913447FE2244401000000
-            484913443D0A5E43010000005A4C13443D0A5E43030000005A4C13443D0A5E43
-            00000000D9EE8B4396831D4402000000D9EE8B4388161F440200000006618943
-            615D204402000000233B8643615D20440200000040158343615D204402000000
-            6D87804388161F44020000006D87804396831D44010000006D8780436CFC6043
-            020000006D878043A5B05A430200000040158343FF94554302000000233B8643
-            FF9455430200000006618943FF94554302000000D9EE8B43A5B05A4302000000
-            D9EE8B436CFC604301000000D9EE8B4396831D4403000000D9EE8B4396831D44
-            000000005829BC4396831D44020000005829BC4388161F4402000000A69BB943
-            615D204402000000C275B643615D204402000000DE4FB343615D204402000000
-            0CC2B04388161F44020000000CC2B04396831D44010000000CC2B0436CFC6043
-            020000000CC2B043A5B05A4302000000DF4FB343FF94554302000000C275B643
-            FF94554302000000A59BB943FF945543020000005829BC43A5B05A4302000000
-            5829BC436CFC6043010000005829BC4396831D44030000005829BC4396831D44
-            00000000C966EC4396831D4402000000C966EC4388161F440200000038D9E943
-            615D20440200000054B3E643615D204402000000508DE343615D204402000000
-            9EFFE04388161F44020000009EFFE04396831D44010000009EFFE0436CFC6043
-            020000009EFFE043A5B05A4302000000508DE343FF9455430200000054B3E643
-            FF9455430200000037D9E943FF94554302000000C966EC43A5B05A4302000000
-            C966EC436CFC604301000000C966EC4396831D4401000000C966EC4396831D44
-            03000000C966EC4396831D4400000000649B884360A58C4202000000649B8843
-            ED3C994202000000910D86433974A34202000000AEE782433974A34202000000
-            D7837F433974A3420200000031687A43ED3C99420200000031687A4360A58C42
-            0200000031687A430AD74B4202000000B42881431E85054202000000C9868743
-            022BA54102000000BCE48D43E926FD40020000001BAF96430000000002000000
-            715DA0430000000001000000F48DCC4300000000020000005839D64300000000
-            02000000B603DF4385EBFD40020000006961E5431D5AA541020000005DBFEB43
-            AC9C0542020000002CB7EF43BE1F4C42020000002CB7EF4360A58C4202000000
-            2CB7EF43ED3C9942020000007A29ED433974A342020000009603EA433974A342
-            02000000B2DDE6433974A342020000000050E443ED3C9942020000000050E443
-            60A58C42020000000050E4434B37654202000000C5A0E1439F9A354202000000
-            D753DD433934134202000000C906D9439999E141020000007513D343BC74B641
-            020000000691CC43BC74B64101000000A460A043BC74B6410200000023DB9943
-            BC74B64102000000A0EA93437268E14102000000C19A8F43A61B134202000000
-            A04A8B43A09A354202000000649B8843B81E654202000000649B884360A58C42
-            03000000649B884360A58C42000000006290C7424C37CE420100000085831D44
-            4C37CE42020000009E4F20444C37CE420200000071DD2244D162D74202000000
-            DFB724444636E64201000000E1BA2444D94EE6420200000050952644CB21F542
-            02000000C0BA274431C8044302000000C0BA2744D5F80F4301000000C0BA2744
-            986E2D4302000000C0BA27441DBA334302000000D7732644C3D5384302000000
-            E5E02444C3D53843010000001ECD2444C3D538430100000060A58C42C3D53843
-            02000000D30D8042C3D53843020000000EAD6B421DBA3343020000000EAD6B42
-            986E2D43010000000EAD6B42A2252D43010000000EAD6B42D5F80F4302000000
-            0EAD6B4256CE04430200000018047E42CB21F5420200000081D58D42D94EE642
-            0100000014EE8D424636E6420200000006C19C425463D74202000000643BB142
-            4C37CE42020000006290C7424C37CE42010000006290C7424C37CE4203000000
-            6290C7424C37CE420000000096831D44FED4FB42010000006290C742FED4FB42
-            020000004EA2BD42FED4FB4202000000D98EB4423BDFFF42020000009318AE42
-            A4300343010000000000AE42EE3C034302000000717DA742CF77064302000000
-            B673A342A6FB0A4302000000B673A342D5F80F4301000000B673A3422B072243
-            01000000920522442B0722430100000092052244D5F80F430200000092052244
-            CB010B43020000004A842144107806430200000019B42044EE3C034301000000
-            F6B02044A4300343020000004EE21F443BDFFF420200000058C11E44FED4FB42
-            0200000096831D44FED4FB420300000096831D44FED4FB42}
-          Fill.Color = claWhite
-          Locked = True
-          Size.Width = 25.000000000000000000
-          Size.Height = 25.000000000000000000
-          Size.PlatformDefault = False
-          Stroke.Color = claWhite
-        end
-      end
       object btnVoltar: TButton
         Action = acVoltar
         Align = Left
         Enabled = True
         ImageIndex = 6
-        Size.Width = 46.000000000000000000
-        Size.Height = 36.000000000000000000
+        Size.Width = 45.000000000000000000
+        Size.Height = 46.000000000000000000
         Size.PlatformDefault = False
-        StyleLookup = 'priortoolbutton'
-        TabOrder = 8
-        object btnVoltarPath: TPath
-          Align = Center
-          Data.Path = {
-            0C00000000000000000020410000104101000000000020410000A04001000000
-            0000404000004041010000000000204100009841010000000000204166666E41
-            020000000000704166666E41020000000000944100008441020000000000A841
-            0000A041020000000000A0410000704102000000000088410000204102000000
-            0000204100001041030000000000204100001041}
-          Fill.Color = claWhite
+        StyleLookup = 'AlButtonMenu'
+        TabOrder = 6
+        object Panel4: TPanel
+          Align = Client
           Locked = True
-          Size.Width = 25.000000000000000000
-          Size.Height = 23.000000000000000000
+          HitTest = False
+          Size.Width = 45.000000000000000000
+          Size.Height = 46.000000000000000000
           Size.PlatformDefault = False
-          Stroke.Color = claWhite
+          TabOrder = 3
+          object ALLabel1: TALLabel
+            Align = Top
+            AutoSize = True
+            StyledSettings = [Family, Size, Style]
+            Locked = True
+            Size.Width = 45.000000000000000000
+            Size.Height = 16.000000000000000000
+            Size.PlatformDefault = False
+            TextSettings.FontColor = claWhite
+            TextSettings.HorzAlign = Center
+            Text = 'Voltar'
+            TabOrder = 1
+          end
+          object Image1: TImage
+            MultiResBitmap.Height = 36
+            MultiResBitmap.Width = 36
+            MultiResBitmap = <
+              item
+                Width = 36
+                Height = 36
+                PNG = {
+                  89504E470D0A1A0A0000000D4948445200000024000000240806000000E10098
+                  98000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
+                  00C0494441545847ED96ED0AC2300C455B157C6C7D85BD8B1F8F26FE69BDD726
+                  20AD880A5B5A9603256481E5D0B2ACC1719C11C8391FB924B54564145B290A14
+                  8F424AE98AB095F2B2A0712383B597F2B2A07F2D73711982FEB5CCD96508FAD7
+                  32A7D5C844896F417F0EBA43C99EF90D618A31DECB93FFC13B7E1BA294E18ECC
+                  85B469D848EC86718E4CA114B75831FDC21478F4338314780C2165F71F53E0E1
+                  525F018F5ACAEE82A6C0A39142D849D90608BC4AD95EF2158A7423E338CE4742
+                  78003F530135583C98A40000000049454E44AE426082}
+                FileName = 'C:\RAD-Alicia\Icone\ic_arrow_back_white_24dp.png'
+              end>
+            Align = Center
+            Locked = True
+            HitTest = False
+            Size.Width = 30.000000000000000000
+            Size.Height = 30.000000000000000000
+            Size.PlatformDefault = False
+          end
+        end
+      end
+      object btnNovo: TButton
+        Action = acNovo
+        Align = Left
+        Enabled = True
+        ImageIndex = 3
+        Position.X = 45.000000000000000000
+        Size.Width = 45.000000000000000000
+        Size.Height = 46.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = 'AlButtonMenu'
+        TabOrder = 5
+        object Panel3: TPanel
+          Align = Client
+          Locked = True
+          HitTest = False
+          Size.Width = 45.000000000000000000
+          Size.Height = 46.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 3
+          object ALLabel2: TALLabel
+            Align = Top
+            AutoSize = True
+            StyledSettings = [Family, Size, Style]
+            Locked = True
+            Size.Width = 45.000000000000000000
+            Size.Height = 16.000000000000000000
+            Size.PlatformDefault = False
+            TextSettings.FontColor = claWhite
+            TextSettings.HorzAlign = Center
+            Text = 'Novo'
+            TabOrder = 1
+          end
+          object Image2: TImage
+            MultiResBitmap.Height = 36
+            MultiResBitmap.Width = 36
+            MultiResBitmap = <
+              item
+                Width = 36
+                Height = 36
+                PNG = {
+                  89504E470D0A1A0A0000000D4948445200000024000000240806000000E10098
+                  98000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
+                  0082494441545847EDD6610A80200C05E0AD8BD5D13C9A9DCC369DD09F1C4892
+                  D5FB4094FAF360F09400E06FD8F66E29A54D365D2A3273B4F3332450905505FB
+                  DC6DB17D1A08E441200F02799AC528BD722EBD2BFA7F2D47DA6579C5D85F9E5A
+                  74B9EEEED52C4F8C4C8CBDEF7404791005EEB2E110C883409EE9027DEF910F00
+                  EF42740027818CB15F746D500000000049454E44AE426082}
+                FileName = 'C:\RAD-Alicia\Icone\ic_add_white_24dp.png'
+              end>
+            Align = Center
+            Locked = True
+            HitTest = False
+            Size.Width = 30.000000000000000000
+            Size.Height = 30.000000000000000000
+            Size.PlatformDefault = False
+          end
         end
       end
       object btnEditar: TButton
@@ -213,49 +147,223 @@ object FrmALClientePadrao: TFrmALClientePadrao
         Align = Left
         Enabled = True
         ImageIndex = 7
-        Position.X = 92.000000000000000000
-        Size.Width = 46.000000000000000000
-        Size.Height = 36.000000000000000000
+        Position.X = 90.000000000000000000
+        Size.Width = 45.000000000000000000
+        Size.Height = 46.000000000000000000
         Size.PlatformDefault = False
-        StyleLookup = 'composetoolbutton'
+        StyleLookup = 'AlButtonMenu'
         TabOrder = 4
-        object btnEditarPath: TPath
-          Align = Center
-          Data.Path = {
-            1A000000000000000671A4430040B242010000008B3CDA43C8B6444301000000
-            0C222443E986EA43010000007F6A624285BBB443010000000671A4430040B242
-            030000000671A4430040B242000000003B8701443FB57C4201000000E510EB43
-            D02273410200000064CBE143403556C00200000050BDD243403556C002000000
-            BE6FC943D022734101000000BC74B243C4A07442010000004140E8433BBF2843
-            010000003B870144A145E64202000000AE1F05448981C94202000000AE1F0544
-            351E9B42020000003B8701443FB57C42030000003B8701443FB57C4200000000
-            9A99993E292C0044020000005839D4BF21600244020000003889C94079590444
-            02000000A8C6714152D003440100000083000743CF17F94301000000B4C8DB41
-            6A4CC343010000009A99993E292C0044030000009A99993E292C0044}
-          Fill.Color = claWhite
+        object Panel5: TPanel
+          Align = Client
           Locked = True
-          Size.Width = 25.000000000000000000
-          Size.Height = 25.000000000000000000
+          HitTest = False
+          Size.Width = 45.000000000000000000
+          Size.Height = 46.000000000000000000
           Size.PlatformDefault = False
-          Stroke.Color = claWhite
+          TabOrder = 3
+          object ALLabel3: TALLabel
+            Align = Top
+            AutoSize = True
+            StyledSettings = [Family, Size, Style]
+            Locked = True
+            Size.Width = 45.000000000000000000
+            Size.Height = 16.000000000000000000
+            Size.PlatformDefault = False
+            TextSettings.FontColor = claWhite
+            TextSettings.HorzAlign = Center
+            Text = 'Editar'
+            TabOrder = 1
+          end
+          object Image3: TImage
+            MultiResBitmap.Height = 35
+            MultiResBitmap.Width = 35
+            MultiResBitmap = <
+              item
+                Width = 35
+                Height = 35
+                PNG = {
+                  89504E470D0A1A0A0000000D49484452000000230000002308060000001ED9B3
+                  59000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
+                  024B494441545847ED97CF4E135114C63B054A93BA20213E815B584AAB29A5B2
+                  3271E53BF8042C49880B43C2CEF8288A504C08B4818D74C3DA77D04422D03FB6
+                  E5F70D676AA7169DA6F762887CC92FE7DE3BED395F67EEBD739BBAD75D5060D1
+                  9B7ABDDE1461167E423B08829EC647C9AB198CCCC002CDE7F005AA98F9F62743
+                  5E2423DD6EF709D4A00D3F600D1E72CDFB13E94B8F86A24FE110DAF443D1BE7D
+                  43147A40C1777016BA18D080A179BAFE0C51609602738AB00C3B701EBA181063
+                  32F49266C6BE1A2A6D7162915C2BA6408157C43C93B44EDC822A6317C441E9B3
+                  8F603AECB914C5B250C6D01E34E003AC689C18BB43C4161CC0225D2D7B77B282
+                  CF605785AC6007DEC3B0A1EFB00F4B8CBBBD2B566815FA4622D11F65E82DE4E9
+                  CF580A37B20232A25F1C3312897119D2232B8126758E612F8F46463EC2482391
+                  B87E096B34E7ECEBEE44D2718C346187661162CB786291504634596F7C3491CC
+                  C83668AE6829BB13F9C735D29F2B96C28D94901ADA477E5B35C3E27A646405DC
+                  1BB1C415F87746C89F21A99EB976D644466896216B29DC8884192852E0534223
+                  DB34BD18D1C148E7116DDD7F33A2778D564DB8D35A0A3722E134890BA09759FF
+                  60344A5C9711ED375EE6884E688F89556212235A5DEE97AF44D21C6C4012235A
+                  5D4E37B4E1C395FAF34110DCF87AC74B9B70C06736E1733A9D6E5E5F995C639D
+                  F4CC480DDEC009665A1A77A5C46630A23F6147F01A1375D746A44466CCC831AC
+                  FB3222C5FE2AD8647C01A570E097BE420513A720635E1433C31D0840E78EE1B3
+                  4717130DE858FF5EFFAB52A92BE08645F2269A8D650000000049454E44AE4260
+                  82}
+                FileName = 'C:\RAD-Alicia\Icone\ic_create_white_24dp.png'
+              end>
+            Align = Center
+            Locked = True
+            HitTest = False
+            Size.Width = 30.000000000000000000
+            Size.Height = 30.000000000000000000
+            Size.PlatformDefault = False
+          end
+        end
+      end
+      object btnSalvar: TButton
+        Action = acSalvar
+        Align = Left
+        Enabled = True
+        ImageIndex = 4
+        Position.X = 135.000000000000000000
+        Size.Width = 45.000000000000000000
+        Size.Height = 46.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = 'AlButtonMenu'
+        TabOrder = 3
+        object Panel6: TPanel
+          Align = Client
+          Locked = True
+          HitTest = False
+          Size.Width = 45.000000000000000000
+          Size.Height = 46.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 3
+          object ALLabel4: TALLabel
+            Align = Top
+            AutoSize = True
+            StyledSettings = [Family, Size, Style]
+            Locked = True
+            Size.Width = 45.000000000000000000
+            Size.Height = 16.000000000000000000
+            Size.PlatformDefault = False
+            TextSettings.FontColor = claWhite
+            TextSettings.HorzAlign = Center
+            Text = 'Salvar'
+            TabOrder = 1
+          end
+          object Image4: TImage
+            MultiResBitmap.Height = 35
+            MultiResBitmap.Width = 35
+            MultiResBitmap = <
+              item
+                Width = 35
+                Height = 35
+                PNG = {
+                  89504E470D0A1A0A0000000D49484452000000230000002308060000001ED9B3
+                  59000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
+                  01B9494441545847ED96494A03411486D331318A04A3E608820B471C76EE4450
+                  50C13BB8CA25BC8CB32B4F2089B877E388E215E2842E34EDF7E2ABA63BB6603A
+                  A9E8A27EF8A8EACEE3BD8FA4BB34E5E2E2E2D2627CDFF7A0005D7A2B92B4AED6
+                  23222C23AC1B300699AF4F3A1C06A76BB5DA281CC20B1CC1B0DCD792CE4445C6
+                  590F589F597DD67B58609BD532FB519149D8872715B98312F46999FD88084C31
+                  742F2472AB22792DB31F1161E034ECC2A38ADC40896DBF96D98F88C00C8377E0
+                  4145AE55A4A065F623220C9D85ED90C8958A0C6899FDA8C85C83C8A588C0A096
+                  351FFA74D340DE8245F6B1A765386111F65510910B1091212D6B3EF4C9C23C4D
+                  E4603A8615AE7F14E23323B2C53E22C2B6A865C942933C6CC207BC41055669FC
+                  4D887B71DFC839B42E22A1510E96E0449B8B5019D6B80C84D8070F2BFBF68B98
+                  D0AC87A6CB50D121AF100881797DC30F6B7B7E9AB8D0B81744A8ACC38CD03AC8
+                  4F133E47EC899830204EE80CE4C18EBCBE56454C18D428240FF6BBEEEB071A24
+                  7F7D9B0DC3224212F6F5231E921F6849C3D04008CC1FBDB61EF1F2AFE0AF2342
+                  2C1350F43CEF14AAF50FFE2A7C1B19A4727AE9E2E2F20F934A7D0271EFAAB07E
+                  D117AB0000000049454E44AE426082}
+                FileName = 'C:\RAD-Alicia\Icone\ic_check_white_24dp.png'
+              end>
+            Align = Center
+            Locked = True
+            HitTest = False
+            Size.Width = 30.000000000000000000
+            Size.Height = 30.000000000000000000
+            Size.PlatformDefault = False
+          end
+        end
+      end
+      object btnExcluir: TButton
+        Action = acExcluir
+        Align = Left
+        Enabled = True
+        ImageIndex = 5
+        Position.X = 180.000000000000000000
+        Size.Width = 45.000000000000000000
+        Size.Height = 46.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = 'AlButtonMenu'
+        TabOrder = 2
+        object Panel7: TPanel
+          Align = Client
+          Locked = True
+          HitTest = False
+          Size.Width = 45.000000000000000000
+          Size.Height = 46.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 3
+          object ALLabel5: TALLabel
+            Align = Top
+            AutoSize = True
+            StyledSettings = [Family, Size, Style]
+            Locked = True
+            Size.Width = 45.000000000000000000
+            Size.Height = 16.000000000000000000
+            Size.PlatformDefault = False
+            TextSettings.FontColor = claWhite
+            TextSettings.HorzAlign = Center
+            Text = 'Excluir'
+            TabOrder = 1
+          end
+          object Image5: TImage
+            MultiResBitmap.Height = 35
+            MultiResBitmap.Width = 35
+            MultiResBitmap = <
+              item
+                Width = 35
+                Height = 35
+                PNG = {
+                  89504E470D0A1A0A0000000D49484452000000230000002308060000001ED9B3
+                  59000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
+                  0161494441545847ED97B14A03411086EF1645110B518B602FF8080A6265E76B
+                  F80E761676798698C7B0B314F20A828D885849B0108D1AEEFC66770AC365BCBD
+                  4B8A04F6839F991DF676FFBDDB83DD2CB10CE41A1B5196E52A5AD766853CCF47
+                  E8479BD1343683894D744C7A8A567C719231BAC5CC1D7A0FA5384C334C2813ED
+                  A22D5F006A8E70842E9868DF17A740BF0742170DE857F862E00DBD5213C3F130
+                  60A7288A1E716EE8781D9DA282AC7461303F13ABD8269CA3335F980F37E8DA39
+                  370CCD496A3730AF55FE9ABDD09A8917F6CA48F3A9C498394097DA6C0D46AED0
+                  BD36DBC1E73AC1CCCCC8383AA4C9426DE064C62299B148662C92198B64C62299
+                  B148662CA2CCC87944D356E8F3B563C498F940CF216DCD13FA0CA94DAD198E8A
+                  8F843E8BFB0E9566F09C9C7BFB3ACEBFC49C811DDA2195CBDB21DA907A24F256
+                  E52237200E897F2F74156ACD0898917E72C35CD33C0A26977DF285C69A27969D
+                  2CFB0506B605088CB3F0600000000049454E44AE426082}
+                FileName = 'C:\RAD-Alicia\Icone\ic_delete_white_24dp.png'
+              end>
+            Align = Center
+            Locked = True
+            HitTest = False
+            Size.Width = 30.000000000000000000
+            Size.Height = 30.000000000000000000
+            Size.PlatformDefault = False
+          end
         end
       end
     end
     object TabControl: TTabControl
       Align = Client
       Size.Width = 663.000000000000000000
-      Size.Height = 399.000000000000000000
+      Size.Height = 389.000000000000000000
       Size.PlatformDefault = False
-      TabIndex = 1
+      TabIndex = 2
       TabOrder = 1
       TabPosition = Bottom
       Sizes = (
         663s
-        376s
+        366s
         663s
-        376s
+        366s
         663s
-        376s)
+        366s)
       object tabLista: TTabItem
         CustomIcon = <
           item
@@ -289,8 +397,8 @@ object FrmALClientePadrao: TFrmALClientePadrao
             DefaultItemStyles.ItemStyle = ''
             DefaultItemStyles.GroupHeaderStyle = ''
             DefaultItemStyles.GroupFooterStyle = ''
-            Viewport.Width = 653.000000000000000000
-            Viewport.Height = 35.000000000000000000
+            Viewport.Width = 651.000000000000000000
+            Viewport.Height = 33.000000000000000000
             object ListBoxItem1: TListBoxItem
               Size.Width = 651.000000000000000000
               Size.Height = 32.000000000000000000
@@ -331,20 +439,20 @@ object FrmALClientePadrao: TFrmALClientePadrao
           CanFocus = True
           ClipChildren = True
           Size.Width = 663.000000000000000000
-          Size.Height = 331.000000000000000000
+          Size.Height = 321.000000000000000000
           Size.PlatformDefault = False
           TabOrder = 1
           RowHeight = 21.000000000000000000
           RowCount = 0
-          Viewport.Width = 663.000000000000000000
-          Viewport.Height = 331.000000000000000000
+          Viewport.Width = 661.000000000000000000
+          Viewport.Height = 298.000000000000000000
         end
       end
       object tabCadastro: TTabItem
         CustomIcon = <
           item
           end>
-        IsSelected = True
+        IsSelected = False
         Size.Width = 68.000000000000000000
         Size.Height = 23.000000000000000000
         Size.PlatformDefault = False
@@ -356,18 +464,18 @@ object FrmALClientePadrao: TFrmALClientePadrao
         object vCadastro: TVertScrollBox
           Align = Client
           Size.Width = 663.000000000000000000
-          Size.Height = 376.000000000000000000
+          Size.Height = 366.000000000000000000
           Size.PlatformDefault = False
           TabOrder = 0
           Viewport.Width = 663.000000000000000000
-          Viewport.Height = 376.000000000000000000
+          Viewport.Height = 366.000000000000000000
         end
       end
       object tabDesenvolvedor: TTabItem
         CustomIcon = <
           item
           end>
-        IsSelected = False
+        IsSelected = True
         Size.Width = 117.000000000000000000
         Size.Height = 23.000000000000000000
         Size.PlatformDefault = False
@@ -395,28 +503,48 @@ object FrmALClientePadrao: TFrmALClientePadrao
           Size.Height = 281.000000000000000000
           Size.PlatformDefault = False
           TabOrder = 1
-          Viewport.Width = 625.000000000000000000
-          Viewport.Height = 281.000000000000000000
+          Viewport.Width = 623.000000000000000000
+          Viewport.Height = 279.000000000000000000
+        end
+        object btnCriar: TButton
+          Position.X = 152.000000000000000000
+          Position.Y = 8.000000000000000000
+          Size.Width = 113.000000000000000000
+          Size.Height = 22.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 2
+          Text = 'btnCriar'
+          OnClick = btnCriarClick
+        end
+        object btnFindIndex: TButton
+          Position.X = 272.000000000000000000
+          Position.Y = 8.000000000000000000
+          Size.Width = 121.000000000000000000
+          Size.Height = 22.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 3
+          Text = 'Find'
+          OnClick = btnFindIndexClick
         end
       end
     end
-  end
-  object pTitulo: TPanel
-    Align = Top
-    Size.Width = 663.000000000000000000
-    Size.Height = 25.000000000000000000
-    Size.PlatformDefault = False
-    TabOrder = 5
-    object lblTitulo: TLabel
-      Align = Left
-      StyledSettings = [Family, Style, FontColor]
-      Margins.Left = 15.000000000000000000
-      Position.X = 15.000000000000000000
-      Size.Width = 474.000000000000000000
+    object pTitulo: TPanel
+      Align = Top
+      Size.Width = 663.000000000000000000
       Size.Height = 25.000000000000000000
       Size.PlatformDefault = False
-      TextSettings.Font.Size = 20.000000000000000000
-      Text = 'Titulo da tela'
+      TabOrder = 2
+      object lblTitulo: TLabel
+        Align = Left
+        StyledSettings = [Family]
+        Margins.Left = 15.000000000000000000
+        Position.X = 15.000000000000000000
+        Size.Width = 474.000000000000000000
+        Size.Height = 25.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.FontColor = claWhite
+        Text = 'Titulo da tela'
+      end
     end
   end
   object ActionList1: TActionList

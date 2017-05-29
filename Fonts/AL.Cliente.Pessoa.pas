@@ -14,24 +14,14 @@ uses
   Fmx.Bind.Editors, Data.Bind.EngExt, Fmx.Bind.DBEngExt, Data.Bind.Components,
   Data.Bind.DBScope, FireDAC.Phys.MongoDBWrapper, Fmx.Bind.Grid, Data.Bind.Grid,
   FMX.Grid, FMX.ScrollBox, FMX.Memo, AL.Componente.TEdit, FMX.Grid.Style,
-  AL.Componente.TDateEdit, AL.Componente.TComboBox, FMX.Objects;
+  AL.Componente.TDateEdit, AL.Componente.TComboBox, FMX.Objects,
+  AL.Componente.TLabel;
 
 type
   TFrmALClientePessoa = class(TFrmALClientePadrao)
     gEndereco: TGroupBox;
-    edtcidade_nome_cep: TEdit;
-    Label6: TLabel;
-    edtcidade_codigo_cep: TEdit;
-    edtbairro_cep: TEdit;
-    Label7: TLabel;
-    edtrua_cep: TEdit;
-    Label8: TLabel;
-    edtnumero_cep: TEdit;
-    Label9: TLabel;
     edtuf_cep: TEdit;
     Label10: TLabel;
-    edtcomplemento_cep: TEdit;
-    Label11: TLabel;
     edt_id: TALEdit;
     edtrazao_social_pes: TALEdit;
     edtcpf_cnpj_pes: TALEdit;
@@ -43,7 +33,13 @@ type
     gUsuario: TGroupBox;
     edtusuario_login: TALEdit;
     edtusuario_senha: TALEdit;
-    rUsuario: TRadioButton;
+    edtcidade_nome_cep: TALEdit;
+    edtcidade_codigo_cep: TALEdit;
+    edtbairro_cep: TALEdit;
+    edtrua_cep: TALEdit;
+    edtnumero_cep: TALEdit;
+    edtcomplemento_cep: TALEdit;
+    chkUsuario: TCheckBox;
     procedure cmbvtipo_pesChange(Sender: TObject);
     procedure SearchEditButton2Click(Sender: TObject);
     procedure rUsuarioChange(Sender: TObject);
@@ -96,7 +92,7 @@ begin
   Persistencia.Tabela  := 'PESSOA';
   FieldText            := 'razao_social_pes';
   FieldID              := '_id';
-  rUsuario.IsChecked := False;
+  chkUsuario.IsChecked := False;
 end;
 
 function TFrmALClientePessoa.Editar(Json: string): Boolean;
@@ -108,7 +104,7 @@ begin
   edtdt_cadastro_pes.Date  := Pessoa.dt_cadastro_pes;
   cmbtipo_pes.ItemIndex    := Pessoa.tipo_pes.ToInteger;
   edtcpf_cnpj_pes.Text     := Pessoa.cpf_cnpj_pes;
-  rUsuario.IsChecked     := Pessoa.usuario;
+  chkUsuario.IsChecked     := Pessoa.usuario;
   edtusuario_login.Text    := Pessoa.usuario_login;
   edtusuario_senha.Text    := Pessoa.usuario_senha;
 
@@ -159,7 +155,7 @@ begin
   edtdt_cadastro_pes.Date    := Now;
   cmbtipo_pes.ItemIndex      := 0;
   edtcpf_cnpj_pes.Clear;
-  rUsuario.IsChecked       := False;
+  chkUsuario.IsChecked       := False;
 
   Result := True;
 end;
@@ -172,7 +168,7 @@ end;
 procedure TFrmALClientePessoa.rUsuarioChange(Sender: TObject);
 begin
   inherited;
-  gUsuario.Visible := not rUsuario.IsChecked;
+  gUsuario.Visible := not chkUsuario.IsChecked;
 end;
 
 function TFrmALClientePessoa.Salvar: Boolean;
@@ -195,7 +191,7 @@ begin
   Pessoa.tipo_pes         := cmbtipo_pes.ItemIndex.ToString;
   Pessoa.cpf_cnpj_pes     := edtcpf_cnpj_pes.Text;
 
-  Pessoa.usuario        := rUsuario.IsChecked;
+  Pessoa.usuario        := chkUsuario.IsChecked;
   Pessoa.usuario_login  := edtusuario_login.Text;
   Pessoa.usuario_senha  := edtusuario_senha.Text;
 
