@@ -42,6 +42,7 @@ type
     procedure AfterConstruction; override;
     constructor Create(AOwner: TComponent); override;
     procedure Erro(msg:String);
+    function IsEmpty : Boolean;
 
 
   published
@@ -146,6 +147,11 @@ procedure TALEdit.InternalValidating(Sender: TObject; var Text: string);
 begin
   if Assigned(FALOnValidating) then
     FALOnValidating(Sender,Text);
+end;
+
+function TALEdit.IsEmpty: Boolean;
+begin
+  Result :=  Trim((Text)) = EmptyStr;
 end;
 
 procedure TALEdit.Path1Click(Sender: TObject);

@@ -36,6 +36,7 @@ type
     function GetConMongo : TMongoConnection;
     function GetEnv      : TMongoEnv;
     function GetFDCon    : TFDConnection;
+    function GetAux      : TMongoDatabase;
   end;
 
 var
@@ -117,6 +118,11 @@ begin
 end;
 
 
+
+function TFrmALClienteDmDados.GetAux: TMongoDatabase;
+begin
+  Result := FConMongo[GetBanco];
+end;
 
 function TFrmALClienteDmDados.GetBanco: String;
 begin

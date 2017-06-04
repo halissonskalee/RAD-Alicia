@@ -2,8 +2,8 @@ object FrmALClienteSenha: TFrmALClienteSenha
   Left = 0
   Top = 0
   Caption = 'Form1'
-  ClientHeight = 417
-  ClientWidth = 601
+  ClientHeight = 541
+  ClientWidth = 370
   StyleBook = FrmALClienteMenu.StyleBook1
   FormFactor.Width = 320
   FormFactor.Height = 480
@@ -12,21 +12,22 @@ object FrmALClienteSenha: TFrmALClienteSenha
   DesignerMasterStyle = 0
   object lySenha: TLayout
     Align = Client
-    Size.Width = 601.000000000000000000
-    Size.Height = 417.000000000000000000
+    Size.Width = 370.000000000000000000
+    Size.Height = 541.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 0
-    object pFundo: TPanel
+    object Rectangle1: TRectangle
       Align = Client
-      Size.Width = 601.000000000000000000
-      Size.Height = 417.000000000000000000
+      Fill.Color = claWhite
+      Size.Width = 370.000000000000000000
+      Size.Height = 541.000000000000000000
       Size.PlatformDefault = False
-      TabOrder = 0
+      Stroke.Color = claWhite
       object recSenha: TRectangle
         Align = VertCenter
         Fill.Color = claWhite
-        Position.Y = 96.000000000000000000
-        Size.Width = 601.000000000000000000
+        Position.Y = 158.000000000000000000
+        Size.Width = 370.000000000000000000
         Size.Height = 225.000000000000000000
         Size.PlatformDefault = False
         Stroke.Kind = None
@@ -35,22 +36,153 @@ object FrmALClienteSenha: TFrmALClienteSenha
           Anchors = [akTop]
           TabOrder = 1
           Password = True
-          Position.X = 152.000000000000000000
+          Position.X = 35.923461914062500000
           Position.Y = 56.000000000000000000
           Size.Width = 300.000000000000000000
           Size.Height = 22.000000000000000000
           Size.PlatformDefault = False
           CharCase = ecUpperCase
+          OnKeyDown = edtSenhaKeyDown
           ALTextLabel = 'Senha'
           ALTipo = Nada
           ALValido = True
           ALObrigatorio = False
+          object btnEntra: TButton
+            Anchors = [akRight, akBottom]
+            Position.Y = 22.000000000000000000
+            Size.Width = 150.000000000000000000
+            Size.Height = 55.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 0
+            Text = 'Sair'
+            OnClick = btnEntraClick
+            object Panel4: TPanel
+              Align = Client
+              Locked = True
+              HitTest = False
+              Size.Width = 150.000000000000000000
+              Size.Height = 55.000000000000000000
+              Size.PlatformDefault = False
+              TabOrder = 3
+              object ALLabel1: TALLabel
+                Align = Top
+                AutoSize = True
+                StyledSettings = [Family, Size, Style]
+                Locked = True
+                Size.Width = 150.000000000000000000
+                Size.Height = 16.000000000000000000
+                Size.PlatformDefault = False
+                TextSettings.FontColor = claWhite
+                TextSettings.HorzAlign = Center
+                Text = 'Entrar'
+                TabOrder = 1
+              end
+              object Image1: TImage
+                MultiResBitmap.Height = 36
+                MultiResBitmap.Width = 36
+                MultiResBitmap = <
+                  item
+                    Width = 36
+                    Height = 36
+                    PNG = {
+                      89504E470D0A1A0A0000000D4948445200000024000000240806000000E10098
+                      98000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
+                      00D5494441545847ED963D0EC2300C46B3C1C6953800DC80A3307022367E6EC5
+                      8CA2247CC636AA202A536D44FD96D014F93D415435054110CC8DD6DAB2D6BA93
+                      4B5F28A69472C54A1C64DB07040C6394B5DCB605E25E8CCF2F0471C474813862
+                      BA403C93183C4D37187EC4BA90AD51209E34669B73BED344484EDFA2F0B569FF
+                      2604EC65E893B128DCB6393334946733909EDFA3B06D7B8069383B9861142E6D
+                      631492B08B41C405CBCA254621193B191CF89B7C54EC621492B2FB03FB1885E4
+                      DCF0C22F46A1086EF9811805313E6F7A4110FC1F293D008E3E1A772FBD17B200
+                      00000049454E44AE426082}
+                    FileName = 'C:\RAD-Alicia\Icone\ic_check_white_24dp.png'
+                  end>
+                Align = Center
+                Locked = True
+                HitTest = False
+              end
+            end
+          end
+          object btnSair: TButton
+            Anchors = [akTop]
+            Position.X = 152.000000000000000000
+            Position.Y = 22.000000000000000000
+            Size.Width = 150.000000000000000000
+            Size.Height = 55.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 1
+            Text = 'Sair'
+            OnClick = btnSairClick
+            object Panel3: TPanel
+              Align = Client
+              Locked = True
+              HitTest = False
+              Size.Width = 150.000000000000000000
+              Size.Height = 55.000000000000000000
+              Size.PlatformDefault = False
+              TabOrder = 2
+              object Sair: TALLabel
+                Align = Top
+                AutoSize = True
+                StyledSettings = [Family, Size, Style]
+                Locked = True
+                Size.Width = 150.000000000000000000
+                Size.Height = 16.000000000000000000
+                Size.PlatformDefault = False
+                TextSettings.FontColor = claWhite
+                TextSettings.HorzAlign = Center
+                Text = 'Sair'
+                TabOrder = 0
+              end
+              object Image2: TImage
+                MultiResBitmap.Height = 36
+                MultiResBitmap.Width = 36
+                MultiResBitmap = <
+                  item
+                    Width = 36
+                    Height = 36
+                    PNG = {
+                      89504E470D0A1A0A0000000D4948445200000024000000240806000000E10098
+                      98000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
+                      02F0494441545847ED963D6B14511486777637169A425130883162116C6C8206
+                      B151C47ED15A5B3F4A0541AD228844052136FE84E00FD0CA8FA8588598C4CECE
+                      0F4423C4C68D107776C7E7DC7D7798B833D999D9012DF681CB39F79E7BDEFB35
+                      77664A0306F489279B9B20084E60AC18739EE7CDC9FF3730A1294A872935E7A6
+                      2CFBDF906A42AC7CBBDCDCA4D5E839A166B379D7F7FD2504F7AB2933E41E4063
+                      193BADA67CB45AAD2B88381A8DC607EA7B140A21B4E93344CE28B91F150FA85F
+                      562896C41D227192DDB9A36AA95C2EBFE1067D573535E4AC903BAFAADB71B48F
+                      A89A0E16E2B1C50BED35050122CF31558537407BCF5B46FB107AAFDA5D8240DA
+                      B1AF9CA41DAA552A95097348AEB3CA7314DF4572406E03BDB368AD595DDA35F3
+                      FF2676426CE905B9765433942FAAE686497D42E781AA36C679B91BE89A105B39
+                      4CE793E6B3A200A1872E5000A6659AE633C6291BCB0522C4EDD0E16AB5BAC51C
+                      04968AD89D0E687D4673D97CC61862425D0F77DC0E1D946B135A945B1868BE95
+                      6B8CCB86C4EDD00E596345B648BEC91ABB6443E226D4F71F400FA263B66443E2
+                      26F443D6D82DBB19F6BB715325CDAFC788AC1DDFAADC64EC86F11C39B811D1F3
+                      2E0434ED9BE660ACE36A4E867EC37C7B1A968021A735AA50DFA035669AD25EC7
+                      6C5528A4EBC8D8C63AD7F399F95C4D8FA48B2E5000685F324DF319E329F55F2E
+                      D00B5672C65661B0929FD4F72A941BEDCE9A64EDB8623F1DB1D0DF3EAEE159F3
+                      717D8119523833968BDE6B2706F8891FD74458C13156E4B725DCA46631992765
+                      39E43E722280A63D98930A6783C4EBD271B0B297B4A57EC8E93B16DD1983B6AB
+                      0AE783D5CD48CBC102EBB4DDC6DDA72E5DD844884F479F1983BCFBEA9248AA73
+                      44EB1A2BBDC50DA9A8A9F327F08E62DFBBAF14D31AA1EF04E550E73619F4F5F9
+                      07BAC1CDBAA7A6FE61D547D15DB49566819C0572F33D33BD40DF43FC345BFF84
+                      E3F8DD1EB21B62EBF4794CDF1AD54CB729DBD58BC060DB382EFB9F1967D09DD6
+                      467D15FF3D769E92EEA5376040A1944A7F006862A78280F14BCF000000004945
+                      4E44AE426082}
+                    FileName = 'C:\RAD-Alicia\Icone\ic_power_settings_new_white_24dp.png'
+                  end>
+                Align = Center
+                Locked = True
+                HitTest = False
+              end
+            end
+          end
         end
         object edtUsuario: TALEdit
           Touch.InteractiveGestures = [LongTap, DoubleTap]
           Anchors = [akTop]
           TabOrder = 0
-          Position.X = 152.000000000000000000
+          Position.X = 35.923461914062500000
           Position.Y = 20.000000000000000000
           Size.Width = 300.000000000000000000
           Size.Height = 22.000000000000000000
@@ -67,135 +199,6 @@ object FrmALClienteSenha: TFrmALClienteSenha
           Enabled = True
           Style = Circular
           Visible = False
-        end
-        object btnSair: TButton
-          Anchors = [akTop]
-          Position.X = 152.000000000000000000
-          Position.Y = 135.000000000000000000
-          Size.Width = 300.000000000000000000
-          Size.Height = 55.000000000000000000
-          Size.PlatformDefault = False
-          TabOrder = 2
-          Text = 'Sair'
-          OnClick = btnSairClick
-          object Panel3: TPanel
-            Align = Client
-            Locked = True
-            HitTest = False
-            Size.Width = 300.000000000000000000
-            Size.Height = 55.000000000000000000
-            Size.PlatformDefault = False
-            TabOrder = 2
-            object Sair: TALLabel
-              Align = Top
-              AutoSize = True
-              StyledSettings = [Family, Size, Style]
-              Locked = True
-              Size.Width = 300.000000000000000000
-              Size.Height = 16.000000000000000000
-              Size.PlatformDefault = False
-              TextSettings.FontColor = claWhite
-              TextSettings.HorzAlign = Center
-              Text = 'Sair'
-              TabOrder = 0
-            end
-            object Image2: TImage
-              MultiResBitmap.Height = 36
-              MultiResBitmap.Width = 36
-              MultiResBitmap = <
-                item
-                  Width = 36
-                  Height = 36
-                  PNG = {
-                    89504E470D0A1A0A0000000D4948445200000024000000240806000000E10098
-                    98000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
-                    02C2494441545847ED963B6B146114867757D74253280A8A182316C1C64654C4
-                    4609F68BD6DA7A291504B58A20122308B1C94F107F80565EA2621562123B3B2F
-                    8817888D891037ECFABC336F865D7766776676408B7DE070CE7739EF7799F966
-                    BED280017D52B6CF4DB3D93C8993899972B93CE3F8DFC084C6B175C65D9D9B8A
-                    FD7F43AA09B1F2AD0E739356A3E7841A8DC624620BD83E576586DCFDD82236E1
-                    AA7C30992B880410BFC776BB2982A6AEEF1039C3D807B74BE7B29B6249DC2112
-                    8FE2EE84A580D79CA0EF8E5343CE37DC6C580A9844FB88E374B090324973E19A
-                    82553DC36D74731BD4F73C65D457D178197609F4A41DFBC949DAA11A2B3BA480
-                    C465DC39CA6B2AE781DC3A7616AD1597A55D53FC37B11322F182433155A9543E
-                    3BCE0D93F888BB1F968231CE3B6CA36342741CC28D396EE2A61517C4B435C529
-                    8FD546DC0E1D66359B1C2F14B13BEBA0F509B7A89831AA4CA8E3E58EDBA1030E
-                    C5BC7D91BCB117A3F611713BB4CD5EE8C816CD577BB1C33E226E427DDF007AD0
-                    3A66C33E226E423FECC54EFB6EE8BA71D396E6EAB1CB5EEFD192C364F8688DE9
-                    2408E2D6E75D0868EA9F16407CC2D5C9D06F888E7527886137F50D5A2312B4F6
-                    2A6EB39B223A1E19DBA82FF353C77A9F2E2A2E02E42E59533C21FCE5B83BCCFE
-                    8C5621887F627BDC941B34B43B2B96956EECAF2316FAEBE7DAFAAC9FE3AA6ECE
-                    8C72D17815880171E2CF3511928E636BA14420F200977952CA21F7612002C475
-                    4C579BEC9078DD3A01945F60A95F72FAEA31453B23285F75733E1098B25600E5
-                    65EC36E15E77E980F611DA27F0D13B2328DF739744523D47B4AE61B738151B5C
-                    A53AFDB5DF62FADF7DC1A4A58F9EEE3A075B4E93FAEA2E75839FEBDDB0A60058
-                    DD316C5E13C902397358BE77A617E8EBF49DC61E63BFC3213BA16D157B84D528
-                    663A4DD98E5E0B0CB685A7A2FBCC28836E571DE525E277F8592CDD476FC08042
-                    2995FE00BBE89354DC9A74B10000000049454E44AE426082}
-                  FileName = 'C:\RAD-Alicia\Icone\ic_power_settings_new_white_24dp.png'
-                end>
-              Align = Center
-              Locked = True
-              HitTest = False
-            end
-          end
-        end
-        object btnEntra: TButton
-          Anchors = [akTop]
-          Position.X = 152.000000000000000000
-          Position.Y = 79.000000000000000000
-          Size.Width = 300.000000000000000000
-          Size.Height = 54.000000000000000000
-          Size.PlatformDefault = False
-          TabOrder = 3
-          Text = 'Sair'
-          OnClick = btnEntraClick
-          object Panel4: TPanel
-            Align = Client
-            Locked = True
-            HitTest = False
-            Size.Width = 300.000000000000000000
-            Size.Height = 54.000000000000000000
-            Size.PlatformDefault = False
-            TabOrder = 3
-            object ALLabel1: TALLabel
-              Align = Top
-              AutoSize = True
-              StyledSettings = [Family, Size, Style]
-              Locked = True
-              Size.Width = 300.000000000000000000
-              Size.Height = 16.000000000000000000
-              Size.PlatformDefault = False
-              TextSettings.FontColor = claWhite
-              TextSettings.HorzAlign = Center
-              Text = 'Entrar'
-              TabOrder = 1
-            end
-            object Image1: TImage
-              MultiResBitmap.Height = 36
-              MultiResBitmap.Width = 36
-              MultiResBitmap = <
-                item
-                  Width = 36
-                  Height = 36
-                  PNG = {
-                    89504E470D0A1A0A0000000D4948445200000024000000240806000000E10098
-                    98000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
-                    00CF494441545847ED963B0EC2301044DD41C7953800DC80A35070223A3EB7A2
-                    A6B1996576510456A8B28BC83EC972EC44334F898B94244992B9D15A5BD65A77
-                    BA8C4565AE9885836EC70081A18CB1D6DBBEA0B82713F386509C325D509C325D
-                    503C1319046F308E180BDD1A05C593CA6C31EE9288F9F44D0A8F4DFB9910BED7
-                    D0276352B8ED73662494D904A5E777296CFB1E60096707194A61E92B634809BB
-                    08242E985621328694B19340E6A697869F8C21A5ECFEC05FC690723ABC889331
-                    44822E3F20634026E64F2F4992FFA39407A94D1AC80FEF7B070000000049454E
-                    44AE426082}
-                  FileName = 'C:\RAD-Alicia\Icone\ic_check_white_24dp.png'
-                end>
-              Align = Center
-              Locked = True
-              HitTest = False
-            end
-          end
         end
       end
     end

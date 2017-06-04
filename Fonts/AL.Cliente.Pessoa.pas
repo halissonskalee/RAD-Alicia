@@ -19,27 +19,34 @@ uses
 
 type
   TFrmALClientePessoa = class(TFrmALClientePadrao)
-    gEndereco: TGroupBox;
-    edtuf_cep: TEdit;
-    Label10: TLabel;
-    edt_id: TALEdit;
-    edtrazao_social_pes: TALEdit;
-    edtcpf_cnpj_pes: TALEdit;
-    edtdt_cadastro_pes: TALDateEdit;
-    edtcodigo_cep: TALEdit;
-    SearchEditButton2: TSearchEditButton;
-    cmbtipo_pes: TALComboBox;
-    gPrincipal: TGroupBox;
+    tabEndereco: TTabItem;
+    tabUsuario: TTabItem;
     gUsuario: TGroupBox;
     edtusuario_login: TALEdit;
     edtusuario_senha: TALEdit;
+    gEndereco: TGroupBox;
+    edtuf_cep: TEdit;
+    Label10: TLabel;
+    edtcodigo_cep: TALEdit;
+    SearchEditButton2: TSearchEditButton;
     edtcidade_nome_cep: TALEdit;
     edtcidade_codigo_cep: TALEdit;
     edtbairro_cep: TALEdit;
     edtrua_cep: TALEdit;
     edtnumero_cep: TALEdit;
     edtcomplemento_cep: TALEdit;
-    chkUsuario: TCheckBox;
+    gPrincipal: TGroupBox;
+    cmbtipo_pes: TALComboBox;
+    edt_id: TALEdit;
+    edtcpf_cnpj_pes: TALEdit;
+    edtdt_cadastro_pes: TALDateEdit;
+    edtrazao_social_pes: TALEdit;
+    chkCliente: TSwitch;
+    ALLabel6: TALLabel;
+    chkFornecedor: TSwitch;
+    ALLabel7: TALLabel;
+    chkUsuario: TSwitch;
+    ALLabel8: TALLabel;
     procedure cmbvtipo_pesChange(Sender: TObject);
     procedure SearchEditButton2Click(Sender: TObject);
     procedure rUsuarioChange(Sender: TObject);
@@ -57,6 +64,9 @@ type
     function FocoEditar: Boolean; override;
     function NovoBefore: Boolean; override;
     function Novo: Boolean; override;
+    function ListaAoCriar: Boolean; override;
+    function Filtrar(Value: string): Boolean; override;
+
 
 
 
@@ -132,6 +142,21 @@ begin
 end;
 
 
+function TFrmALClientePessoa.Filtrar(Value: string): Boolean;
+begin
+  SQLListar.Close;
+  SQLListar.Cursor := GetCon.Find()
+                              .Match()
+                                .Exp('razao_social_pes', '{ "$regex" : "'+Value+'" }')
+                              .&End
+                              .Project()
+                                .Field('_id', true)
+                                .Field('razao_social_pes', true)
+                                .Field('data_cadastro_pes', true)
+                              .&End;
+  SQLListar.Open;
+end;
+
 function TFrmALClientePessoa.FocoEditar: Boolean;
 begin
   edtrazao_social_pes.SetFocus;
@@ -145,6 +170,18 @@ end;
 function TFrmALClientePessoa.FocoNovo: Boolean;
 begin
   edtrazao_social_pes.SetFocus;
+end;
+
+function TFrmALClientePessoa.ListaAoCriar: Boolean;
+begin
+  SQLListar.Close;
+  SQLListar.Cursor := GetCon.Find()
+                              .Project()
+                                .Field('_id', true)
+                                .Field('razao_social_pes', true)
+                                .Field('data_cadastro_pes', true)
+                              .&End;
+  SQLListar.Open;
 end;
 
 function TFrmALClientePessoa.Novo: Boolean;

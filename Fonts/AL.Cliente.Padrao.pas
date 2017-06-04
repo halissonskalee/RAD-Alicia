@@ -17,14 +17,14 @@ uses
   AL.Persistencia, System.Rtti, Fmx.Bind.Grid, System.Bindings.Outputs,
   Fmx.Bind.Editors, Data.Bind.EngExt, Fmx.Bind.DBEngExt, Data.Bind.Components,
   Data.Bind.Grid, FMX.Grid, Data.Bind.DBScope, FMX.ScrollBox, FMX.Memo,
-  FMX.Grid.Style, FMX.Objects, AL.Componente.TLabel;
+  FMX.Grid.Style, FMX.Objects, AL.Componente.TLabel, AL.Componente.TEdit;
 
 type
-  TAcao = (tpInsert, tpUpdate, tpLista);
+  TAcao = (tpInsert, tpUpdate, tpLista, Excluir);
 
 type
   TFrmALClientePadrao = class(TFrmALClienteModelo)
-    Panel2: TPanel;
+    pTooBar: TPanel;
     ActionList1: TActionList;
     acSalvar: TAction;
     acExcluir: TAction;
@@ -32,20 +32,12 @@ type
     acNovo: TAction;
     acEditar: TAction;
     lyCliente: TLayout;
-    TabControl: TTabControl;
+    TabControlPrincipal: TTabControl;
     tabLista: TTabItem;
     tabCadastro: TTabItem;
-    changeTabLista: TChangeTabAction;
-    changeTabCadastro: TChangeTabAction;
     acVoltar: TAction;
     pTitulo: TPanel;
     lblTitulo: TLabel;
-    ListBox2: TListBox;
-    ListBoxItem1: TListBoxItem;
-    edtBusca: TEdit;
-    Label1: TLabel;
-    Panel1: TPanel;
-    SearchEditButton1: TSearchEditButton;
     griLista: TGrid;
     SQLListar: TFDMongoDataSet;
     BindSourceDB1: TBindSourceDB;
@@ -54,7 +46,6 @@ type
     tabDesenvolvedor: TTabItem;
     Button1: TButton;
     Memo1: TMemo;
-    vCadastro: TVertScrollBox;
     btnCriar: TButton;
     btnFindIndex: TButton;
     btnVoltar: TButton;
@@ -77,6 +68,8 @@ type
     Panel7: TPanel;
     ALLabel5: TALLabel;
     Image5: TImage;
+    Rectangle1: TRectangle;
+    edtBusca: TALEdit;
     procedure acNovoExecute(Sender: TObject);
     procedure acEditarExecute(Sender: TObject);
     procedure ListBox1ItemClick(const Sender: TCustomListBox;
@@ -86,14 +79,14 @@ type
     procedure acVoltarExecute(Sender: TObject);
     procedure acSairExecute(Sender: TObject);
     procedure edtBuscaChange(Sender: TObject);
-    procedure SearchEditButton1Click(Sender: TObject);
-    procedure lbListaItemClick(const Sender: TCustomListBox;
-      const Item: TListBoxItem);
     procedure acSalvarExecute(Sender: TObject);
     procedure SQLListarBeforeOpen(DataSet: TDataSet);
     procedure Button1Click(Sender: TObject);
     procedure btnCriarClick(Sender: TObject);
     procedure btnFindIndexClick(Sender: TObject);
+    procedure btnExcluirClick(Sender: TObject);
+    procedure edtBuscaValidate(Sender: TObject; var Text: string);
+    procedure griListaCellDblClick(const Column: TColumn; const Row: Integer);
 
   private
 
@@ -108,6 +101,7 @@ type
     procedure fnc_buscarCampoChave(var i: Integer; const Item: TListBoxItem);
     procedure fnc_PreencherRegistros;
     procedure ExibirBotoes;
+    procedure SetAcao(const Value: TAcao);
 
 
 
@@ -143,7 +137,7 @@ type
     function Filtrar(Value:String):Boolean ; virtual;
 
   published
-    property Acao         : TAcao           read FAcao         write FAcao;
+    property Acao         : TAcao            read FAcao write SetAcao;
     property Persistencia : TALPersistencia read FPersistencia write FPersistencia;
     property FieldText    : String          read FFieldText    write FFieldText;
     property FieldID      : String          read FFieldID      write FFieldID;
@@ -160,24 +154,47 @@ implementation
 
 uses AL.Cliente.DmDados, AL.Cliente.Menu, System.Threading, AL.Classe.Pessoa;
 
+
 procedure TFrmALClientePadrao.acEditarExecute(Sender: TObject);
+var
+  oCrs : IMongoCursor;
 begin
-  changeTabCadastro.ExecuteTarget(Self);
-  ExibirBotoes;
+  if SQLListar.IsEmpty then
+    raise Exception.Create('Nenhum registro para editar!');
+
+  oCrs := GetCon.Find().Match().Add(FFieldID, SQLListar.FieldByName(FFieldID).AsInteger ).&End;
+  while oCrs.Next do
+  begin
+    if editar(oCrs.Doc.AsJSON) then
+    begin
+      Acao := tpUpdate;
+      TabControlPrincipal.ActiveTab := tabCadastro;
+      ExibirBotoes;
+      FocoEditar;
+    end;
+  end;
+
+
 end;
 
 procedure TFrmALClientePadrao.acNovoExecute(Sender: TObject);
+var
+  I: Integer;
 begin
   if NovoBefore then
+  begin
     if Novo then
     begin
-      Self.FAcao := tpInsert;
+      Acao := tpInsert;
       fnc_limparCampos;
-      changeTabCadastro.ExecuteTarget(Self);
+      TabControlPrincipal.ActiveTab := tabCadastro;
       ExibirBotoes;
       NovoBefore;
       FocoNovo;
+
     end;
+  end;
+
 
 
 
@@ -201,9 +218,11 @@ begin
 end;
 
 procedure TFrmALClientePadrao.acVoltarExecute(Sender: TObject);
+var
+  I: Integer;
 begin
   inherited;
-  if TabControl.ActiveTab = tabLista then
+  if TabControlPrincipal.ActiveTab = tabLista then
   begin
     acSair.Execute;
     Exit
@@ -211,7 +230,8 @@ begin
   else
   begin
     FAcao := tpLista;
-    changeTabLista.ExecuteTarget(Self);
+
+    TabControlPrincipal.ActiveTab := tabLista;
     ExibirBotoes;
   end;
 
@@ -239,6 +259,12 @@ begin
     idx.Free;
   end;
 
+end;
+
+procedure TFrmALClientePadrao.btnExcluirClick(Sender: TObject);
+begin
+  inherited;
+  Acao := Excluir;
 end;
 
 procedure TFrmALClientePadrao.btnFindIndexClick(Sender: TObject);
@@ -357,9 +383,9 @@ begin
   inherited;
   CriarBefore;
 
-  lblTitulo.Text          := Self.Caption;
-//  TabControl.TabPosition  := TTabPosition.None;
-  TabControl.ActiveTab    := tabLista;
+  Acao := tpLista;
+  lblTitulo.Text                   := Self.Caption;
+  TabControlPrincipal.ActiveTab    := tabLista;
   ExibirBotoes;
 
   Persistencia := FrmALClienteDmDados.CriarPersistencia;
@@ -384,21 +410,11 @@ begin
   Result := FrmALClienteDmDados.FConMongo[Persistencia.Banco][Persistencia.Tabela];
 end;
 
-procedure TFrmALClientePadrao.lbListaItemClick(const Sender: TCustomListBox;  const Item: TListBoxItem);
-var
-  oCrs : IMongoCursor;
+procedure TFrmALClientePadrao.griListaCellDblClick(const Column: TColumn;
+  const Row: Integer);
 begin
-  oCrs := GetCon.Find().Match().Add(FFieldID,Integer(Item.Data)).&End;
-  while oCrs.Next do
-  begin
-    if editar(oCrs.Doc.AsJSON) then
-    begin
-      changeTabCadastro.Execute;
-      Acao := tpUpdate;
-      ExibirBotoes;
-      FocoEditar;
-    end;
-  end;
+  inherited;
+  acEditar.Execute;
 end;
 
 function TFrmALClientePadrao.Editar(Json:String) : Boolean;
@@ -412,9 +428,16 @@ begin
   Filtrar(edtBusca.Text)
 end;
 
+procedure TFrmALClientePadrao.edtBuscaValidate(Sender: TObject;
+  var Text: string);
+begin
+  inherited;
+  Filtrar(Text);
+end;
+
 procedure TFrmALClientePadrao.ExibirBotoes;
 begin
-  if TabControl.ActiveTab  = tabLista then
+  if TabControlPrincipal.ActiveTab  = tabLista then
   begin
     btnSalvar.Visible  := false;
     btnExcluir.Visible := false;
@@ -422,7 +445,6 @@ begin
     btnEditar.Visible  := True;
   end
   else
-  if TabControl.ActiveTab = tabCadastro then
   begin
     btnEditar.Visible  := false;
     btnSalvar.Visible  := true;
@@ -457,14 +479,7 @@ end;
 
 function TFrmALClientePadrao.ListaAoCriar: Boolean;
 begin
-  SQLListar.Close;
-  SQLListar.Cursor := GetCon.Find()
-                              .Project()
-                                .Field('_id', true)
-                                .Field('razao_social_pes', true)
-                                .Field('data_cadastro_pes', true)
-                              .&End;
-  SQLListar.Open;
+
 end;
 
 procedure TFrmALClientePadrao.ListBox1ItemClick(const Sender: TCustomListBox;
@@ -475,7 +490,7 @@ begin
   Self.Acao := tpUpdate;
   fnc_buscarCampoChave(i, Item);
   fnc_PreencherRegistros;
-  changeTabCadastro.ExecuteTarget(Self);
+  TabControlPrincipal.ActiveTab := tabCadastro;
   ExibirBotoes;
 end;
 
@@ -503,7 +518,7 @@ function TFrmALClientePadrao.SalvarAfter: Boolean;
 var
   Task : ITask;
 begin
-  TabControl.ActiveTab := tabLista;
+  TabControlPrincipal.ActiveTab := tabLista;
 
   Task := TTask.Create(
   procedure
@@ -519,13 +534,28 @@ begin
 
 end;
 
-procedure TFrmALClientePadrao.SearchEditButton1Click(Sender: TObject);
+
+
+procedure TFrmALClientePadrao.SetAcao(const Value: TAcao);
+var
+  I: Integer;
 begin
-  inherited;
-  Filtrar(edtBusca.Text);
+  FAcao := Value;
+  if Value = tpLista then
+  begin
+    for I := 0 to TabControlPrincipal.TabCount-1 do
+      if TabControlPrincipal.Tabs[i] <> tabLista then
+         TabControlPrincipal.Tabs[i].Visible := False;
+  end
+  else
+  begin
+    tabLista.Visible := False;
+    for I := 0 to TabControlPrincipal.TabCount-1 do
+      if TabControlPrincipal.Tabs[i] <> tabLista then
+         TabControlPrincipal.Tabs[i].Visible := True;
+  end;
+
 end;
-
-
 
 procedure TFrmALClientePadrao.SQLListarBeforeOpen(DataSet: TDataSet);
 begin
