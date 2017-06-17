@@ -115,6 +115,10 @@ begin
   cmbtipo_pes.ItemIndex    := Pessoa.tipo_pes.ToInteger;
   edtcpf_cnpj_pes.Text     := Pessoa.cpf_cnpj_pes;
   chkUsuario.IsChecked     := Pessoa.usuario;
+
+  chkCliente.IsChecked     := Pessoa.cliente;
+  chkFornecedor.IsChecked  := Pessoa.fornecedor;
+
   edtusuario_login.Text    := Pessoa.usuario_login;
   edtusuario_senha.Text    := Pessoa.usuario_senha;
 
@@ -217,8 +221,6 @@ begin
   Pessoa.GetConMongo  := FrmALClienteDmDados.GetConMongo;
   Pessoa.GetBanco     := FrmALClienteDmDados.GetBanco;
 
-
-
   if Acao = tpInsert  then
     edt_id.AsInteger :=  FrmALClienteDmDados.vGerador.Pessoa;
 
@@ -227,6 +229,9 @@ begin
   Pessoa.dt_cadastro_pes  := edtdt_cadastro_pes.Date;
   Pessoa.tipo_pes         := cmbtipo_pes.ItemIndex.ToString;
   Pessoa.cpf_cnpj_pes     := edtcpf_cnpj_pes.Text;
+
+  Pessoa.cliente          := chkCliente.IsChecked;
+  Pessoa.fornecedor       := chkFornecedor.IsChecked;
 
   Pessoa.usuario        := chkUsuario.IsChecked;
   Pessoa.usuario_login  := edtusuario_login.Text;

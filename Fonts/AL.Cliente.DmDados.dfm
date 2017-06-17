@@ -9,7 +9,7 @@ object FrmALClienteDmDados: TFrmALClienteDmDados
       'Server='
       'Database=ALICIA'
       'DriverID=Mongo')
-    Connected = True
+    ConnectedStoredUsage = [auRunTime]
     LoginPrompt = False
     Left = 64
     Top = 24

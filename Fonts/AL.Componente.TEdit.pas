@@ -44,6 +44,7 @@ type
     procedure Erro(msg:String);
     function IsEmpty : Boolean;
 
+    function Validar : Boolean;
 
   published
     property ALTextLabel: String read GetALTextLabel write SetALTextLabel;
@@ -241,6 +242,15 @@ begin
   inherited;
   if Assigned(FALlabel) then
     FALlabel.Name := Name + 'lbl';
+end;
+
+function TALEdit.Validar: Boolean;
+var
+  sText:String;
+begin
+  sText := Self.Text;
+  InternalValidate(Self, sText);
+  Result := ALValido;
 end;
 
 end.

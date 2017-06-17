@@ -17,10 +17,11 @@ uses
   AL.Persistencia, System.Rtti, Fmx.Bind.Grid, System.Bindings.Outputs,
   Fmx.Bind.Editors, Data.Bind.EngExt, Fmx.Bind.DBEngExt, Data.Bind.Components,
   Data.Bind.Grid, FMX.Grid, Data.Bind.DBScope, FMX.ScrollBox, FMX.Memo,
-  FMX.Grid.Style, FMX.Objects, AL.Componente.TLabel, AL.Componente.TEdit;
+  FMX.Grid.Style, FMX.Objects, AL.Componente.TLabel, AL.Componente.TEdit,
+  FMX.DialogService.Sync;
 
 type
-  TAcao = (tpInsert, tpUpdate, tpLista, Excluir);
+  TAcao = (tpInsert, tpUpdate, tpLista, tpExcluir);
 
 type
   TFrmALClientePadrao = class(TFrmALClienteModelo)
@@ -84,9 +85,9 @@ type
     procedure Button1Click(Sender: TObject);
     procedure btnCriarClick(Sender: TObject);
     procedure btnFindIndexClick(Sender: TObject);
-    procedure btnExcluirClick(Sender: TObject);
     procedure edtBuscaValidate(Sender: TObject; var Text: string);
     procedure griListaCellDblClick(const Column: TColumn; const Row: Integer);
+    procedure acExcluirExecute(Sender: TObject);
 
   private
 
@@ -100,7 +101,7 @@ type
     procedure fnc_gerenciarForms;
     procedure fnc_buscarCampoChave(var i: Integer; const Item: TListBoxItem);
     procedure fnc_PreencherRegistros;
-    procedure ExibirBotoes;
+
     procedure SetAcao(const Value: TAcao);
 
 
@@ -114,6 +115,12 @@ type
     function CriarBefore : Boolean; virtual;
     function Criar       : Boolean; virtual;
     function CriarAfter  : Boolean; virtual;
+
+
+    function ExcluirBefore : Boolean; virtual;
+    function Excluir       : Boolean; virtual;
+    function ExcluirAfter  : Boolean; virtual;
+
 
     function Editar(Json:String) : Boolean; virtual;
 
@@ -169,11 +176,26 @@ begin
     begin
       Acao := tpUpdate;
       TabControlPrincipal.ActiveTab := tabCadastro;
-      ExibirBotoes;
+
       FocoEditar;
     end;
   end;
 
+
+end;
+
+procedure TFrmALClientePadrao.acExcluirExecute(Sender: TObject);
+begin
+  inherited;
+
+  if TDialogServiceSync.MessageDialog('Confirmar a exclusão?',
+     TMsgDlgType.mtWarning, mbYesNo, TMsgDlgBtn.mbNo, 0) = mrYes then
+  begin
+    Acao := tpExcluir;
+    if ExcluirBefore then
+      if Excluir then
+        ExcluirAfter;
+  end;
 
 end;
 
@@ -188,7 +210,7 @@ begin
       Acao := tpInsert;
       fnc_limparCampos;
       TabControlPrincipal.ActiveTab := tabCadastro;
-      ExibirBotoes;
+
       NovoBefore;
       FocoNovo;
 
@@ -210,19 +232,32 @@ begin
 end;
 
 procedure TFrmALClientePadrao.acSalvarExecute(Sender: TObject);
+var
+  I: Integer;
+
 begin
   inherited;
+  for I := 0 to ComponentCount-1 do
+    if Components[i] is TALEdit then
+      TALEdit(Components[i]).Validar;
+
+  for I := 0 to ComponentCount-1 do
+    if Components[i] is TALEdit then
+      if not TALEdit(Components[i]).ALValido then
+        Exit;
+
+
+
   if SalvarBefore then
     if Salvar then
       SalvarAfter
 end;
 
 procedure TFrmALClientePadrao.acVoltarExecute(Sender: TObject);
-var
-  I: Integer;
 begin
   inherited;
-  if TabControlPrincipal.ActiveTab = tabLista then
+
+  if Acao = tpLista then
   begin
     acSair.Execute;
     Exit
@@ -232,7 +267,7 @@ begin
     FAcao := tpLista;
 
     TabControlPrincipal.ActiveTab := tabLista;
-    ExibirBotoes;
+
   end;
 
 end;
@@ -261,17 +296,10 @@ begin
 
 end;
 
-procedure TFrmALClientePadrao.btnExcluirClick(Sender: TObject);
-begin
-  inherited;
-  Acao := Excluir;
-end;
-
 procedure TFrmALClientePadrao.btnFindIndexClick(Sender: TObject);
 var
   oCrs: IMongoCursor;
 begin
-
 //  oCrs := FConMongo['teste']['buscafonetica'].Find().Match('{ "$text" : { "$search" : "Caminho prender" } }').&End;
 
   oCrs := getCon.Find().Match('{ "$text" : { "$search" : "halisson" } }').&End;
@@ -386,7 +414,7 @@ begin
   Acao := tpLista;
   lblTitulo.Text                   := Self.Caption;
   TabControlPrincipal.ActiveTab    := tabLista;
-  ExibirBotoes;
+
 
   Persistencia := FrmALClienteDmDados.CriarPersistencia;
   Criar;
@@ -435,22 +463,34 @@ begin
   Filtrar(Text);
 end;
 
-procedure TFrmALClientePadrao.ExibirBotoes;
+function TFrmALClientePadrao.Excluir: Boolean;
 begin
-  if TabControlPrincipal.ActiveTab  = tabLista then
+  GetCon.Remove().Match().Add(FFieldID, SQLListar.FieldByName(FFieldID).AsInteger ).&End.Exec;
+end;
+
+function TFrmALClientePadrao.ExcluirAfter: Boolean;
+var
+  Task : ITask;
+begin
+  Acao := tpLista;
+  TabControlPrincipal.ActiveTab := tabLista;
+
+  Task := TTask.Create(
+  procedure
   begin
-    btnSalvar.Visible  := false;
-    btnExcluir.Visible := false;
-    btnNovo.Visible    := true;
-    btnEditar.Visible  := True;
-  end
-  else
-  begin
-    btnEditar.Visible  := false;
-    btnSalvar.Visible  := true;
-    btnExcluir.Visible := true;
-    btnNovo.Visible    := false;
-  end;
+    Sleep(200);
+    FocoInicial;
+    ListaAoCriar
+  end);
+  Task.Start;
+
+
+
+end;
+
+function TFrmALClientePadrao.ExcluirBefore: Boolean;
+begin
+
 end;
 
 function TFrmALClientePadrao.Fechar: Boolean;
@@ -491,7 +531,7 @@ begin
   fnc_buscarCampoChave(i, Item);
   fnc_PreencherRegistros;
   TabControlPrincipal.ActiveTab := tabCadastro;
-  ExibirBotoes;
+
 end;
 
 function TFrmALClientePadrao.Novo: Boolean;
@@ -518,12 +558,13 @@ function TFrmALClientePadrao.SalvarAfter: Boolean;
 var
   Task : ITask;
 begin
+  Acao := tpLista;
   TabControlPrincipal.ActiveTab := tabLista;
 
   Task := TTask.Create(
   procedure
   begin
-    ListaAoCriar;
+    Sleep(200);
     FocoInicial;
   end);
   Task.Start;
@@ -534,27 +575,34 @@ begin
 
 end;
 
-
-
 procedure TFrmALClientePadrao.SetAcao(const Value: TAcao);
 var
   I: Integer;
 begin
-  FAcao := Value;
   if Value = tpLista then
   begin
     for I := 0 to TabControlPrincipal.TabCount-1 do
-      if TabControlPrincipal.Tabs[i] <> tabLista then
-         TabControlPrincipal.Tabs[i].Visible := False;
+      TabControlPrincipal.Tabs[i].Visible := False;
+    tabLista.Visible := True;
+
+    btnSalvar.Visible  := false;
+    btnExcluir.Visible := false;
+    btnNovo.Visible    := true;
+    btnEditar.Visible  := True;
   end
   else
   begin
-    tabLista.Visible := False;
     for I := 0 to TabControlPrincipal.TabCount-1 do
-      if TabControlPrincipal.Tabs[i] <> tabLista then
-         TabControlPrincipal.Tabs[i].Visible := True;
+      TabControlPrincipal.Tabs[i].Visible := True;
+    tabLista.Visible := False;
+
+    btnEditar.Visible  := false;
+    btnSalvar.Visible  := true;
+    btnExcluir.Visible := true;
+    btnNovo.Visible    := false;
   end;
 
+  FAcao := Value;
 end;
 
 procedure TFrmALClientePadrao.SQLListarBeforeOpen(DataSet: TDataSet);

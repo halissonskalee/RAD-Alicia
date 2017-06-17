@@ -19,7 +19,9 @@ type
     Fendereco_principal: TEndereco;
     Fusuario_senha: String;
     Fusuario_login: String;
-    FUsuario: Boolean;
+    Fusuario: Boolean;
+    Fcliente: Boolean;
+    Ffornecedor: Boolean;
     procedure Set_id(const Value: integer);
     procedure Setcpf_cnpj_pes(const Value: String);
     procedure Setrazao_social_pes(const Value: string);
@@ -29,9 +31,11 @@ type
     procedure SetGetConMongo(const Value: TALMongoConnection);
     procedure SetGetEnv(const Value: TALMongoEnv);
     procedure Setendereco_principal(const Value: TEndereco);
-    procedure SetUsuario(const Value: Boolean);
+    procedure Setusuario(const Value: Boolean);
     procedure Setusuario_login(const Value: String);
     procedure Setusuario_senha(const Value: String);
+    procedure Setcliente(const Value: Boolean);
+    procedure Setfornecedor(const Value: Boolean);
 
   public
     function Insert    : Boolean;
@@ -45,9 +49,11 @@ type
     property tipo_pes         : String read Ftipo_pes write Settipo_pes;
     property cpf_cnpj_pes     : String read Fcpf_cnpj_pes write Setcpf_cnpj_pes;
 
-    property usuario          : Boolean read FUsuario write SetUsuario;
+    property usuario          : Boolean read Fusuario write Setusuario;
     property usuario_login    :String read Fusuario_login write Setusuario_login;
     property usuario_senha    :String read Fusuario_senha write Setusuario_senha;
+    property cliente          : Boolean read Fcliente write Setcliente;
+    property fornecedor       : Boolean read Ffornecedor write Setfornecedor;
 
 
 
@@ -75,6 +81,11 @@ begin
   Result := 'PESSOA';
 end;
 
+procedure TPessoa.Setcliente(const Value: Boolean);
+begin
+  Fcliente := Value;
+end;
+
 procedure TPessoa.Setcpf_cnpj_pes(const Value: String);
 begin
   Fcpf_cnpj_pes := Value;
@@ -90,6 +101,11 @@ end;
 procedure TPessoa.Setendereco_principal(const Value: TEndereco);
 begin
   Fendereco_principal := Value;
+end;
+
+procedure TPessoa.Setfornecedor(const Value: Boolean);
+begin
+  Ffornecedor := Value;
 end;
 
 procedure TPessoa.SetGetBanco(const Value: TALDataBase);
@@ -158,7 +174,9 @@ begin
     .Add('cpf_cnpj_pes', cpf_cnpj_pes)
     .Add('usuario_senha',usuario_senha)
     .Add('usuario_login',usuario_login)
-    .Add('Usuario',Usuario)
+    .Add('usuario',Usuario)
+    .Add('cliente',cliente)
+    .Add('fornecedor',fornecedor)
     .BeginObject('endereco_principal')
       .Add('uf_cep'           ,endereco_principal.uf_cep)
       .Add('codigo_cep'       ,endereco_principal.codigo_cep)
@@ -194,6 +212,8 @@ begin
         .Field('dt_cadastro_pes' ,dt_cadastro_pes)
         .Field('tipo_pes'        ,tipo_pes)
         .Field('cpf_cnpj_pes'    ,cpf_cnpj_pes)
+        .Field('cliente'         ,cliente)
+        .Field('fornecedor'      ,fornecedor)
         .Field('usuario'         ,usuario)
         .Field('usuario_login'   ,usuario_login)
         .Field('usuario_senha'   ,usuario_senha)
