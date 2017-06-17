@@ -48,10 +48,11 @@ type
     Panel3: TPanel;
     procedure actSairExecute(Sender: TObject);
     procedure FormCreate(Sender: TObject);
-    procedure ALEdit1ALOnValidate(Sender: TObject; var Text: string);
-    procedure ALEdit1ALOnValidating(Sender: TObject; var Text: string);
+
+
     procedure actMenuExecute(Sender: TObject);
     procedure actPessoaExecute(Sender: TObject);
+
 
   private
 
@@ -68,7 +69,8 @@ implementation
 {$R *.fmx}
 
 uses AL.Cliente.DmDados, AL.Cliente.Pessoa, AL.Cliente.CEP,
-     AL.Rotinas, AL.Cliente.Senha, FireDAC.Phys.MongoDBWrapper;
+     AL.Rotinas, AL.Cliente.Senha, FireDAC.Phys.MongoDBWrapper,
+     System.MaskUtils;
 
 procedure TFrmALClienteMenu.actMenuExecute(Sender: TObject);
 begin
@@ -88,18 +90,6 @@ end;
 procedure TFrmALClienteMenu.actSairExecute(Sender: TObject);
 begin
   Application.Terminate;
-end;
-
-procedure TFrmALClienteMenu.ALEdit1ALOnValidate(Sender: TObject;
-  var Text: string);
-begin
-  //
-end;
-
-procedure TFrmALClienteMenu.ALEdit1ALOnValidating(Sender: TObject;
-  var Text: string);
-begin
-  Sleep(10);
 end;
 
 procedure TFrmALClienteMenu.FormCreate(Sender: TObject);

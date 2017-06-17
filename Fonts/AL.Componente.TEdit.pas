@@ -7,7 +7,7 @@ uses
   FMX.Controls.Presentation, FMX.Edit, System.UITypes,
   System.Variants, FMX.Forms, FMX.Graphics, FMX.Dialogs,
   FMX.StdCtrls, AL.Componente.TLabel, AL.Tipo, FMX.Text,
-  FMX.Objects;
+  FMX.Objects, System.MaskUtils;
 
 type
   TALEdit = class(TEdit)
@@ -34,6 +34,7 @@ type
     procedure SetName(const NewName: TComponentName); override;
     procedure InternalValidate(Sender: TObject; var Text: string);
     procedure InternalValidating(Sender: TObject;  var Text: string);
+
     procedure Path1Click(Sender: TObject);
 
 
@@ -107,6 +108,8 @@ begin
     Result := FALlabel.Text;
 end;
 
+
+
 procedure TALEdit.InternalValidate(Sender: TObject; var Text: string);
 begin
   ALValido := True;
@@ -137,8 +140,26 @@ begin
 
   if ALTipo = Pessoa then
   begin
-    if not ValidarCpf(Text) then
-      Erro('CPF informado esta errado');
+    if (not ValidarCpf(Text)) and
+       (not ValidarCNPJ(Text)) then
+      Erro('CNPJ ou CPF informado esta errado');
+  end;
+
+  { TODO : formata conforme o tipo }
+  if ALValido then
+  begin
+    if ALTipo = Pessoa then
+    begin
+      if RemoverNumeros(Text).Length = 11 then
+        Text := FormatMaskText('000\.000\.000\-00;0;', Text);
+      if RemoverNumeros(Text).Length = 14 then
+        Text := FormatMaskText('00\.000\.000\/0000\-00;0;', Text);
+    end;
+
+    if ALTipo = Cep then
+      Text := FormatMaskText('00000\-000;0;', Text);
+    if ALTipo = Telefone then
+      Text := FormatMaskText('\(00\)0000-00009;0;', Text);
   end;
 
 
@@ -193,7 +214,7 @@ begin
   FilterChar := '';
 
   if (FALTipo = Pessoa) then
-    FilterChar := '0123456789';
+    FilterChar := '0123456789-/.';
 
   if (FALTipo = Cep) then
     FilterChar := '0123456789-';
@@ -203,6 +224,9 @@ begin
 
   if (FALTipo = Inteiro) then
     FilterChar := '0123456789';
+
+  if (FALTipo = Telefone) then
+    FilterChar := '()- 0123456789';
 
 end;
 
