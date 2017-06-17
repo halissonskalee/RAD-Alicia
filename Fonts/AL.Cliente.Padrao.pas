@@ -37,8 +37,6 @@ type
     tabLista: TTabItem;
     tabCadastro: TTabItem;
     acVoltar: TAction;
-    pTitulo: TPanel;
-    lblTitulo: TLabel;
     griLista: TGrid;
     SQLListar: TFDMongoDataSet;
     BindSourceDB1: TBindSourceDB;
@@ -71,6 +69,7 @@ type
     Image5: TImage;
     Rectangle1: TRectangle;
     edtBusca: TALEdit;
+    lblTitulo: TLabel;
     procedure acNovoExecute(Sender: TObject);
     procedure acEditarExecute(Sender: TObject);
     procedure ListBox1ItemClick(const Sender: TCustomListBox;
